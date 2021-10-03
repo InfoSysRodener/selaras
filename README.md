@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # selaras_art
 
 ## Build Setup
@@ -67,3 +68,6 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+=======
+# selaras_art
+>>>>>>> 5c77cc2f69c37b3938da71d7578883f356ab406c
