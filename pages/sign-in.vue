@@ -1,26 +1,26 @@
 <template>
   <div>
     <div class="flex flex-row justify-center w-full content-center h-screen items-center">
-      <div class="p-4 w-1/3">
+      <div class="py-4 px-10 w-2/5">
         <AppLogo/>
         <div class="my-10">
          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                Username
+            <label class="block text-gray-700  mb-2" for="Name">
+                Name
             </label>
-            <input class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+            <input id="Name"  class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Name">
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                <label class="block text-gray-700  mb-2" for="email">
                     Email
                 </label>
-                <input class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email">
+                <input id="email"  class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Email">
             </div>
             <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Phone Number">
+                <label class="block text-gray-700  mb-2" for="Phone Number">
                     Phone Number
                 </label>
-                <input class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Phone Number" type="text" placeholder="Phone Number">
+                <input id="Phone Number" class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Phone Number">
             </div>
 
 
@@ -59,3 +59,5 @@
     components:{AppLogo,Footer}
   }
 </script>
+
+

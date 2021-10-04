@@ -2,6 +2,6 @@
   <img class="object-center" src="~/assets/SelarasGalleryLogo.svg"/>
 </template>
 
-<style>
+<style scoped>
     img{ margin:auto; display:block}
 </style>
