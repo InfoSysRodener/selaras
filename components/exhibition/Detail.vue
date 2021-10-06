@@ -1,12 +1,12 @@
 <template>
-    <div class="grid grid-cols-6 p-10 gap-4 border-t">
-     <div class="col-start-1 col-span-2">   
+    <div class="grid grid-cols-6 mx-5 pt-10 sm:p-10 gap-4 border-t">
+     <div class="col-span-6 sm:col-start-1 sm:col-span-2">   
         <h1 class="font-medium text-4xl"> Exhibition Title </h1>
         <p class="text-lg">01 Dec 2020 - 01 Dec 2021</p>
 
         <div class="my-20">
             <h1>Featured Artist</h1>
-            
+    
             <p class="font-medium text-2xl">Widi Wardani Purnama</p>
             <p class="text-sm underline">Art Catalogue</p>
             <br>
@@ -15,9 +15,9 @@
         </div>
 
      </div>
-     <div class="col-start-3 col-span-4">  
+     <div class="col-span-6 sm:col-start-3  sm:col-span-4">  
         <h1 class="mb-10 text-xl font-medium tracking-widest">Selaras Art Space</h1>
-        <p class="w-3/5 leading-5">
+        <p class="w-full sm:w-3/5 leading-5">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
         </p>
 

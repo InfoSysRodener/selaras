@@ -3,7 +3,21 @@
     <div class="flex flex-row justify-center w-full content-center h-screen items-center">
       <div class="p-4">
         <AppLogo/>
-        <div class="my-14 tracking-wider text-center font-medium">
+        <div class="text-sm text-center my-14  sm:hidden">
+          <p> 
+            'Selaras art space' adalah sebuah ruang presentasi
+            karya online yang menghadirkan karya para seniman
+            Indonesia dalam berbagai medium. 
+          </p>
+          <br>
+          <p> 
+            Dalam keadaan yang spesial ini, kami mencoba  
+            memberikan sebuah ruang untuk seniman bisa 
+            memajang karya dan memasarkannya kepada 
+            khalayak yang lebih luas. 
+          </p>
+        </div>
+        <div class="hidden sm:block my-14 tracking-wider text-center font-medium">
             <p> 'Selaras art space' adalah sebuah ruang presentasi </p>
             <p> karya online yang menghadirkan karya para seniman </p>
             <p> Indonesia dalam berbagai medium. </p>
@@ -14,7 +28,9 @@
             <p> khalayak yang lebih luas. </p>
         </div>
         <div class="mb-10">
-          <button class="w-full p-2 bg-orange text-white"> Explore </button>
+          <NuxtLink to="/sign-in">
+            <button class="w-full p-2 bg-orange text-white"> Explore </button>
+          </NuxtLink>
         </div>
       </div>
     </div>

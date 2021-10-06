@@ -1,3 +1,5 @@
+import webpack from 'webpack';
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -50,5 +52,18 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+       standalone: true,
+        /*
+         ** You can extend webpack config here
+         */
+        extend(config,ctx) {
+          config.plugins.push(new webpack.ProvidePlugin({
+              THREE: 'three'
+          }));
+          config.module.rules.push({
+            test: /\.(glsl|vs|fs)$/,
+            loader: 'raw-loader'
+          })
+        }
+  },
 }
