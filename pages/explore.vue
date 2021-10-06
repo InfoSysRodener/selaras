@@ -12,7 +12,7 @@
 
 
 <script>
-  import Scene from '../components/webgl/Scene.vue';
+  import Scene from '../webgl/Scene.vue';
   import Navbar from '../components/Navbar.vue';
   import Footer from '../components/Footer.vue';
   import ExhibitionDetail from '../components/exhibition/Detail.vue';
