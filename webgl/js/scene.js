@@ -13,13 +13,13 @@ class SceneInit {
 
         this.camera = new THREE.PerspectiveCamera(
             45,
-            this.width / this.height,
+            this.width / this.height,  
             1,
             1000
         );
         this.camera.position.z = 15;
 
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        this.renderer = new THREE.WebGLRenderer({ antialias: true});
         this.renderer.setSize(this.width, this.height);
         this.container.appendChild(this.renderer.domElement);
         
@@ -29,18 +29,18 @@ class SceneInit {
         window.addEventListener('resize', this.onResize.bind(this));
 
         
+        this.addLoader();
+        this.addObjects();
         this.render();
-
-        this.addLoader()
-        this.addObjects()
     }
 
     addLoader(){
-        this.loader = new Loader(this.scene, this.renderer)
+        this.loader = new Loader(this.scene, this.renderer);
     }
 
     addObjects(){
-        this.loader.loadModel('artSpace.glb')
+        this.loader.loadModel('/artSpace.glb');
+        // this.scene.add(new THREE.Mesh(new THREE.PlaneBufferGeometry(1,1), new THREE.MeshNormalMaterial()));
     }
 
 
@@ -61,6 +61,8 @@ class SceneInit {
 
         this.renderer.render(this.scene, this.camera)
     }
+
+
 
 }
 

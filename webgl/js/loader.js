@@ -10,7 +10,7 @@ export class Loader {
     textureLoader
     scene
     onModelLoadEventName = 'onModelLoad'
-    assetPath = '../assets/fonts/'
+    assetPath = '/3D/'
     
 
     constructor(scene, renderer) {
@@ -19,12 +19,14 @@ export class Loader {
         this.textureLoader = new TextureLoader(this.loadingManager);
         this.scene = scene
         this.renderer = renderer
-
+ 
+        
         this.setUpLoadManager()
         this.setUpLoader()
     }
 
     setUpLoader() {
+        const that = this;
         const pmremGenerator = new PMREMGenerator(this.renderer);
         pmremGenerator.compileEquirectangularShader();
         // Loading of assets
@@ -32,24 +34,23 @@ export class Loader {
             .setPath(this.assetPath)
             .load('urban_street_01_2k.hdr', function (texture) {
 
-                const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+               const envMap = pmremGenerator.fromEquirectangular(texture).texture;
 
-                this.scene.background = envMap;
-                this.scene.environment = envMap;
+               that.scene.background = envMap;
+               that.scene.environment = envMap;
 
-                texture.dispose();
-                pmremGenerator.dispose();
+               texture.dispose();
+               pmremGenerator.dispose();
 
-                this.renderer.render(this.scene, this.camera);
+            //    that.renderer.render(that.scene, that.scene.camera);
             })
     }
 
     loadModel(asset) {
         // model
         this.gltfLoader.setPath(this.assetPath)
-        this.gltfLoader.load(asset, function (object) {
+        this.gltfLoader.load(asset,  (object) => {
             this.scene.add(object.scene);
-
         });
     }
 
