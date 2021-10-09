@@ -53,7 +53,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
        standalone: true,
-       transpile: ['GLTFLoader.js'],
+     
         /*
          ** You can extend webpack config here
          */
@@ -61,10 +61,10 @@ export default {
           config.plugins.push(new webpack.ProvidePlugin({
               THREE: 'three'
           }));
-          config.module.rules.push({
-            test: /\.(glsl|vs|fs)$/,
-            loader: 'raw-loader'
-          })
+          // config.module.rules.push({
+          //   test: /\.(glsl|vs|fs)$/,
+          //   loader: 'raw-loader'
+          // })
         }
   },
 }

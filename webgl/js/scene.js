@@ -39,8 +39,8 @@ class SceneInit {
     }
 
     addObjects(){
-        this.loader.loadModel('/artSpace.glb');
-        // this.scene.add(new THREE.Mesh(new THREE.PlaneBufferGeometry(1,1), new THREE.MeshNormalMaterial()));
+        // this.loader.loadModel('/artSpace.glb');
+        this.scene.add(new THREE.Mesh(new THREE.PlaneBufferGeometry(1,1), new THREE.MeshNormalMaterial()));
     }
 
 

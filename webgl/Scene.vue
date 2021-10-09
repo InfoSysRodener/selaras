@@ -1,6 +1,6 @@
 <template>
-    <div ref="container" class="w-screen h-screen" >
-    
+    <div ref="container" class="w-full h-screen" >
+        <slot/>
     </div>
 </template>
 

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="190.399" viewBox="0 0 250 190.399">
+  <g id="Group_63" data-name="Group 63" transform="translate(-1565 -523.601)">
+    <text id="Click_or_tap_on_a_painting_to_enter_view_mode" data-name="Click or tap on a painting
+to enter view mode" transform="translate(1690 685)" fill="#201111" font-size="20" font-family="Montserrat-Light, Montserrat" font-weight="300"><tspan x="-124.08" y="0">Click or tap on a painting</tspan><tspan x="-96.05" y="24">to enter view mode</tspan></text>
+    <g id="Group_62" data-name="Group 62" transform="translate(27.538 -179)">
+      <g id="Group_52" data-name="Group 52" transform="translate(1786 -282)">
+        <g id="tap" transform="translate(-119.321 1033.905)">
+          <g id="Group_46" data-name="Group 46" transform="translate(0 0)">
+            <g id="Group_45" data-name="Group 45">
+              <path id="Path_46" data-name="Path 46" d="M125.087,104.538,110.466,88.47a7.443,7.443,0,0,0-10.526.023,7.278,7.278,0,0,0-1.882,3.216,7.449,7.449,0,0,0-11.67,3.885,7.451,7.451,0,0,0-9.78.677,7.359,7.359,0,0,0-1.866,3.138l-6.891-6.89a7.443,7.443,0,0,0-10.526,10.526L83.8,129.517l-15.7,2.465a8.71,8.71,0,0,0-7.443,8.582,5.84,5.84,0,0,0,5.833,5.833h36.665a21.245,21.245,0,0,0,15.122-6.264l6.117-6.117a21.36,21.36,0,0,0,.7-29.479Zm-3.445,26.73-6.117,6.117a17.383,17.383,0,0,1-12.373,5.125H66.487a1.945,1.945,0,0,1-1.944-1.944,4.811,4.811,0,0,1,4.133-4.736l19.5-3.064a1.942,1.942,0,0,0,1.073-3.294L60.075,100.3A3.555,3.555,0,0,1,65.1,95.267l19.454,19.454a1.944,1.944,0,1,0,2.745-2.753l-7.944-7.944A3.555,3.555,0,0,1,84.386,99l7.948,7.948a1.944,1.944,0,1,0,2.745-2.753l-4.056-4.056a3.555,3.555,0,0,1,5.028-5.028l4.075,4.075c.008,0,0,0,0,0l0,0,0,0,0,0h0a0,0,0,0,1,0,0,1.944,1.944,0,0,0,2.71-2.788l-.167-.167a3.556,3.556,0,0,1,4.962-5.094l14.559,16a17.477,17.477,0,0,1-.572,24.113Z" transform="translate(-55.153 -86.302)" fill="#201111" stroke="#201111" stroke-width="0.5"/>
+            </g>
+          </g>
+        </g>
+        <g id="Group_49" data-name="Group 49" transform="translate(-134.089 1023.91)">
+          <g id="Group_38" data-name="Group 38">
+            <path id="Path_37" data-name="Path 37" d="M43.579,39.566l-5.949-5.95a2.833,2.833,0,0,0-4.006,4.006l5.949,5.95a2.833,2.833,0,1,0,4.006-4.006Z" transform="translate(-32.793 -32.786)" fill="#201111"/>
+          </g>
+        </g>
+        <g id="Group_50" data-name="Group 50" transform="translate(-114.542 1019)">
+          <g id="Group_40" data-name="Group 40" transform="translate(0 0)">
+            <path id="Path_38" data-name="Path 38" d="M171.256,11.382l-1.7-9.066a2.833,2.833,0,1,0-5.569,1.043l1.7,9.066a2.833,2.833,0,0,0,5.569-1.043Z" transform="translate(-163.938 -0.005)" fill="#201111"/>
+          </g>
+        </g>
+        <g id="Group_51" data-name="Group 51" transform="translate(-139 1043.454)">
+          <g id="Group_42" data-name="Group 42" transform="translate(0)">
+            <path id="Path_39" data-name="Path 39" d="M12.421,165.681l-9.066-1.7a2.833,2.833,0,1,0-1.043,5.569l9.066,1.7a2.833,2.833,0,1,0,1.043-5.569Z" transform="translate(0 -163.932)" fill="#201111"/>
+          </g>
+        </g>
+      </g>
+      <path id="Path_56" data-name="Path 56" d="M3792,5277.364V5228.6H3684.462v113.937h106.709" transform="translate(-2102 -4523)" fill="none" stroke="#201111" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+    </g>
+  </g>
+</svg>
