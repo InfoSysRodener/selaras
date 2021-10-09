@@ -1,7 +1,9 @@
 <template>
-    <div ref="container" class="w-screen h-screen" >
-    
-    </div>
+   <div>
+        <div id="threeDiv" ref="container" class="w-screen h-screen">
+        </div>
+        <div id="controlsDiv"></div>
+   </div>
 </template>
 
 <script>
