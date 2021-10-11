@@ -1,7 +1,10 @@
 <template>
-    <div ref="container" class="w-full h-screen" >
-        <slot/>
-    </div>
+   <div>
+        <div id="threeDiv" ref="container" class="w-full h-screen">
+            <slot/>
+        </div>
+        <div id="controlsDiv"></div>
+   </div>
 </template>
 
 <script>

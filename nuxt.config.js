@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'selaras_art',
+    title: 'Selaras Art Space',
     htmlAttrs: {
       lang: 'en'
     },
@@ -28,6 +28,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/amplify.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -53,7 +54,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
        standalone: true,
-     
         /*
          ** You can extend webpack config here
          */

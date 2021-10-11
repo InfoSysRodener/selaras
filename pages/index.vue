@@ -11,10 +11,15 @@
           </p>
           <br>
           <p> 
+            <!-- 
             Dalam keadaan yang spesial ini, kami mencoba  
             memberikan sebuah ruang untuk seniman bisa 
             memajang karya dan memasarkannya kepada 
-            khalayak yang lebih luas. 
+            khalayak yang lebih luas.  -->
+            
+            Kami memberikan sebuah ruang agar para seniman bisa 
+            memperkenalkan karya nya kepada 
+            khalayak yang lebih luas
           </p>
         </div>
         <div class="hidden sm:block my-14 tracking-wider text-center font-medium">
@@ -22,10 +27,9 @@
             <p> karya online yang menghadirkan karya para seniman </p>
             <p> Indonesia dalam berbagai medium. </p>
             <br>
-            <p> Dalam keadaan yang spesial ini, kami mencoba  </p>
-            <p> memberikan sebuah ruang untuk seniman bisa </p>
-            <p> memajang karya dan memasarkannya kepada </p>
-            <p> khalayak yang lebih luas. </p>
+            <p> Kami memberikan sebuah ruang agar para seniman bisa  </p>
+            <p> memperkenalkan karya nya kepada  </p>
+            <p> khalayak yang lebih luas </p>
         </div>
         <div class="mb-10">
           <NuxtLink to="/sign-in">

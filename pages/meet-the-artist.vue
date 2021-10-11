@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="pb-10 w-1/3">
-          <NuxtLink to="/guide">
+          <NuxtLink to="/explore">
              <button class="my-5 p-3 bg-orange text-white w-full"> Start Tour </button>   
           </NuxtLink>
         </div>

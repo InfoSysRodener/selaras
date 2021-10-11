@@ -32,7 +32,10 @@ module.exports = {
          wide: '.025em',
          wider: '.1em',
          widest: '.25em',
-       }
+      },
+      textColor: {
+        'orange': '#F88E52',
+      }
     },
   },
   variants: {

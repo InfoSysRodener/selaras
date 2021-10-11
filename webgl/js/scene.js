@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Loader } from './loader'
+
+import { CameraControls } from './CameraControls';
+import { ControlEvents } from './ControlEvents';
+import { Loader } from './Loader'
 
 class SceneInit {
 
@@ -9,7 +12,7 @@ class SceneInit {
         this.scene = new THREE.Scene();
 
         this.width = this.container.clientWidth;
-        this.height =this.container.clientHeight;
+        this.height = this.container.clientHeight;
 
         this.camera = new THREE.PerspectiveCamera(
             45,
@@ -17,7 +20,10 @@ class SceneInit {
             1,
             1000
         );
-        this.camera.position.z = 15;
+        this.camera.position.x = -2
+        this.camera.position.y = 2
+        this.camera.position.z = 1
+        
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true});
         this.renderer.setSize(this.width, this.height);
@@ -28,9 +34,11 @@ class SceneInit {
 
         window.addEventListener('resize', this.onResize.bind(this));
 
+        this.cameraControls = new CameraControls(this.camera)
         
         this.addLoader();
         this.addObjects();
+        this.addControls()
         this.render();
     }
 
@@ -39,12 +47,20 @@ class SceneInit {
     }
 
     addObjects(){
-        // this.loader.loadModel('/artSpace.glb');
-        this.scene.add(new THREE.Mesh(new THREE.PlaneBufferGeometry(1,1), new THREE.MeshNormalMaterial()));
+        this.loader.loadModel('artSpace.glb');
+        // this.loader.loadModel('artPaintings.glb');
+        // this.loader.loadModel('profileBoards.glb');
+    }
+
+    addControls(){
+        const controls = new ControlEvents(this.cameraControls)
+        controls.addDesktopEvents()
+        controls.addMobileEvents()
     }
 
 
     render() {
+        this.cameraControls.updateMovement()
         this.renderer.render(this.scene, this.camera);
         window.requestAnimationFrame(this.render.bind(this));
     }
