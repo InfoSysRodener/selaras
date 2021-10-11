@@ -3,7 +3,7 @@ import * as THREE from 'three';
 
 import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
-import { Loader } from './Loader'
+import { Loader } from './loader'
 
 class SceneInit {
 
