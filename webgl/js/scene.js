@@ -27,6 +27,12 @@ class SceneInit {
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true});
         this.renderer.setSize(this.width, this.height);
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        this.renderer.outputEncoding = THREE.sRGBEncoding;
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMapSoft = true;
         this.container.appendChild(this.renderer.domElement);
         
         // this.control = new OrbitControls(this.camera,this.container);
@@ -53,13 +59,28 @@ class SceneInit {
     }
 
     addControls(){
-        const controls = new ControlEvents(this.cameraControls)
-        controls.addDesktopEvents()
-        controls.addMobileEvents()
+        this.controls = new ControlEvents(this.cameraControls)
+        this.controls.addDesktopEvents()
+        this.controls.addMobileEvents()
     }
 
 
     render() {
+        let x = 0
+        let y = 0
+        if(this.controls.moveForward){
+            y += 1
+        }
+        if(this.controls.moveBackward){
+            y -= 1
+        }
+        if(this.controls.moveLeft){
+            x += 1
+        }
+        if(this.controls.moveRight){
+            x -= 1
+        }
+        this.cameraControls.move(x, y)
         this.cameraControls.updateMovement()
         this.renderer.render(this.scene, this.camera);
         window.requestAnimationFrame(this.render.bind(this));
