@@ -23,13 +23,13 @@ export const actions = {
     }
   },
 
-  async register(_, { email, password ,name,phone_number }) {
+  async register(_, { email, password ,name,phone_number,phone_prefix }) {
     const user = await Auth.signUp({
       username: email,
       password,
       attributes:{
           name,
-          phone_number
+          phone_number: phone_prefix + phone_number
       }
     })
     return user

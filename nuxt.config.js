@@ -42,6 +42,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@braid/vue-formulate/nuxt'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,6 +51,7 @@ export default {
     '@nuxtjs/axios',
   ],
 
+ 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
