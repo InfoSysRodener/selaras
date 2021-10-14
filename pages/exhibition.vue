@@ -28,6 +28,7 @@
 <script>
   export default {
       layout: 'exhibition_layouts',
+      middleware:'auth',
       data(){
         return{
           exhibition:{

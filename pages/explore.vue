@@ -21,6 +21,7 @@
   // import MenuTab from '../components/exhibition/MenuTab.vue';
   import ListenTab from '../components/exhibition/ListenTab.vue';
   export default {
-    components:{ExhibitionDetail,Navbar,Footer,Scene,ListenTab}
+    components:{ExhibitionDetail,Navbar,Footer,Scene,ListenTab},
+    middleware:'auth',
   }
 </script> 

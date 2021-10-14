@@ -8,7 +8,7 @@
                 <p class="text-white pl-2  mr-5 sm:mr-10">Account</p>
             </div>
            <div v-show="isOpen" class="absolute right-0 mt-8 mr-2  w-44 bg-white rounded-sm shadow-xl z-20 text-center" @click="isOpen = !isOpen">
-                <a href="#" class="block px-4 py-4 text-sm capitalize text-gray-700 hover:bg-orange hover:text-white">
+                <a class="block px-4 py-4 text-sm capitalize text-gray-700 hover:bg-orange hover:text-white cursor-pointer" @click="logOut" >
                    Sign Out
                 </a>
             </div>
@@ -24,7 +24,14 @@ export default {
         }
     },
     methods:{
-
+        async logOut(){
+            try {
+                await this.$store.dispatch('auth/logout');
+                this.$router.push('sign-in');
+            } catch (error) {
+                console.log({error});
+            }
+        }
     }
 }
 </script>

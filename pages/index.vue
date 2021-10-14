@@ -46,6 +46,7 @@
   import AppLogo from '../components/AppLogo.vue';
   import Footer from '../components/Footer.vue';
   export default {
-    components:{AppLogo,Footer}
+    components:{AppLogo,Footer},
+    middleware:'guest',
   }
 </script>
