@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
@@ -24,6 +24,11 @@ class SceneInit {
         this.camera.position.y = 2
         this.camera.position.z = 1
 
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        this.dummyPerson = new THREE.Mesh(geometry, material);
+        this.scene.add(this.dummyPerson);
+        this.dummyPerson.position.copy(this.camera.position)
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.width, this.height);
@@ -35,8 +40,8 @@ class SceneInit {
         this.renderer.shadowMapSoft = true;
         this.container.appendChild(this.renderer.domElement);
 
-        // this.control = new OrbitControls(this.camera, this.container);
-        // this.scene.add(this.control);
+        this.control = new OrbitControls(this.camera, this.container);
+        this.scene.add(this.control);
 
         this.raycaster = new THREE.Raycaster()
 
@@ -85,8 +90,16 @@ class SceneInit {
         }
         this.cameraControls.move(x, y)
         this.cameraControls.updateMovement()
+        
+        this.dummyPerson.position.copy(this.camera.position)
+        for(let i = 0; i < this.loader.allMeshes.length; i++){
+            if(this.checkCollision(this.dummyPerson, this.loader.allMeshes[i])){
+                this.cameraControls.move(x * -1, y * -1)
+                this.cameraControls.updateMovement()
+            }
+        }
+
         this.renderer.render(this.scene, this.camera);
-        // this.control.update()
         window.requestAnimationFrame(this.render.bind(this));
     }
 
@@ -101,6 +114,16 @@ class SceneInit {
         this.renderer.setSize(this.width, this.height);
 
         this.renderer.render(this.scene, this.camera)
+        
+    }
+
+    checkCollision(firstObject, secondObject) {
+        const firstBB = new THREE.Box3().setFromObject(firstObject);
+
+        const secondBB = new THREE.Box3().setFromObject(secondObject);
+
+        const collision = firstBB.intersectsBox(secondBB);
+        return collision
     }
 
 }

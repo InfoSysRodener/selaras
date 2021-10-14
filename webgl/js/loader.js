@@ -1,5 +1,5 @@
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType } from 'three'
+import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, BoxHelper } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
@@ -57,9 +57,13 @@ export class Loader {
         this.gltfLoader.setPath(this.assetPath)
         this.gltfLoader.load(asset, (object) => {
             this.scene.add(object.scene);
-            if(storeMeshes){
+            if (storeMeshes) {
                 for (let i = 0; i < object.scene.children.length; i++) {
                     this.allMeshes.push(object.scene.children[i])
+                    object.scene.children[i].visible = false
+                    //  debug
+                    // const box = new BoxHelper(object.scene.children[i], 0xffff00);
+                    // this.scene.add(box);
                 }
             }
         });
