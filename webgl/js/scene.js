@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
@@ -17,18 +17,19 @@ class SceneInit {
         this.camera = new THREE.PerspectiveCamera(
             45,
             this.width / this.height,
-            1,
-            1000
+            0.1,
+            100000
         );
         this.camera.position.x = -2
         this.camera.position.y = 2
         this.camera.position.z = 1
 
+
         const geometry = new THREE.BoxGeometry(1, 1, 1);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        this.dummyPerson = new THREE.Mesh(geometry, material);
-        this.scene.add(this.dummyPerson);
-        this.dummyPerson.position.copy(this.camera.position)
+        this.collCube = new THREE.Mesh(geometry, material);
+        this.collCube.position.copy(this.camera.position)
+        this.scene.add(this.collCube);
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.width, this.height);
@@ -40,10 +41,7 @@ class SceneInit {
         this.renderer.shadowMapSoft = true;
         this.container.appendChild(this.renderer.domElement);
 
-        this.control = new OrbitControls(this.camera, this.container);
-        this.scene.add(this.control);
-
-        this.raycaster = new THREE.Raycaster()
+        // this.control = new OrbitControls(this.camera, this.container);
 
         window.addEventListener('resize', this.onResize.bind(this));
 
@@ -53,6 +51,18 @@ class SceneInit {
         this.addObjects();
         this.addControls()
         this.render();
+
+            this.lastCorrectPos = this.camera.position.clone()
+
+        setInterval(() => {
+            if(this.checkCollision()){
+                console.log("HIT")
+                this.camera.position.copy(this.lastCorrectPos)
+            }
+            else{
+                this.lastCorrectPos = this.camera.position.clone()
+            }
+        }, 100)
     }
 
     addLoader() {
@@ -60,8 +70,8 @@ class SceneInit {
     }
 
     addObjects() {
-        this.loader.loadModel('artSpace.glb', false);
-        this.loader.loadModel('artSpaceCol.glb', true)
+        this.loader.loadModel('artSpace.glb', true);
+        // this.loader.loadModel('artSpaceCol.glb', true)
         // this.loader.loadModel('artPaintings.glb');
         // this.loader.loadModel('profileBoards.glb');
     }
@@ -88,17 +98,11 @@ class SceneInit {
         if (this.controls.moveRight) {
             x -= 1
         }
-        this.cameraControls.move(x, y)
-        this.cameraControls.updateMovement()
-        
-        this.dummyPerson.position.copy(this.camera.position)
-        for(let i = 0; i < this.loader.allMeshes.length; i++){
-            if(this.checkCollision(this.dummyPerson, this.loader.allMeshes[i])){
-                this.cameraControls.move(x * -1, y * -1)
-                this.cameraControls.updateMovement()
-            }
+        if (x !== 0 || y !== 0) {
+            this.cameraControls.move(x, y)
+            this.cameraControls.updateMovement()
+            this.collCube.position.copy(this.camera.position)
         }
-
         this.renderer.render(this.scene, this.camera);
         window.requestAnimationFrame(this.render.bind(this));
     }
@@ -114,17 +118,34 @@ class SceneInit {
         this.renderer.setSize(this.width, this.height);
 
         this.renderer.render(this.scene, this.camera)
-        
+
     }
 
-    checkCollision(firstObject, secondObject) {
-        const firstBB = new THREE.Box3().setFromObject(firstObject);
+    checkCollision() {
+        let vert = []
+        const positions = this.collCube.geometry.attributes.position.array;
+        const ptCout = positions.length / 9;
+        for (let i = 0; i < ptCout; i++) {
+            const p = new THREE.Vector3(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+            vert.push(p)
+        }
 
-        const secondBB = new THREE.Box3().setFromObject(secondObject);
+        for (let i = 0; i < vert.length; i++) {
+            const localVertex = vert[i].clone();
+            const globalVertex = localVertex.applyMatrix4(this.collCube.matrix);
+            const directionVector = globalVertex.sub(this.collCube.position);
+            let r = new THREE.Raycaster(this.collCube.position, directionVector.clone().normalize())
+            const collisionResults = r.intersectObjects(this.loader.allMeshes);
+            if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
+                vert = null
+                r = null
+                return true;
+            }
 
-        const collision = firstBB.intersectsBox(secondBB);
-        return collision
+        }
     }
+
+
 
 }
 
