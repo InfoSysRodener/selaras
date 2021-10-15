@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
@@ -40,8 +40,8 @@ class SceneInit {
         this.renderer.shadowMapSoft = true;
         this.container.appendChild(this.renderer.domElement);
 
-        this.control = new OrbitControls(this.camera, this.container);
-        this.scene.add(this.control);
+        // this.control = new OrbitControls(this.camera, this.container);
+        // this.scene.add(this.control);
 
         this.raycaster = new THREE.Raycaster()
 
