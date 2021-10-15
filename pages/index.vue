@@ -32,7 +32,7 @@
             <p> khalayak yang lebih luas </p>
         </div>
         <div class="mb-10">
-          <NuxtLink to="/sign-in">
+          <NuxtLink to="/sign-up">
             <button class="w-full p-2 bg-orange text-white"> Explore </button>
           </NuxtLink>
         </div>

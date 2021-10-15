@@ -3,8 +3,8 @@
     <div class="flex flex-row justify-center w-full content-center h-screen static items-center">
       <div class="py-4 px-5 sm:px-10 sm:w-3/4 lg:w-2/5">
         <AppLogo/>
-        <form @submit.prevent="login">
-          <Alert v-if="errorMessage" :message="errorMessage"/>
+        <Alert v-if="errorMessage" :message="errorMessage"/>
+        <FormulateForm  @submit="login">
           <div class="mt-10 sm:my-10">
               <div class="mb-2 sm:mb-4">
                    <FormulateInput 
@@ -32,7 +32,13 @@
               </div>
           </div>
           <div class="my-10 sm:my-10">
-              <button class="w-full p-2 bg-orange text-white cursor-pointer"> Sign In </button>
+              <!-- <button class="w-full p-2 bg-orange text-white cursor-pointer"> Sign In </button> -->
+              <FormulateInput
+                type="submit"
+                :disabled="isLoading"
+                :label="isLoading ? 'Loading...' : 'Sign In'"
+                input-class="w-full p-2 bg-orange text-white"
+              />
               <p class="text-center mt-2"> 
                   If you don't have an account,
                   <span class="underline text-orange cursor-pointer"> 
@@ -43,7 +49,7 @@
                   here
               </p>
           </div>
-        </form>
+        </FormulateForm>
       </div>
     </div>
     <Footer/>
@@ -69,14 +75,17 @@
     },
     methods:{
         async login(){
+            this.isLoading = true;
             try {
-              await this.$store.dispatch('auth/login', this.loginForms);
-              this.$router.push('exhibition');
+               await this.$store.dispatch('auth/login', this.loginForms);
+               this.isLoading = false;
+               this.$router.push('/exhibition');
             } catch (error) {
               console.log({ error });
               if(error.code !== 'InvalidParameterException'){
                   this.errorMessage = error.message;
               }
+              this.isLoading = false;
             }
         }
     }
