@@ -7,6 +7,9 @@ import { Loader } from './loader'
 
 class SceneInit {
 
+    shouldRender = false
+    renderTime = 1
+
     constructor(options) {
         this.container = options.dom;
         this.scene = new THREE.Scene();
@@ -50,19 +53,19 @@ class SceneInit {
         this.addLoader();
         this.addObjects();
         this.addControls()
-        this.render();
+        this.animate();
 
-            this.lastCorrectPos = this.camera.position.clone()
+        this.lastCorrectPos = this.camera.position.clone()
 
         setInterval(() => {
-            if(this.checkCollision()){
-                console.log("HIT")
+            if (this.checkCollision()) {
                 this.camera.position.copy(this.lastCorrectPos)
             }
-            else{
+            else {
                 this.lastCorrectPos = this.camera.position.clone()
             }
         }, 100)
+        this.needToRender(100)
     }
 
     addLoader() {
@@ -77,34 +80,48 @@ class SceneInit {
     }
 
     addControls() {
-        this.controls = new ControlEvents(this.cameraControls)
+        this.controls = new ControlEvents(this.cameraControls, this)
         this.controls.addDesktopEvents()
         this.controls.addMobileEvents()
     }
 
 
-    render() {
-        let x = 0
-        let y = 0
-        if (this.controls.moveForward) {
-            y += 1
+    animate() {
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            if (this.shouldRender) {
+                if (this.renderTime >= 1) {
+                    if (this.renderTime > 1) {
+                        this.renderTime -= 1;
+                    } else {
+                        this.shouldRender = false;
+                    }
+                }
+                let x = 0
+                let y = 0
+                if (this.controls.moveForward) {
+                    y += 1
+                }
+                if (this.controls.moveBackward) {
+                    y -= 1
+                }
+                if (this.controls.moveLeft) {
+                    x += 1
+                }
+                if (this.controls.moveRight) {
+                    x -= 1
+                }
+                if (x !== 0 || y !== 0) {
+                    this.cameraControls.move(x, y)
+                }
+                this.cameraControls.updateMovement()
+                this.collCube.position.copy(this.camera.position)
+                
+                this.renderer.render(this.scene, this.camera);
+            }
         }
-        if (this.controls.moveBackward) {
-            y -= 1
-        }
-        if (this.controls.moveLeft) {
-            x += 1
-        }
-        if (this.controls.moveRight) {
-            x -= 1
-        }
-        if (x !== 0 || y !== 0) {
-            this.cameraControls.move(x, y)
-            this.cameraControls.updateMovement()
-            this.collCube.position.copy(this.camera.position)
-        }
-        this.renderer.render(this.scene, this.camera);
-        window.requestAnimationFrame(this.render.bind(this));
+        animate()
     }
 
 
@@ -143,6 +160,11 @@ class SceneInit {
             }
 
         }
+    }
+
+    needToRender(value = 1) {
+        this.renderTime = value
+        this.shouldRender = true
     }
 
 
