@@ -9,7 +9,6 @@
                     v-if="step === steps.register"
                     key=1
                     @submit="validateRegister"
-                    
                  >
                     <div class="mt-10 sm:my-10">
                         <div class="mb-2 sm:mb-4">
@@ -40,25 +39,29 @@
                             <label class="block text-gray-700  mb-2" for="Phone Number">
                                 Phone Number
                             </label>
-                            <div class="flex flex-row">
+                            <div class="relative flex">
+                                <div
+                                    class="text-orange absolute inline-flex items-center justify-center bottom-0 w-10 h-full"
+                                >
+                                    <span>+62</span>
+                                </div>
                                 <FormulateInput
-                                    v-model="signupForm.phone_prefix"
-                                    type="select"
-                                    :options="['+62', '+63']"
-                                    input-class="shadow-lg border-0 rounded-sm block py-2 px-5 " 
-                                />
-                                <input id="Phone Number" 
-                                    v-model="signupForm.phone_number" 
-                                    class="shadow-lg appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    v-model="signupForm.phone_number"
+                                    input-class="shadow-lg pl-10 appearance-none border-0 rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     type="tel" 
-                                    placeholder="(555) 555-1212"
-                                />
+                                    placeholder="(555) 555-1212" 
+                                    validation="^required"
+                                    :outer-class="['w-full']"
+                                    :wrapper-class="['flex flex-col']"
+                                    error-class="absolute text-red-700 text-xs mt-1"
+                                >
+                                </FormulateInput>
                             </div>
                         </div>
-                        <div class="mb-2 sm:mb-4">
+                        <div class="mb-2  sm:mt-6 sm:mb-4">
                             <div class="w-1/3"></div>
                             <label class="block text-gray-500 font-bold">
-                            <input v-model="isCheck" class="mr-2 leading-tight border-0 shadow-lg" type="checkbox">
+                            <input v-model="isCheck" class="mr-2 leading-tight border-0 shadow-lg " type="checkbox">
                             <span class="text-xs sm:text-sm">
                                 I have read and agree to the 
                                 <span class="cursor-pointer underline">
@@ -124,14 +127,12 @@
                             
                         </div>
                         <div class="my-10 sm:my-10">
-                            <!-- <button class="w-full p-2 bg-orange text-white"> Sign Up </button> -->
                             <FormulateInput
                                 type="submit"
                                 :disabled="isLoading"
                                 :label="isLoading ? 'Loading...' : 'Sign Up'"
                                 input-class="w-full p-2 bg-orange text-white"
                             />
-                            <!-- <button v-show="userExists" class="mt-5 w-full p-2 bg-white border text-gray-900" @click="step = steps.register; userExists = null" > Back </button> -->
                         </div>
                     </div>
                  </FormulateForm>
@@ -175,28 +176,31 @@
         },
         methods:{
             validateRegister(){
-                const { name , email, phone_number } = this.signupForm;
-                if(name && email && phone_number){
-                    if(this.isCheck){
-                      this.step = this.steps.confirm;
-                      this.alertMessage = null; 
-                    }else{
-                      this.alertMessage = 'You need to check that you accept the Terms and Conditions';
-                    } 
-                }
+                if(this.isCheck){
+                    this.step = this.steps.confirm;
+                    this.alertMessage = null; 
+                }else{
+                    this.alertType = 'info'
+                    this.alertMessage = 'You need to check that you accept the Terms and Conditions';
+                } 
+              
             },
 
            async register(){
                 this.isLoading = true;
+                const { email, password } = this.signupForm;
                 try {
+
+                    // register
                     await this.$store.dispatch('auth/register', this.signupForm)
                     this.alertType = 'info'
                     this.alertMessage = 'Successfully Register';
-                   
-                    setTimeout(() => {
-                        this.isLoading = false;
-                        this.$router.push('sign-in');
-                    },1000);
+
+                    // login
+                    await this.$store.dispatch('auth/login', { email, password });
+                    this.isLoading = false;
+                    this.alertMessage = 'Redirecting...';
+                    this.$router.push('/exhibition');
 
                 } catch (error) {
                     this.isLoading = false;
