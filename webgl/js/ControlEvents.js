@@ -12,8 +12,9 @@ export class ControlEvents {
     moveLeft = false
     moveRight = false
 
-    constructor(camera) {
+    constructor(camera, scene) {
         this.camera = camera
+        this.scene = scene
         this.joystick = nipplejs.create({
             zone: document.getElementById('controlsDiv'),
             mode: 'static',
@@ -26,14 +27,15 @@ export class ControlEvents {
         const self = this
         this.joystick.on("move", (evt, data) => {
             if (this.touchDown) {
-                console.log(data)
                 self.camera.forwardMovementScalar = data.vector.y / 10
                 self.camera.sideMovementScalar = data.vector.x / 10
             }
+            this.scene.needToRender(100)
         })
 
         this.joystick.on("start", () => {
             this.touchDown = true
+            this.scene.needToRender(5)
         })
 
         this.joystick.on("end", () => {
@@ -44,13 +46,14 @@ export class ControlEvents {
         let thisPoint, lastPoint
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
+            this.scene.needToRender(5)
         })
         document.getElementById("threeDiv").addEventListener("touchmove", (event) => {
             if (event.targetTouches.length === 1) {
                 thisPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
                 this.camera.forwardRotationScalar = (thisPoint.x - lastPoint.x) / 100;
                 this.camera.sideRotationScalar = (thisPoint.y - lastPoint.y) / 30000;
-
+                this.scene.needToRender(100)
                 event.preventDefault()
             }
         })
@@ -66,6 +69,7 @@ export class ControlEvents {
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
             self.camera.setInitPointRotate(evt.clientX, evt.clientY)
             self.mouseDown = true
+            this.scene.needToRender(5)
         })
 
         document.getElementById("threeDiv").addEventListener('mousemove', (evt) => {
@@ -73,6 +77,7 @@ export class ControlEvents {
                 self.camera.rotateMouse(evt.clientX)
                 self.camera.rotateVerticalMouse(evt.clientY)
                 self.camera.setInitPointRotate(evt.clientX, evt.clientY)
+                this.scene.needToRender(100)
             }
         })
 
@@ -83,21 +88,25 @@ export class ControlEvents {
                 case 'ArrowUp':
                 case 'KeyW':
                     this.moveForward = true;
+                    this.scene.needToRender(100)
                     break;
 
                 case 'ArrowLeft':
                 case 'KeyA':
                     this.moveLeft = true;
+                    this.scene.needToRender(100)
                     break;
 
                 case 'ArrowDown':
                 case 'KeyS':
                     this.moveBackward = true;
+                    this.scene.needToRender(100)
                     break;
 
                 case 'ArrowRight':
                 case 'KeyD':
                     this.moveRight = true;
+                    this.scene.needToRender(100)
                     break;
             }
 
@@ -110,21 +119,25 @@ export class ControlEvents {
                 case 'ArrowUp':
                 case 'KeyW':
                     this.moveForward = false;
+                    this.scene.needToRender(5)
                     break;
 
                 case 'ArrowLeft':
                 case 'KeyA':
                     this.moveLeft = false;
+                    this.scene.needToRender(5)
                     break;
 
                 case 'ArrowDown':
                 case 'KeyS':
                     this.moveBackward = false;
+                    this.scene.needToRender(5)
                     break;
 
                 case 'ArrowRight':
                 case 'KeyD':
                     this.moveRight = false;
+                    this.scene.needToRender(5)
                     break;
 
             }
