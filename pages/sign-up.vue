@@ -183,7 +183,6 @@
                     this.alertType = 'info'
                     this.alertMessage = 'You need to check that you accept the Terms and Conditions';
                 } 
-              
             },
 
            async register(){

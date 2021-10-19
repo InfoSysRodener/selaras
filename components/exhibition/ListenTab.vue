@@ -6,15 +6,15 @@
             </div>
             <div v-show="open" v-if="mode == 'guided'" class="flex justify-end">
                 <div>
-                    <div class="flex flex-row justify-end items-center">
+                    <div ref="btnPrevious" class="flex flex-row justify-end items-center cursor-pointer">
                         <label class="text-xs underline text-white pr-5">Previous</label>
                         <img src="~/assets/icons/media/previous.svg" />
                     </div>
-                    <div class="flex flex-row justify-end items-center">
+                    <div class="flex flex-row justify-end items-center cursor-pointer">
                         <label class="text-xs underline text-white pr-5">Play</label>
                         <img class="-mr-1" src="~/assets/icons/media/play.svg" />
-                    </div> 
-                    <div class="flex flex-row justify-end items-center">
+                    </div>  
+                    <div  ref="btnNext" class="flex flex-row justify-end items-center cursor-pointer">
                        <label class="text-xs underline text-white pr-5">Next</label>
                        <img src="~/assets/icons/media/next.svg" />
                     </div>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+    import ListenModeInit from '@/webgl/js/listenModeControls.js'
+
     export default {
         data(){
             return {
@@ -74,11 +76,19 @@
                 }
             }
         },
+        mounted(){
+            ListenModeInit({ 
+                previous: this.$refs.btnPrevious,
+                next: this.$refs.btnNext
+            });
+        },
         methods:{
             toggleTab(){
                 this.open = !this.open;
             }
-        }
+        },
+        
+       
     }
 </script>
 <style scoped>
