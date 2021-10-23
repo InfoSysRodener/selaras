@@ -1,14 +1,16 @@
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
+import gsap from "gsap";
 import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
 import { Loader } from './loader'
+
 
 class SceneInit {
 
     shouldRender = false
     renderTime = 1
+    arr = []
 
     constructor(options) {
         this.container = options.dom;
@@ -63,9 +65,24 @@ class SceneInit {
             }
             else {
                 this.lastCorrectPos = this.camera.position.clone()
+                // console.log(this.lastCorrectPos)
             }
-        }, 100)
+        }, 500)
         this.needToRender(100)
+
+        document.addEventListener('paintingsLoaded', () => {
+            this.sortJsObject(this.loader.allPaintingsDict)
+            this.showcaseTimeline(this.loader.allPaintingsDict)
+            this.arr = Object.values(this.showcase)
+        })
+
+        document.addEventListener('click', (evt) => {
+            this.setTarget(evt, this.loader.allPaintingsDict)
+        })
+
+        this.showcase = []
+        this.nextObj = {}
+        this.previousObj = {}
     }
 
     addLoader() {
@@ -75,7 +92,7 @@ class SceneInit {
     addObjects() {
         this.loader.loadModel('artSpace.glb', true);
         // this.loader.loadModel('artSpaceCol.glb', true)
-        // this.loader.loadModel('artPaintings.glb');
+        this.loader.loadModel('artPaintings.glb', false, true);
         // this.loader.loadModel('profileBoards.glb');
     }
 
@@ -117,7 +134,7 @@ class SceneInit {
                 }
                 this.cameraControls.updateMovement()
                 this.collCube.position.copy(this.camera.position)
-                
+
                 this.renderer.render(this.scene, this.camera);
             }
         }
@@ -141,7 +158,7 @@ class SceneInit {
     checkCollision() {
         let vert = []
         const positions = this.collCube.geometry.attributes.position.array;
-        const ptCout = positions.length / 9;
+        const ptCout = positions.length / 12;
         for (let i = 0; i < ptCout; i++) {
             const p = new THREE.Vector3(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
             vert.push(p)
@@ -167,7 +184,80 @@ class SceneInit {
         this.shouldRender = true
     }
 
+    showcaseTimeline(dict) {
+        const self = this
+        for (const key in dict) {
+            // const t = gsap.to(this.camera.position, {
+            //     x: dict[key].object.position.x, z: dict[key].object.position.z, duration: 10,
+            //     onUpdate: () => {
+            //         self.needToRender(60)
+            //     }
+            // })
+            self.showcase.push(dict[key])
+        }
+    }
 
+    sortJsObject(dict) {
+        const keys = [];
+        for (const key in dict) {
+            keys[keys.length] = key;
+        }
+
+        const values = [];
+
+        for (let i = 0; i < keys.length; i++) {
+            values[values.length] = dict[keys[i]];
+        }
+
+        // const sortedValues = values.sort(this.sortNumber);
+    }
+
+    sortNumber(a, b) {
+        return a - b;
+    }
+
+    goTo(target) {
+        const self = this
+
+        gsap.to(this.camera.position, {
+            x: target.x, z: target.z, duration: 2,
+            onUpdate: () => {
+                self.needToRender(60)
+            },
+        })
+
+        gsap.to(this.camera.rotation, {
+            y: target.rotate, duration: 2,
+        })
+        for (let i = 0; i < this.arr.length; i++) {
+            if (this.arr[i].object === target) {
+                if (i < this.arr.length - 1) {
+                    this.nextObj = this.arr[i + 1]
+                }
+                if (i > 0) {
+                    this.previousObj = this.arr[i - 1]
+                }
+            }
+        }
+    }
+
+    setTarget(evt, dict) {
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, this.camera);
+        const intersects = raycaster.intersectObjects(this.scene.children);
+        if (intersects[0]) {
+            for (const key in dict) {
+                if (intersects[0].object === dict[key].object.children[0]) {
+                    this.goTo(dict[key])
+                }
+            }
+        }
+    }
 
 }
 
