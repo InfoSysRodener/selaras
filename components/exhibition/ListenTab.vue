@@ -92,6 +92,9 @@
     }
 </script>
 <style scoped>
+    div {
+        -webkit-tap-highlight-color: transparent;
+    }
     /* width */
   
     ::-webkit-scrollbar,

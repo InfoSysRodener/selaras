@@ -12,6 +12,7 @@ class ListenMode {
         this.previous.addEventListener('click',() => {
             console.log('hello');
         });
+        
         this.next.addEventListener('click',() => {
             console.log('world');
         });

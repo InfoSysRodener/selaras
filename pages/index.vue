@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-row justify-center w-full content-center h-screen items-center">
+    <div class="flex flex-row justify-center w-full content-center min-h-screen h-full items-center">
       <div class="p-4">
         <AppLogo/>
         <div class="text-sm text-center my-14  sm:hidden">

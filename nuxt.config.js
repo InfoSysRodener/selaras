@@ -3,7 +3,8 @@ import webpack from 'webpack';
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  mode:'spa',
+  // mode:'spa',
+  ssr:true,
   // mode: 'universal',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -30,7 +31,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/amplify.js', mode: 'client' },
+    { src: '~/plugins/amplify.js'},
     '~/plugins/auth'
   ],
 
@@ -43,8 +44,13 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@braid/vue-formulate/nuxt'
+    '@braid/vue-formulate/nuxt',
+    'nuxt-font-loader'
   ],
+
+  fontLoader: {
+    url: './assets/main.css'
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -62,14 +68,18 @@ export default {
         /*
          ** You can extend webpack config here
          */
-        extend(config,ctx) {
+        extend(config) {
           config.plugins.push(new webpack.ProvidePlugin({
               THREE: 'three'
           }));
-          // config.module.rules.push({
-          //   test: /\.(glsl|vs|fs)$/,
-          //   loader: 'raw-loader'
-          // })
+          config.module.rules.push({
+            test: /\.(glsl|vs|fs)$/,
+            loader: 'raw-loader'
+          });
+          config.module.rules.push({
+            test: /\.(glb|gltf)$/,
+            loader: 'file-loader'
+          })
         }
   },
 }
