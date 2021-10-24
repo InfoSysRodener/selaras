@@ -135,5 +135,9 @@ export class CameraControls {
         this.camera.rotation.z = 0
     }
 
+    showcaseTimeline(){
+        
+    }
+
 
 }
