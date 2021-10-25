@@ -69,7 +69,7 @@ export class ControlEvents {
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
             self.camera.setInitPointRotate(evt.clientX, evt.clientY)
             self.mouseDown = true
-            this.scene.needToRender(5)
+            this.scene.needToRender(60)
         })
 
         document.getElementById("threeDiv").addEventListener('mousemove', (evt) => {
