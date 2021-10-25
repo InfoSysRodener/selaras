@@ -9,11 +9,11 @@ class ListenMode {
         this.previous = options.previous;
         this.next = options.next;
      
-        this.previous.addEventListener('click',() => {
-            console.log('hello');
+        this.previous.addEventListener('pointerdown',() => {
+            document.dispatchEvent("clickPrevious")
         });
-        this.next.addEventListener('click',() => {
-            console.log('world');
+        this.next.addEventListener('pointerdown',() => {
+            document.dispatchEvent("clickNext")
         });
     
     }

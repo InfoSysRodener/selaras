@@ -11,6 +11,9 @@ class SceneInit {
     shouldRender = false
     renderTime = 1
     arr = []
+    currentSound
+    bgMusic
+
 
     constructor(options) {
         this.container = options.dom;
@@ -54,6 +57,7 @@ class SceneInit {
 
         this.addLoader();
         this.addObjects();
+        this.addSounds()
         this.addControls()
         this.animate();
 
@@ -65,24 +69,44 @@ class SceneInit {
             }
             else {
                 this.lastCorrectPos = this.camera.position.clone()
-                // console.log(this.lastCorrectPos)
             }
         }, 500)
         this.needToRender(100)
 
-        document.addEventListener('paintingsLoaded', () => {
-            this.sortJsObject(this.loader.allPaintingsDict)
-            this.showcaseTimeline(this.loader.allPaintingsDict)
-            this.arr = Object.values(this.showcase)
+        const self = this
+
+        document.addEventListener('onModelLoad', () => {
+            self.sortJsObject(self.loader.allPaintingsDict)
+            self.showcaseTimeline(self.loader.allPaintingsDict)
+            self.arr = Object.values(self.showcase)
+
+            setTimeout(() => {
+                for (let i = 0; i < self.loader.allSounds.length; i++) {
+                    if (self.loader.allSounds[i].index === 7) {
+                        self.currentSound = self.loader.allSounds[i].soundObj
+                        self.currentSound.play()
+                        self.bgMusic = self.loader.allSounds[i].soundObj
+                    }
+                }
+            }, 1000)
         })
 
-        document.addEventListener('click', (evt) => {
-            this.setTarget(evt, this.loader.allPaintingsDict)
+        document.addEventListener('pointerdown', (evt) => {
+            self.setTarget(evt, self.loader.allPaintingsDict)
+        })
+
+        document.addEventListener("clickPrevious", () => {
+            self.goTo(self.previousObj)
+        })
+
+        document.addEventListener("clickNext", () => {
+            self.goTo(self.nextObj)
         })
 
         this.showcase = []
         this.nextObj = {}
         this.previousObj = {}
+
     }
 
     addLoader() {
@@ -94,6 +118,20 @@ class SceneInit {
         // this.loader.loadModel('artSpaceCol.glb', true)
         this.loader.loadModel('artPaintings.glb', false, true);
         // this.loader.loadModel('profileBoards.glb');
+    }
+
+    addSounds() {
+        const sounds = [
+            '/3D/1.general_idea.mp3',
+            '/3D/2.subjection.mp3',
+            '/3D/3.sentient.mp3',
+            '/3D/4.suplication.mp3',
+            '/3D/5.contrive.mp3',
+            '/3D/6.inunct.mp3',
+            '/3D/7.exempt.mp3',
+            '/3D/Selaras_Solo_Piano.wav'
+        ]
+        this.loader.loadAudio(sounds)
     }
 
     addControls() {
@@ -218,7 +256,10 @@ class SceneInit {
 
     goTo(target) {
         const self = this
-
+        if (target.sound !== '') {
+            self.currentSound = target.sound.play()
+            self.currentSound.play()
+        }
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
             onUpdate: () => {
@@ -256,6 +297,10 @@ class SceneInit {
                     this.goTo(dict[key])
                 }
             }
+        }
+        else if (this.currentSound !== this.bgMusic) {
+            this.currentSound = this.bgMusic
+            this.currentSound.play()
         }
     }
 

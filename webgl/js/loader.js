@@ -1,8 +1,7 @@
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType } from 'three'
+import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, AudioLoader, AudioListener, Audio } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-
 
 
 export class Loader {
@@ -22,7 +21,8 @@ export class Loader {
             rotate: -0.85,
             x: 19.4,
             z: -40.6,
-            object: {}
+            object: {},
+            sound: ''
         },
         subjection2:
         {
@@ -31,7 +31,8 @@ export class Loader {
             x: 22.27,
             z: -39.88,
             rotate: -0.6,
-            object: {}
+            object: {},
+            sound: ''
         },
         subjection3:
         {
@@ -40,7 +41,8 @@ export class Loader {
             x: 24.05,
             z: -39.1,
             rotate: -0.4,
-            object: {}
+            object: {},
+            sound: ''
         },
         sentient1:
         {
@@ -49,7 +51,8 @@ export class Loader {
             x: 2.33,
             z: -9.18,
             rotate: -1.25,
-            object: {}
+            object: {},
+            sound: ''
         },
         sentient2:
         {
@@ -58,7 +61,8 @@ export class Loader {
             x: 1.96,
             z: -10.65,
             rotate: -1.25,
-            object: {}
+            object: {},
+            sound: ''
         },
         sentient3:
         {
@@ -67,7 +71,8 @@ export class Loader {
             x: 1.64,
             z: -11.89,
             rotate: -1.1,
-            object: {}
+            object: {},
+            sound: ''
         },
         suplication1:
         {
@@ -76,7 +81,8 @@ export class Loader {
             x: 21,
             z: -36.6,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         suplication2:
         {
@@ -85,7 +91,8 @@ export class Loader {
             x: 23,
             z: -36.71,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         suplication3:
         {
@@ -94,7 +101,8 @@ export class Loader {
             x: 25,
             z: -36.61,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         suplication4:
         {
@@ -103,7 +111,8 @@ export class Loader {
             x: 27,
             z: -36.63,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         suplication5:
         {
@@ -112,7 +121,8 @@ export class Loader {
             x: 29,
             z: -36.62,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         contrive:
         {
@@ -121,7 +131,8 @@ export class Loader {
             x: 29.17,
             z: -49.4,
             rotate: 4.71239,
-            object: {}
+            object: {},
+            sound: ''
         },
         inunct1:
         {
@@ -130,7 +141,8 @@ export class Loader {
             x: 22,
             z: -48.64,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         inunct2:
         {
@@ -139,7 +151,8 @@ export class Loader {
             x: 24,
             z: -48.77,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         inunct3:
         {
@@ -148,7 +161,8 @@ export class Loader {
             x: 26,
             z: -48.87,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         inunct4:
         {
@@ -157,7 +171,8 @@ export class Loader {
             x: 28.0,
             z: -48.88,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         exempt:
         {
@@ -166,7 +181,8 @@ export class Loader {
             x: 23.02,
             z: -43.12,
             rotate: 2.4,
-            object: {}
+            object: {},
+            sound: ''
         },
         landscapeoflife5:
         {
@@ -175,7 +191,8 @@ export class Loader {
             x: 7.03,
             z: -27.99,
             rotate: 3.125,
-            object: {}
+            object: {},
+            sound: ''
         },
         landscapeoflife1:
         {
@@ -184,7 +201,8 @@ export class Loader {
             x: -0.5,
             z: -30.62,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         landscapeoflife6:
         {
@@ -193,7 +211,8 @@ export class Loader {
             x: 4.48,
             z: -27.97,
             rotate: 3.15,
-            object: {}
+            object: {},
+            sound: ''
         },
         landscapeoflife4:
         {
@@ -202,7 +221,8 @@ export class Loader {
             x: 7,
             z: -30.62,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         landscapeoflife3:
         {
@@ -211,7 +231,8 @@ export class Loader {
             x: 4.5,
             z: -30.63,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         landscapeoflife2:
         {
@@ -220,7 +241,8 @@ export class Loader {
             x: 2,
             z: -30.77,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi1:
         {
@@ -229,7 +251,8 @@ export class Loader {
             x: 22,
             z: -46.23,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi2:
         {
@@ -238,7 +261,8 @@ export class Loader {
             x: 24,
             z: -46.23,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi3:
         {
@@ -247,7 +271,8 @@ export class Loader {
             x: 26.25,
             z: -45.62,
             rotate: 0,
-            object: {}
+            object: {},
+            sound: ''
         },
         untitled2:
         {
@@ -256,7 +281,8 @@ export class Loader {
             x: 0.47,
             z: -22,
             rotate: -1.5708,
-            object: {}
+            object: {},
+            sound: ''
         },
         hikayathidup2:
         {
@@ -265,7 +291,8 @@ export class Loader {
             x: -0.87,
             z: -10.35,
             rotate: 1.15,
-            object: {}
+            object: {},
+            sound: ''
         },
         hikayathidup1:
         {
@@ -274,7 +301,8 @@ export class Loader {
             x: -1.12,
             z: -9.04,
             rotate: 1.25,
-            object: {}
+            object: {},
+            sound: ''
         },
         untitled1:
         {
@@ -283,7 +311,8 @@ export class Loader {
             x: 0.44,
             z: -17,
             rotate: -1.5708,
-            object: {}
+            object: {},
+            sound: ''
         },
         hikayathidup3:
         {
@@ -292,16 +321,18 @@ export class Loader {
             x: 0.046,
             z: -11.24,
             rotate: 1.05,
-            object: {}
+            object: {},
+            sound: ''
         },
-        kontemplasi4://
+        kontemplasi4:
         {
             position: 32,
             distance: 2,
             x: 28.5,
             z: -48.51,
             rotate: 3.14159,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi5:
         {
@@ -310,16 +341,18 @@ export class Loader {
             x: 28.61,
             z: -45.5,
             rotate: -1.5708,
-            object: {}
+            object: {},
+            sound: ''
         },
-        baur://
+        baur:
         {
             position: 34,
             distance: 2,
             x: 24.2,
-            z:  -39.33,
+            z: -39.33,
             rotate: -0.315,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi7:
         {
@@ -328,7 +361,8 @@ export class Loader {
             x: 28.8,
             z: -43,
             rotate: -1.5708,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi8:
         {
@@ -337,7 +371,8 @@ export class Loader {
             x: 28.4,
             z: -38,
             rotate: -1.5708,
-            object: {}
+            object: {},
+            sound: ''
         },
         kontemplasi6:
         {
@@ -346,10 +381,12 @@ export class Loader {
             x: 28.57,
             z: -40.5,
             rotate: -1.5708,
-            object: {}
+            object: {},
+            sound: ''
         }
     }
 
+    allSounds = []
     constructor(scene, renderer) {
         this.loadingManager = new LoadingManager();
         const dracoLoader = new DRACOLoader();
@@ -360,7 +397,6 @@ export class Loader {
         this.textureLoader = new TextureLoader(this.loadingManager);
         this.scene = scene
         this.renderer = renderer
-
 
         this.setUpLoadManager()
         this.setUpLoader()
@@ -408,21 +444,119 @@ export class Loader {
 
     }
 
+    loadAudio(sounds) {
+        const audioLoader = new AudioLoader(this.loadingManager);
+        const listener = new AudioListener();
+        this.allSounds = []
+        for (let i = 0; i < sounds.length; i++) {
+            const sound = new Audio(listener);
+            audioLoader.load(sounds[i], (buffer) => {
+                sound.setLoop( true );
+                sound.setBuffer(buffer);
+                this.allSounds.push({
+                    soundObj: sound,
+                    index: i
+                })
+                switch (i) {
+                    case 1: {
+                        this.allPaintingsDict.subjection1.sound = sound
+                        this.allPaintingsDict.subjection2.sound = sound
+                        this.allPaintingsDict.subjection3.sound = sound
+                        break
+                    }
+                    case 2: {
+                        this.allPaintingsDict.sentient1.sound = sound
+                        this.allPaintingsDict.sentient2.sound = sound
+                        this.allPaintingsDict.sentient3.sound = sound
+                        break
+                    }
+                    case 3: {
+                        this.allPaintingsDict.suplication1.sound = sound
+                        this.allPaintingsDict.suplication2.sound = sound
+                        this.allPaintingsDict.suplication3.sound = sound
+                        this.allPaintingsDict.suplication4.sound = sound
+                        this.allPaintingsDict.suplication5.sound = sound
+                        break
+                    }
+                    case 4: {
+                        this.allPaintingsDict.contrive.sound = sound
+                        break
+                    }
+                    case 5: {
+                        this.allPaintingsDict.inunct1.sound = sound
+                        this.allPaintingsDict.inunct2.sound = sound
+                        this.allPaintingsDict.inunct3.sound = sound
+                        this.allPaintingsDict.inunct4.sound = sound
+                        break
+                    }
+                    case 6: {
+                        this.allPaintingsDict.exempt.sound = sound
+                        break
+                    }
+                    case 7: {
+                        // this.allPaintingsDict.landscapeoflife1.sound = sound
+                        // this.allPaintingsDict.landscapeoflife2.sound = sound
+                        // this.allPaintingsDict.landscapeoflife3.sound = sound
+                        // this.allPaintingsDict.landscapeoflife4.sound = sound
+                        // this.allPaintingsDict.landscapeoflife5.sound = sound
+                        // this.allPaintingsDict.landscapeoflife6.sound = sound
+                        break
+                    }
+                    case 8: {
+                        // this.allPaintingsDict.kontemplasi1.sound = sound
+                        // this.allPaintingsDict.kontemplasi2.sound = sound
+                        // this.allPaintingsDict.kontemplasi3.sound = sound
+                        // this.allPaintingsDict.kontemplasi4.sound = sound
+                        // this.allPaintingsDict.kontemplasi5.sound = sound
+                        // this.allPaintingsDict.kontemplasi6.sound = sound
+                        // this.allPaintingsDict.kontemplasi7.sound = sound
+                        // this.allPaintingsDict.kontemplasi8.sound = sound
+                        break
+                    }
+                    case 9: {
+                        // this.allPaintingsDict.untitled1.sound = sound
+                        // this.allPaintingsDict.untitled2.sound = sound
+                        break
+                    }
+                    case 10: {
+                        // this.allPaintingsDict.hikayathidup1.sound = sound
+                        // this.allPaintingsDict.hikayathidup2.sound = sound
+                        // this.allPaintingsDict.hikayathidup3.sound = sound
+                        break
+                    }
+                    case 11: {
+                        this.allPaintingsDict.baur.sound = sound
+                        break
+                    }
+                    default:
+                        break
+                }
+            });
+        }
+    }
+
+
+
     setUpLoadManager() {
 
-        this.loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
+
+        this.loadingManager.onStart = (url, itemsLoaded, itemsTotal) => {
             // console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
-        this.loadingManager.onLoad = function () {
-            const event = new CustomEvent(this.onModelLoadEventName);
+        this.loadingManager.onLoad = () => {
+            console.log(this.onModelLoadEventName, this.allSounds)
+            const event = new Event(this.onModelLoadEventName);
             document.dispatchEvent(event)
         };
-        this.loadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+        this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
             // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
-        this.loadingManager.onError = function (url) {
+        this.loadingManager.onError = (url) => {
             // console.log( 'There was an error loading ' + url );
         };
 
     }
+
+
+
 }
