@@ -353,7 +353,9 @@ export class Loader {
     constructor(scene, renderer) {
         this.loadingManager = new LoadingManager();
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/'); // use a full url path
+        // dracoLoader.setDecoderPath('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/'); // use a full url path
+        dracoLoader.setDecoderPath('/draco/'); 
+        
         this.gltfLoader = new GLTFLoader();
         this.gltfLoader.setDRACOLoader(dracoLoader);
 
