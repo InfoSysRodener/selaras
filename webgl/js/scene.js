@@ -89,13 +89,14 @@ class SceneInit {
             self.sortJsObject(self.loader.allPaintingsDict)
             self.showcaseTimeline(self.loader.allPaintingsDict)
             self.arr = Object.values(self.showcase)
-
+            this.needToRender(600)
             setTimeout(() => {
                 for (let i = 0; i < self.loader.allSounds.length; i++) {
-                    if (self.loader.allSounds[i].index === 7) {
-                        self.currentSound = self.loader.allSounds[i].soundObj
-                        self.currentSound.play()
+                    if (self.loader.allSounds[i].index === 27) {
                         self.bgMusic = self.loader.allSounds[i].soundObj
+                        self.bgMusic.setLoop(true);
+                        self.bgMusic.play();
+                        self.currentSound = self.loader.allSounds[i].soundObj
                     }
                 }
             }, 1000)
@@ -132,14 +133,34 @@ class SceneInit {
 
     addSounds() {
         const sounds = [
-            '/3D/1.general_idea.mp3',
-            '/3D/2.subjection.mp3',
-            '/3D/3.sentient.mp3',
-            '/3D/4.suplication.mp3',
-            '/3D/5.contrive.mp3',
-            '/3D/6.inunct.mp3',
-            '/3D/7.exempt.mp3',
-            '/3D/Selaras_Solo_Piano.wav'
+            '/3D/sounds/1.general_idea.mp3',
+            '/3D/sounds/2.subjection.mp3',
+            '/3D/sounds/3.sentient.mp3',
+            '/3D/sounds/4.suplication.mp3',
+            '/3D/sounds/5.contrive.mp3',
+            '/3D/sounds/6.inunct.mp3',
+            '/3D/sounds/7.exempt.mp3',
+            '/3D/sounds/BAUR.mp3',
+            '/3D/sounds/HPH_01.mp3',
+            '/3D/sounds/HPH_02.mp3',
+            '/3D/sounds/HPH_03.mp3',
+            '/3D/sounds/KS_01.mp3',
+            '/3D/sounds/KS_02.mp3',
+            '/3D/sounds/KS_03.mp3',
+            '/3D/sounds/KS_04.mp3',
+            '/3D/sounds/KS_05.mp3',
+            '/3D/sounds/KS_06.mp3',
+            '/3D/sounds/KS_07.mp3',
+            '/3D/sounds/KS_08.mp3',
+            '/3D/sounds/LOL_01.mp3',
+            '/3D/sounds/LOL_02.mp3',
+            '/3D/sounds/LOL_03.mp3',
+            '/3D/sounds/LOL_04.mp3',
+            '/3D/sounds/LOL_05.mp3',
+            '/3D/sounds/LOL_06.mp3',
+            '/3D/sounds/UTL_01.mp3',
+            '/3D/sounds/UTL_02.mp3',
+            '/3D/sounds/Selaras_Solo_Piano.wav'
         ]
         this.loader.loadAudio(sounds)
     }

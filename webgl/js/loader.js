@@ -1,5 +1,5 @@
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, AudioLoader, AudioListener, Audio } from 'three'
+import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, AudioLoader, AudioListener, Audio, MeshBasicMaterial } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
@@ -429,6 +429,7 @@ export class Loader {
         this.gltfLoader.setPath(this.assetPath)
         this.gltfLoader.load(asset, (object) => {
             this.scene.add(object.scene);
+            // load a resource
             if (storeMeshes) {
                 for (let i = 0; i < object.scene.children[0].children.length; i++) {
                     self.allMeshes.push(object.scene.children[0].children[i])
@@ -451,7 +452,6 @@ export class Loader {
         for (let i = 0; i < sounds.length; i++) {
             const sound = new Audio(listener);
             audioLoader.load(sounds[i], (buffer) => {
-                sound.setLoop( true );
                 sound.setBuffer(buffer);
                 this.allSounds.push({
                     soundObj: sound,
@@ -494,38 +494,87 @@ export class Loader {
                         break
                     }
                     case 7: {
-                        // this.allPaintingsDict.landscapeoflife1.sound = sound
-                        // this.allPaintingsDict.landscapeoflife2.sound = sound
-                        // this.allPaintingsDict.landscapeoflife3.sound = sound
-                        // this.allPaintingsDict.landscapeoflife4.sound = sound
-                        // this.allPaintingsDict.landscapeoflife5.sound = sound
-                        // this.allPaintingsDict.landscapeoflife6.sound = sound
+                        this.allPaintingsDict.baur.sound = sound
                         break
                     }
                     case 8: {
-                        // this.allPaintingsDict.kontemplasi1.sound = sound
-                        // this.allPaintingsDict.kontemplasi2.sound = sound
-                        // this.allPaintingsDict.kontemplasi3.sound = sound
-                        // this.allPaintingsDict.kontemplasi4.sound = sound
-                        // this.allPaintingsDict.kontemplasi5.sound = sound
-                        // this.allPaintingsDict.kontemplasi6.sound = sound
-                        // this.allPaintingsDict.kontemplasi7.sound = sound
-                        // this.allPaintingsDict.kontemplasi8.sound = sound
+                        this.allPaintingsDict.hikayathidup1.sound = sound
                         break
                     }
                     case 9: {
-                        // this.allPaintingsDict.untitled1.sound = sound
-                        // this.allPaintingsDict.untitled2.sound = sound
+                        this.allPaintingsDict.hikayathidup2.sound = sound
                         break
                     }
                     case 10: {
-                        // this.allPaintingsDict.hikayathidup1.sound = sound
-                        // this.allPaintingsDict.hikayathidup2.sound = sound
-                        // this.allPaintingsDict.hikayathidup3.sound = sound
+                        this.allPaintingsDict.hikayathidup3.sound = sound
                         break
                     }
                     case 11: {
-                        this.allPaintingsDict.baur.sound = sound
+                        this.allPaintingsDict.kontemplasi1.sound = sound
+                        break
+                    }
+                    case 12: {
+                        this.allPaintingsDict.kontemplasi1.sound = sound
+                        break
+                    }
+                    case 13: {
+                        this.allPaintingsDict.kontemplasi2.sound = sound
+                        break
+                    }
+                    case 14: {
+                        this.allPaintingsDict.kontemplasi3.sound = sound
+                        break
+                    }
+                    case 15: {
+                        this.allPaintingsDict.kontemplasi4.sound = sound
+                        break
+                    }
+                    case 16: {
+                        this.allPaintingsDict.kontemplasi5.sound = sound
+                        break
+                    }
+                    case 17: {
+                        this.allPaintingsDict.kontemplasi6.sound = sound
+                        break
+                    }
+                    case 18: {
+                        this.allPaintingsDict.kontemplasi7.sound = sound
+                        break
+                    }
+                    case 19: {
+                        this.allPaintingsDict.kontemplasi8.sound = sound
+                        break
+                    }
+                    case 20: {
+                        this.allPaintingsDict.landscapeoflife1.sound = sound
+                        break
+                    }
+                    case 21: {
+                        this.allPaintingsDict.landscapeoflife2.sound = sound
+                        break
+                    }
+                    case 22: {
+                        this.allPaintingsDict.landscapeoflife3.sound = sound
+                        break
+                    }
+                    case 23: {
+                        this.allPaintingsDict.landscapeoflife4.sound = sound
+                        break
+                    }
+                    case 24: {
+                        this.allPaintingsDict.landscapeoflife5.sound = sound
+                        break
+                    }
+                    case 25: {
+                        this.allPaintingsDict.landscapeoflife6.sound = sound
+                        break
+                    }
+                    case 26: {
+                        this.allPaintingsDict.untitled1.sound = sound
+                        break
+                    }
+                    case 27: {
+                        this.allPaintingsDict.untitled2.sound = sound
                         break
                     }
                     default:
@@ -544,7 +593,6 @@ export class Loader {
             // console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
         this.loadingManager.onLoad = () => {
-            console.log(this.onModelLoadEventName, this.allSounds)
             const event = new Event(this.onModelLoadEventName);
             document.dispatchEvent(event)
         };
