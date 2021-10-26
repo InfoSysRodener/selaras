@@ -1,5 +1,5 @@
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, AudioLoader, AudioListener, Audio, MeshBasicMaterial } from 'three'
+import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, AudioLoader, AudioListener, Audio } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
@@ -391,7 +391,7 @@ export class Loader {
         this.loadingManager = new LoadingManager();
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/'); // use a full url path
-        this.gltfLoader = new GLTFLoader();
+        this.gltfLoader = new GLTFLoader(this.loadingManager);
         this.gltfLoader.setDRACOLoader(dracoLoader);
 
         this.textureLoader = new TextureLoader(this.loadingManager);
@@ -590,17 +590,17 @@ export class Loader {
 
 
         this.loadingManager.onStart = (url, itemsLoaded, itemsTotal) => {
-            // console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+            console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
         this.loadingManager.onLoad = () => {
             const event = new Event(this.onModelLoadEventName);
             document.dispatchEvent(event)
         };
         this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
-            // console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+            console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
         this.loadingManager.onError = (url) => {
-            // console.log( 'There was an error loading ' + url );
+            console.log( 'There was an error loading ' + url );
         };
 
     }
