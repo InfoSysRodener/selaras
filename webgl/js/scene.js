@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// eslint-disable-next-line import/no-named-as-default
 import gsap from "gsap";
 import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
@@ -11,6 +12,9 @@ class SceneInit {
     shouldRender = false
     renderTime = 1
     arr = []
+    currentSound
+    bgMusic
+    controlOn = true
 
     constructor(options) {
         this.container = options.dom;
@@ -54,35 +58,66 @@ class SceneInit {
 
         this.addLoader();
         this.addObjects();
+        this.addSounds()
         this.addControls()
         this.animate();
 
         this.lastCorrectPos = this.camera.position.clone()
 
-        setInterval(() => {
+        this.collisionInterval = setInterval(() => {
             if (this.checkCollision()) {
-                this.camera.position.copy(this.lastCorrectPos)
+                // this.camera.position.copy(this.lastCorrectPos)
+                this.controlOn = false
+                gsap.to(this.camera.position,
+                     {x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
+                        onUpdate: () => {
+                            this.needToRender(60)
+                        },
+                        onComplete: () => {
+                            this.controlOn = true
+                        }
+                    })
             }
             else {
                 this.lastCorrectPos = this.camera.position.clone()
-                // console.log(this.lastCorrectPos)
             }
-        }, 500)
+        }, 100)
         this.needToRender(100)
 
-        document.addEventListener('paintingsLoaded', () => {
-            this.sortJsObject(this.loader.allPaintingsDict)
-            this.showcaseTimeline(this.loader.allPaintingsDict)
-            this.arr = Object.values(this.showcase)
+        const self = this
+
+        document.addEventListener('onModelLoad', () => {
+            self.sortJsObject(self.loader.allPaintingsDict)
+            self.showcaseTimeline(self.loader.allPaintingsDict)
+            self.arr = Object.values(self.showcase)
+
+            setTimeout(() => {
+                for (let i = 0; i < self.loader.allSounds.length; i++) {
+                    if (self.loader.allSounds[i].index === 7) {
+                        self.currentSound = self.loader.allSounds[i].soundObj
+                        self.currentSound.play()
+                        self.bgMusic = self.loader.allSounds[i].soundObj
+                    }
+                }
+            }, 1000)
         })
 
-        document.addEventListener('click', (evt) => {
-            this.setTarget(evt, this.loader.allPaintingsDict)
+        document.addEventListener('pointerdown', (evt) => {
+            self.setTarget(evt, self.loader.allPaintingsDict)
+        })
+
+        document.addEventListener("clickPrevious", () => {
+            self.goTo(self.previousObj)
+        })
+
+        document.addEventListener("clickNext", () => {
+            self.goTo(self.nextObj)
         })
 
         this.showcase = []
         this.nextObj = {}
         this.previousObj = {}
+
     }
 
     addLoader() {
@@ -90,10 +125,25 @@ class SceneInit {
     }
 
     addObjects() {
-        this.loader.loadModel('artSpace.glb', true);
+        // this.loader.loadModel('artSpace.glb', true);
+        this.loader.loadModel('artSpace-v2.glb', true);
         // this.loader.loadModel('artSpaceCol.glb', true)
         this.loader.loadModel('artPaintings.glb', false, true);
         // this.loader.loadModel('profileBoards.glb');
+    }
+
+    addSounds() {
+        const sounds = [
+            '/3D/1.general_idea.mp3',
+            '/3D/2.subjection.mp3',
+            '/3D/3.sentient.mp3',
+            '/3D/4.suplication.mp3',
+            '/3D/5.contrive.mp3',
+            '/3D/6.inunct.mp3',
+            '/3D/7.exempt.mp3',
+            '/3D/Selaras_Solo_Piano.wav'
+        ]
+        this.loader.loadAudio(sounds)
     }
 
     addControls() {
@@ -117,19 +167,19 @@ class SceneInit {
                 }
                 let x = 0
                 let y = 0
-                if (this.controls.moveForward) {
+                if (this.controls.moveForward && this.controlOn) {
                     y += 1
                 }
-                if (this.controls.moveBackward) {
+                if (this.controls.moveBackward && this.controlOn) {
                     y -= 1
                 }
-                if (this.controls.moveLeft) {
+                if (this.controls.moveLeft && this.controlOn) {
                     x += 1
                 }
-                if (this.controls.moveRight) {
+                if (this.controls.moveRight && this.controlOn) {
                     x -= 1
                 }
-                if (x !== 0 || y !== 0) {
+                if (x !== 0 || y !== 0 && this.controlOn) {
                     this.cameraControls.move(x, y)
                 }
                 this.cameraControls.updateMovement()
@@ -158,7 +208,7 @@ class SceneInit {
     checkCollision() {
         let vert = []
         const positions = this.collCube.geometry.attributes.position.array;
-        const ptCout = positions.length / 12;
+        const ptCout = positions.length / 9;
         for (let i = 0; i < ptCout; i++) {
             const p = new THREE.Vector3(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
             vert.push(p)
@@ -217,8 +267,14 @@ class SceneInit {
     }
 
     goTo(target) {
-        const self = this
+        
+      
 
+        const self = this
+        if (target.sound !== '') {
+            self.currentSound = target.sound.play()
+            self.currentSound.play()
+        }
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
             onUpdate: () => {
@@ -229,14 +285,18 @@ class SceneInit {
         gsap.to(this.camera.rotation, {
             y: target.rotate, duration: 2,
         })
+
+        console.log('targetArray',this.arr);
         for (let i = 0; i < this.arr.length; i++) {
-            if (this.arr[i].object === target) {
+            if (JSON.stringify(this.arr[i].object) === JSON.stringify(target)) {
                 if (i < this.arr.length - 1) {
                     this.nextObj = this.arr[i + 1]
                 }
                 if (i > 0) {
                     this.previousObj = this.arr[i - 1]
                 }
+                console.log(target);
+                window.$nuxt.$store.dispatch('paintings/selected', target);
             }
         }
     }
@@ -256,6 +316,46 @@ class SceneInit {
                     this.goTo(dict[key])
                 }
             }
+        }
+        else if (this.currentSound !== this.bgMusic) {
+            this.currentSound = this.bgMusic
+            this.currentSound.play()
+        }
+    }
+
+    dispose() {
+        clearInterval(this.collisionInterval)
+
+        this.scene.traverse(object => {
+            if (!object.isMesh) return
+
+            // dispose geometry
+            object.geometry.dispose()
+
+            if (object.material.isMaterial) {
+                cleanMaterial(object.material)
+            } else {
+                // an array of materials
+                for (const material of object.material) cleanMaterial(material)
+            }
+        })
+
+        const cleanMaterial = material => {
+            // dispose material
+            material.dispose()
+
+            // dispose textures
+            for (const key of Object.keys(material)) {
+                const value = material[key]
+                if (value && typeof value === 'object' && 'minFilter' in value) {
+                    console.log('dispose texture!')
+                    value.dispose()
+                }
+            }
+        }
+
+        for(let i = 0; i < gsap.globalTimeline.children.length; i++){
+            gsap.globalTimeline.children[i].kill()
         }
     }
 
