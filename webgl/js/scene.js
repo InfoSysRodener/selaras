@@ -66,22 +66,22 @@ class SceneInit {
         this.lastCorrectPos = this.camera.position.clone()
 
         this.collisionInterval = setInterval(() => {
-            // if (this.checkCollision()) {
-            //     // this.camera.position.copy(this.lastCorrectPos)
-            //     this.controlOn = false
-            //     gsap.to(this.camera.position,
-            //          {x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
-            //             onUpdate: () => {
-            //                 this.needToRender(60)
-            //             },
-            //             onComplete: () => {
-            //                 this.controlOn = true
-            //             }
-            //         })
-            // }
-            // else {
-            //     this.lastCorrectPos = this.camera.position.clone()
-            // }
+            if (this.checkCollision()) {
+                // this.camera.position.copy(this.lastCorrectPos)
+                this.controlOn = false
+                gsap.to(this.camera.position,
+                     {x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
+                        onUpdate: () => {
+                            this.needToRender(60)
+                        },
+                        onComplete: () => {
+                            this.controlOn = true
+                        }
+                    })
+            }
+            else {
+                this.lastCorrectPos = this.camera.position.clone()
+            }
         }, 100)
         this.needToRender(100)
 
