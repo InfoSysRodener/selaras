@@ -394,7 +394,7 @@ class SceneInit {
         for (let i = 0; i < gsap.globalTimeline.children.length; i++) {
             gsap.globalTimeline.children[i].kill()
         }
-        //stop sounds
+        // stop sounds
         for(let i = 0; i < this.allSounds.length; i++){
             this.allSounds[i].stop()
         }
