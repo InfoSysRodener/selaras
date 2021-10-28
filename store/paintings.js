@@ -1,11 +1,12 @@
 /* eslint-disable require-await */
 export const state = () => ({
-    selectedPaitings:{}
+    selectedPaintings:null
 })
   
+
 export const mutations = {
     set(state, painting) {
-      state.selectedPaitings = painting;
+      state.selectedPaintings = painting;
     }
 }
 

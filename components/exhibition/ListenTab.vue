@@ -1,3 +1,4 @@
+/* eslint-disable vue/this-in-template */
 <template>
     <div>
         <!-- <PaintingInfoModal :toggle="togglePaintingInfo" @closed="togglePaintingInfo = false"/> -->
@@ -10,21 +11,25 @@
                     <!-- This element is to trick the browser into centering the modal contents. -->
                     <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-                    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <div class="flex justify-end py-2 ">
                                 <img class="w-10 cursor-pointer" src="~/assets/icons/menu/close.svg"  @click="closePaintingInfo"/>
                             </div>
                             <div class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 id="modal-title" class="text-lg leading-6 font-medium text-gray-900" >
-                                       {{ this>$store.state.selectedPaitings.title }}
+                                    <h3 id="modal-title" class="text-2lg leading-6 font-medium text-gray-900" >
+                                       {{ selectedPaintings.title }}
                                     </h3>
+                                    <h1 class="mt-2 text-gray-700">{{ selectedPaintings.author }}</h1>
                                     <div class="mt-2">
-                                    <p class="text-sm text-gray-500">
-                                        Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.
-                                    </p>
+                                        <p class="text-sm text-gray-500">{{ selectedPaintings.year }}</p>
+                                        <p class="text-sm text-gray-500">{{ selectedPaintings.size }}</p>
+                                        <p class="text-sm text-gray-500">{{ selectedPaintings.media }}</p>
                                     </div>
+                                    <div class="mt-5">
+                                        <p class="text-base">IDR xxxxxxxxx</p>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -60,7 +65,7 @@
                     <div>
                         <div class="mb-10">
                             <h1 class="text-2xl font-semibold">{{ selectedArt.title }} </h1>
-                            <p class="font-medium">{{ selectedArt.author }} </p>
+                            <p class="font-medium">{{ selectedArt.artistName }} </p>
                         </div>
                         <div class="mb-5">
                             <p>{{ selectedArt.details.date }}</p>
@@ -75,7 +80,7 @@
                 </div>
                 <div v-show="open" class="flex justify-end">
                     <div>
-                    <div ref="btnPaintingInfo" class="flex flex-row justify-end items-center cursor-pointer" @click="togglePaintingInfo = !togglePaintingInfo" >
+                    <div ref="btnPaintingInfo" class="flex flex-row justify-end items-center cursor-pointer" @click="openPaintingInfo" >
                             <label class="text-xs underline text-white pr-5">Painting Info</label>
                             <img src="~/assets/icons/menu/paintingInfo.png"/>
                         </div>
@@ -100,6 +105,18 @@
         data(){
             return {
                 togglePaintingInfo:false,
+                selectedPaintings:{
+                    artistName:"Sandy Tisa",
+                    audio:"HPH_02.mp4",
+                    media:"acrylic on kanvas",
+                    meshName:"hikayathidup2",
+                    photo:"",
+                    price:"7,500,000",
+                    size:"100x60 cm",
+                    title:"HIKAYAT POHON HIDUP SERIES",
+                    year:"2021"
+                },
+
                 mode:'guided', // guided || explore 
                 open:false,
 
@@ -126,6 +143,11 @@
         methods:{
             toggleTab(){
                 this.open = !this.open;
+            },
+            openPaintingInfo(){
+                this.selectedPaintings = this.$store.state.paintings.selectedPaintings;
+                console.log(this.$store.state.paintings.selectedPaintings)
+                this.togglePaintingInfo = true;
             },
             closePaintingInfo(){
                 this.togglePaintingInfo = false;
