@@ -19,7 +19,7 @@ export class ControlEvents {
             zone: document.getElementById('controlsDiv'),
             mode: 'static',
             position: { left: '90%', top: '85%' },
-            color: 'red'
+            color: 'gray'
         });
     }
 

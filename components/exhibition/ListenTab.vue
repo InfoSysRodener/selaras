@@ -51,7 +51,7 @@
                             <label class="text-xs underline text-white pr-5">Previous</label>
                             <img src="~/assets/icons/media/previous.svg" />
                         </div>
-                        <div class="flex flex-row justify-end items-center cursor-pointer">
+                        <div ref="btnPlay" class="flex flex-row justify-end items-center cursor-pointer">
                             <label class="text-xs underline text-white pr-5">Play</label>
                             <img class="-mr-1" src="~/assets/icons/media/play.svg" />
                         </div>  
@@ -137,7 +137,8 @@
             ListenModeInit({ 
                 previous: this.$refs.btnPrevious,
                 next: this.$refs.btnNext,
-                paintingInfo: this.$refs.btnPaintingInfo
+                paintingInfo: this.$refs.btnPaintingInfo,
+                play: this.$refs.btnPlay
             });
         },
         methods:{

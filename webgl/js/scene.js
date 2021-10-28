@@ -66,22 +66,22 @@ class SceneInit {
         this.lastCorrectPos = this.camera.position.clone()
 
         this.collisionInterval = setInterval(() => {
-            if (this.checkCollision()) {
-                // this.camera.position.copy(this.lastCorrectPos)
-                this.controlOn = false
-                gsap.to(this.camera.position,
-                     {x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
-                        onUpdate: () => {
-                            this.needToRender(60)
-                        },
-                        onComplete: () => {
-                            this.controlOn = true
-                        }
-                    })
-            }
-            else {
-                this.lastCorrectPos = this.camera.position.clone()
-            }
+            // if (this.checkCollision()) {
+            //     // this.camera.position.copy(this.lastCorrectPos)
+            //     this.controlOn = false
+            //     gsap.to(this.camera.position,
+            //          {x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
+            //             onUpdate: () => {
+            //                 this.needToRender(60)
+            //             },
+            //             onComplete: () => {
+            //                 this.controlOn = true
+            //             }
+            //         })
+            // }
+            // else {
+            //     this.lastCorrectPos = this.camera.position.clone()
+            // }
         }, 100)
         this.needToRender(100)
 
@@ -98,7 +98,6 @@ class SceneInit {
                         self.bgMusic = self.loader.allSounds[i].soundObj
                         self.bgMusic.setLoop(true);
                         self.bgMusic.play();
-                        self.currentSound = self.loader.allSounds[i].soundObj
                     }
                 }
             }, 1000)
@@ -109,16 +108,31 @@ class SceneInit {
         })
 
         document.addEventListener("clickPrevious", () => {
-            self.goTo(self.previousObj)
+            self.goTo(self.nextObj)
         })
 
         document.addEventListener("clickNext", () => {
-            self.goTo(self.nextObj)
+            self.goTo(self.previousObj)
+        })
+
+        document.addEventListener("playSound", () => {
+            if (self.currentObj.sound !== '') {
+                if(self.currentSound){
+                    self.currentSound.stop()
+                }
+                self.bgMusic.setVolume(0.25)
+                self.currentSound = self.currentObj.sound
+                self.currentSound.play()
+                gsap.delayedCall(self.currentSound.buffer.duration, () => {
+                    self.bgMusic.setVolume(1)
+                })
+            }
         })
 
         this.showcase = []
         this.nextObj = {}
         this.previousObj = {}
+        this.currentObj = {}
 
     }
 
@@ -289,12 +303,9 @@ class SceneInit {
     }
 
     goTo(target) {
-        
+
         const self = this
-        if (target.sound !== '') {
-            self.currentSound = target.sound.play()
-            self.currentSound.play()
-        }
+        this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
             onUpdate: () => {
@@ -372,7 +383,7 @@ class SceneInit {
             }
         }
 
-        for(let i = 0; i < gsap.globalTimeline.children.length; i++){
+        for (let i = 0; i < gsap.globalTimeline.children.length; i++) {
             gsap.globalTimeline.children[i].kill()
         }
     }
