@@ -16,6 +16,7 @@ class SceneInit {
     currentSound
     bgMusic
     controlOn = true
+    collisionOn = true
 
     constructor(options) {
         this.container = options.dom;
@@ -66,7 +67,7 @@ class SceneInit {
         this.lastCorrectPos = this.camera.position.clone()
 
         this.collisionInterval = setInterval(() => {
-            if (this.checkCollision()) {
+            if (this.checkCollision() && this.collisionOn) {
                 // this.camera.position.copy(this.lastCorrectPos)
                 this.controlOn = false
                 gsap.to(this.camera.position,
@@ -311,6 +312,9 @@ class SceneInit {
             onUpdate: () => {
                 self.needToRender(60)
             },
+            onComplete: () => {
+                this.collisionOn = true
+            }
         })
 
         gsap.to(this.camera.rotation, {
@@ -342,6 +346,7 @@ class SceneInit {
         if (intersects[0]) {
             for (const key in dict) {
                 if (intersects[0].object === dict[key].object.children[0]) {
+                    this.collisionOn = false
                     this.goTo(dict[key])
                 }
             }
@@ -349,6 +354,9 @@ class SceneInit {
         else if (this.currentSound !== this.bgMusic) {
             this.currentSound = this.bgMusic
             this.currentSound.play()
+        }
+        else{
+            this.collisionOn = true
         }
     }
 
@@ -385,6 +393,10 @@ class SceneInit {
 
         for (let i = 0; i < gsap.globalTimeline.children.length; i++) {
             gsap.globalTimeline.children[i].kill()
+        }
+        //stop sounds
+        for(let i = 0; i < this.allSounds.length; i++){
+            this.allSounds[i].stop()
         }
     }
 
