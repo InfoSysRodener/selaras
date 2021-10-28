@@ -82,7 +82,7 @@
                     <div>
                     <div ref="btnPaintingInfo" class="flex flex-row justify-end items-center cursor-pointer" @click="openPaintingInfo" >
                             <label class="text-xs underline text-white pr-5">Painting Info</label>
-                            <img src="~/assets/icons/menu/paintingInfo.png"/>
+                            <img src="~/assets/icons/menu/PaintingInfo.png"/>
                         </div>
                         
                         <div class="flex flex-row justify-end items-center cursor-pointer">
