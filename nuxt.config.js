@@ -3,9 +3,7 @@ import webpack from 'webpack';
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  // mode:'spa',
   ssr:true,
-  // mode: 'universal',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -48,9 +46,6 @@ export default {
     'nuxt-font-loader'
   ],
 
-  fontLoader: {
-    url: './assets/main.css'
-  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

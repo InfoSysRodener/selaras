@@ -143,7 +143,7 @@ class SceneInit {
 
     addObjects() {
         // this.loader.loadModel('artSpace.glb', true);
-        this.loader.loadModel('artSpace-v2.glb', true);
+        this.loader.loadModel('artSpaceAll.glb', true);
         // this.loader.loadModel('artSpaceCol.glb', true)
         this.loader.loadModel('artPaintings.glb', false, true);
         // this.loader.loadModel('profileBoards.glb');
@@ -329,6 +329,7 @@ class SceneInit {
                 if (i > 0) {
                     this.previousObj = this.arr[i - 1]
                 }
+                window.$nuxt.$emit('MENU-VIEW-EVENT','painting-view');
                 window.$nuxt.$store.dispatch('paintings/selected', target.details);
             }
         }

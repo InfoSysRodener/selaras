@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center w-full h-full">
-        <div class="pt-10 flex flex-row justify-center items-center">
+        <div class="pt-20 flex flex-row justify-center items-center">
           <h1 class="font-semibold text-lg xl:text-4xl tracking-widest text-center"> Meet The Artist </h1>
         </div>
         <div class="my-10 grid grid-cols-7">

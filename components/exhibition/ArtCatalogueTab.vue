@@ -11,7 +11,7 @@
         data() {
             return {
                 arts:[
-                    '1.svg',
+                    '3.svg',
                     '2.svg',
                 ]
             }

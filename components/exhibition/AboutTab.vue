@@ -1,7 +1,7 @@
 <template>
     <div>
-        <img src="~/assets/SelarasGalleryLogo.svg">
-        <div class="text-sm text-center my-14 ">
+        <img class="pt-5" src="~/assets/SelarasGalleryLogo.svg">
+        <div class="text-sm text-center my-10 ">
           <p> 
             'Selaras art space' adalah sebuah ruang presentasi
             karya online yang menghadirkan karya para seniman

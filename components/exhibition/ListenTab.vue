@@ -1,6 +1,6 @@
 /* eslint-disable vue/this-in-template */
 <template>
-    <div>
+    <div class="bg-black">
         <!-- <PaintingInfoModal :toggle="togglePaintingInfo" @closed="togglePaintingInfo = false"/> -->
         <div class="absolute flex flex-row-reverse w-full h-full z-10">
             <div v-if="togglePaintingInfo" class="absolute inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -13,22 +13,22 @@
 
                     <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <div class="flex justify-end py-2 ">
+                            <div class="flex justify-end pt-2 ">
                                 <img class="w-10 cursor-pointer" src="~/assets/icons/menu/close.svg"  @click="closePaintingInfo"/>
                             </div>
                             <div class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 id="modal-title" class="text-2lg leading-6 font-medium text-gray-900" >
+                                    <h3 id="modal-title" class="text-2xl leading-6 font-medium text-gray-900" >
                                        {{ selectedPaintings.title }}
                                     </h3>
-                                    <h1 class="mt-2 text-gray-700">{{ selectedPaintings.author }}</h1>
-                                    <div class="mt-2">
+                                    <h1 class="mt-1 mb-2 text-gray-700 text-lg">{{ selectedPaintings.artistName }}</h1>
+                                    <div class="mt-3">
                                         <p class="text-sm text-gray-500">{{ selectedPaintings.year }}</p>
                                         <p class="text-sm text-gray-500">{{ selectedPaintings.size }}</p>
                                         <p class="text-sm text-gray-500">{{ selectedPaintings.media }}</p>
                                     </div>
                                     <div class="mt-5">
-                                        <p class="text-base">IDR xxxxxxxxx</p>
+                                        <p class="text-base">IDR {{ selectedPaintings.price }}</p>
                                     </div> 
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="open" v-else class="flex justify-end">
+                <!-- <div v-show="open" v-else class="flex justify-end">
                     <div>
                         <div class="mb-10">
                             <h1 class="text-2xl font-semibold">{{ selectedArt.title }} </h1>
@@ -77,7 +77,7 @@
                             <p>{{ selectedArt.idr }}</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div v-show="open" class="flex justify-end">
                     <div>
                     <div ref="btnPaintingInfo" class="flex flex-row justify-end items-center cursor-pointer" @click="openPaintingInfo" >
@@ -106,31 +106,19 @@
             return {
                 togglePaintingInfo:false,
                 selectedPaintings:{
-                    artistName:"Sandy Tisa",
+                    artistName:"Artist Name",
                     audio:"HPH_02.mp4",
-                    media:"acrylic on kanvas",
+                    media:"media ",
                     meshName:"hikayathidup2",
                     photo:"",
-                    price:"7,500,000",
+                    price:"price",
                     size:"100x60 cm",
-                    title:"HIKAYAT POHON HIDUP SERIES",
+                    title:"Title",
                     year:"2021"
                 },
 
                 mode:'guided', // guided || explore 
                 open:false,
-
-                selectedArt:{
-                    title: 'Hikayat PohonHidup',
-                    author:'Sandy Tisa Pratama',
-                    details:{
-                        size:'60x100cm',
-                        date:'2021',
-                        type:'Mixed Media on Canvas'
-                    },
-                    description:'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-                    idr:'xxxxxxxxx'
-                }
             }
         },
         mounted(){
@@ -146,8 +134,9 @@
                 this.open = !this.open;
             },
             openPaintingInfo(){
-                this.selectedPaintings = this.$store.state.paintings.selectedPaintings;
-                console.log(this.$store.state.paintings.selectedPaintings)
+                if(this.$store.state.paintings.selectedPaintings != null) {
+                   this.selectedPaintings = this.$store.state.paintings.selectedPaintings;
+                }
                 this.togglePaintingInfo = true;
             },
             closePaintingInfo(){

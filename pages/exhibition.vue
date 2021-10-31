@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col justify-center items-center w-full h-full">  
-        <div class="flex flex-row px-5 pt-10 lg:pt-5">
+        <div class="flex flex-row px-5 pt-20 lg:pt-20">
           <div>
             <img src="~/assets/images/widi.svg">
             <p class="text-xs p-1 lg:text-lg lg:p-4 font-semibold sm:tracking-widest">Widi Wardani Purnama</p>

@@ -12,7 +12,6 @@
     export default {
         mounted() {
             this.scene = new SceneInit({ dom: this.$refs.container });
-            
         },
     }
 </script>

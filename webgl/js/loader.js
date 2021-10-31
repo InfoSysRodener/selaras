@@ -1007,6 +1007,8 @@ export class Loader {
         };
         this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
             console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+            const progress = (itemsLoaded / itemsTotal * 100);
+            window.$nuxt.$emit('LOADING-SCENE', { itemsLoaded, itemsTotal , progress });
         };
         this.loadingManager.onError = (url) => {
             console.log( 'There was an error loading ' + url );
