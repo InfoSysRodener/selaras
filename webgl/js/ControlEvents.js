@@ -1,4 +1,3 @@
-import nipplejs from "nipplejs"
 import { Vector2 } from 'three'
 
 export class ControlEvents {
@@ -18,7 +17,6 @@ export class ControlEvents {
     }
 
     addMobileEvents() {
-        const self = this
         let thisPoint, lastPoint
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
