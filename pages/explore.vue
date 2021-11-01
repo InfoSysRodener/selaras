@@ -3,7 +3,7 @@
     <div>
        <Scene>
          <MenuView/>
-         <div v-if="isLoading" class="flex justify-center items-center h-screen z-50 bg-gray-200 opacity-90">
+         <div v-if="isLoading" class="flex justify-center absolute items-center h-screen z-50 bg-gray-200 opacity-90 ">
             <img class="w-14 h-14" src="~/assets/loading.gif"/>
          </div>
        </Scene>

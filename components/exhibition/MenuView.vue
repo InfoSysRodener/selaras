@@ -28,7 +28,7 @@
                     </li>
                     <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('meet-the-artist')">
                         <div class="flex items-center justify-end">
-                            <p class="pr-3 text-sm font-medium"> Meet the artist </p>
+                            <p class="pr-3 text-sm font-medium"> Meet the artists </p>
                             <span class="rounded-full relative bg-white w-10 h-10 shadow-lg">
                                 <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/artist-brush-svgrepo-com.svg"/>
                             </span>
@@ -92,23 +92,23 @@
         <!-- controls -->
         <div v-if="view === 'menu-view'" class="hidden md:block px-10 bottom-5 right-0 absolute w-64 h-auto select-none">
             <div class="grid grid-cols-3 gap-5 mb-5">
-                <span class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
+                <span ref="btnUp" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-up.svg"/>
                 </span>
             </div>
             <div class="grid grid-cols-3 gap-5">
-                <span class="col-start-1 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
+                <span ref="btnLeft" class="col-start-1 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-left.svg"/>
                 </span>   
-                <span class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
+                <span ref="btnDown" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-down.svg"/>
                 </span>
-                <span class="col-start-3 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
+                <span ref="btnRight" class="col-start-3 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-right.svg"/>
                 </span>
             </div>
         </div>
-        <div v-else-if="view === 'painting-view'" class=" md:block bottom-5 right-0 absolute w-64 h-auto select-none">
+        <div v-show="view === 'painting-view'" class=" md:block bottom-5 right-0 absolute w-64 h-auto select-none">
              <ul>
                 <li class="py-3 px-2 text-right relative cursor-pointer" >
                     <div ref="btnPlay" class="flex items-center justify-end" >
@@ -192,6 +192,7 @@
     import MeetTheArtistTab from './MeetTheArtistTab.vue';
    
     import ListenModeInit from '@/webgl/js/listenModeControls.js';
+    import NavigationControlInit from '@/webgl/js/navigationControls.js';
 
     export default {
         components:{
@@ -238,13 +239,21 @@
             this.$nuxt.$off('MENU-VIEW-EVENT');
         },
         mounted(){
-            if(this.view === 'painting-view'){
-                ListenModeInit({ 
-                    previous: this.$refs.btnPrevious,
-                    next: this.$refs.btnNext,
-                    play: this.$refs.btnPlay
-                }); 
-            }
+            // if(this.view === 'painting-view'){
+               
+            // }
+            ListenModeInit({ 
+                previous: this.$refs.btnPrevious,
+                next: this.$refs.btnNext,
+                play: this.$refs.btnPlay
+            }); 
+
+            NavigationControlInit({
+                up: this.$refs.btnUp,
+                left:this.$refs.btnLeft,
+                down:this.$refs.btnDown,
+                right:this.$refs.btnRight,
+            });
         },
         methods:{
             toggleTab(){
