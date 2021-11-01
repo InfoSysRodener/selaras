@@ -850,7 +850,6 @@ export class Loader {
                 }
                 document.dispatchEvent(new Event("paintingsLoaded"))
             }
-            console.log(self.allMeshes)
         });
 
     }
