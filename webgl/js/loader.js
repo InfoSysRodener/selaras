@@ -840,8 +840,8 @@ export class Loader {
             this.scene.add(object.scene);
             // load a resource
             if (storeMeshes) {
-                for (let i = 0; i < object.scene.children[0].children.length; i++) {
-                    self.allMeshes.push(object.scene.children[0].children[i])
+                for (let i = 0; i < object.scene.children.length; i++) {
+                    self.allMeshes.push(object.scene.children[i])
                 }
             }
             if (storePainting) {
