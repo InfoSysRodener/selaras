@@ -15,34 +15,10 @@ export class ControlEvents {
     constructor(camera, scene) {
         this.camera = camera
         this.scene = scene
-        this.joystick = nipplejs.create({
-            zone: document.getElementById('controlsDiv'),
-            mode: 'static',
-            position: { left: '90%', top: '85%' },
-            color: 'gray'
-        });
     }
 
     addMobileEvents() {
         const self = this
-        this.joystick.on("move", (evt, data) => {
-            if (this.touchDown) {
-                self.camera.forwardMovementScalar = data.vector.y / 10
-                self.camera.sideMovementScalar = data.vector.x / 10
-            }
-            this.scene.needToRender(100)
-        })
-
-        this.joystick.on("start", () => {
-            this.touchDown = true
-            this.scene.needToRender(5)
-        })
-
-        this.joystick.on("end", () => {
-            this.touchDown = false
-            self.camera.forwardMovementScalar = 0
-            self.camera.sideMovementScalar = 0
-        })
         let thisPoint, lastPoint
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
