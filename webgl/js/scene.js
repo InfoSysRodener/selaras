@@ -330,7 +330,8 @@ class SceneInit {
                     this.previousObj = this.arr[i - 1]
                 }
                 window.$nuxt.$emit('MENU-VIEW-EVENT','painting-view');
-                window.$nuxt.$store.dispatch('paintings/selected', target.details);
+                window.$nuxt.$emit('SELECTED-PAINTING-EVENT', target.details);
+                // window.$nuxt.$store.dispatch('paintings/selected', target.details);
             }
         }
     }

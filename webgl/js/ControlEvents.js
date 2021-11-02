@@ -63,28 +63,24 @@ export class ControlEvents {
                 case 'KeyW':
                     this.moveForward = true;
                     this.scene.needToRender(100)
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowLeft':
                 case 'KeyA':
                     this.moveLeft = true;
                     this.scene.needToRender(100)
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowDown':
                 case 'KeyS':
                     this.moveBackward = true;
                     this.scene.needToRender(100)
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowRight':
                 case 'KeyD':
                     this.moveRight = true;
                     this.scene.needToRender(100)
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
             }
 
@@ -98,24 +94,28 @@ export class ControlEvents {
                 case 'KeyW':
                     this.moveForward = false;
                     this.scene.needToRender(5)
+                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowLeft':
                 case 'KeyA':
                     this.moveLeft = false;
                     this.scene.needToRender(5)
+                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowDown':
                 case 'KeyS':
                     this.moveBackward = false;
                     this.scene.needToRender(5)
+                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowRight':
                 case 'KeyD':
                     this.moveRight = false;
                     this.scene.needToRender(5)
+                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
                     break;
 
             }

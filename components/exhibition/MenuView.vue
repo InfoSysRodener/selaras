@@ -90,7 +90,7 @@
         </div>
         
         <!-- controls -->
-        <div v-if="view === 'menu-view'" class="hidden md:block px-10 bottom-5 right-0 absolute w-64 h-auto select-none">
+        <div v-show="view === 'menu-view'" class="hidden md:block px-10 bottom-5 right-0 absolute w-64 h-auto select-none">
             <div class="grid grid-cols-3 gap-5 mb-5">
                 <span ref="btnUp" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-up.svg"/>
@@ -232,28 +232,34 @@
         },
         created(){
             this.$nuxt.$on('MENU-VIEW-EVENT', (payload) => {
-                this.view = payload;
+                this.view = payload; 
             });
+            
         },
         beforeDestroy(){
             this.$nuxt.$off('MENU-VIEW-EVENT');
+            this.$nuxt.$off('SELECTED-PAINTING-EVENT');
         },
         mounted(){
-            // if(this.view === 'painting-view'){
-               
-            // }
-            ListenModeInit({ 
-                previous: this.$refs.btnPrevious,
-                next: this.$refs.btnNext,
-                play: this.$refs.btnPlay
-            }); 
+            
+            this.$nuxt.$on('SELECTED-PAINTING-EVENT', (payload) => {
+                this.selectedPaintings = payload;
 
-            NavigationControlInit({
+                ListenModeInit({ 
+                    previous: this.$refs.btnPrevious,
+                    next: this.$refs.btnNext,
+                    play: this.$refs.btnPlay
+                }); 
+            });
+
+    
+           NavigationControlInit({
                 up: this.$refs.btnUp,
                 left:this.$refs.btnLeft,
                 down:this.$refs.btnDown,
                 right:this.$refs.btnRight,
             });
+
         },
         methods:{
             toggleTab(){
@@ -264,9 +270,9 @@
                 this.selectedTab = val;
             },
             openPaintingInfo(){
-                if(this.$store.state.paintings.selectedPaintings != null) {
-                   this.selectedPaintings = this.$store.state.paintings.selectedPaintings;
-                }
+                // if(this.$store.state.paintings.selectedPaintings != null) {
+                //    this.selectedPaintings = this.$store.state.paintings.selectedPaintings;
+                // }
                 this.modalPainting = true;
             },
         },

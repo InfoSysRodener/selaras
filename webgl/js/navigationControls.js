@@ -14,13 +14,13 @@ class NavigationControl {
         this.up.addEventListener('click',() => {
             console.log('up');
         });
-        this.up.addEventListener('click',() => {
+        this.right.addEventListener('click',() => {
             console.log('right');
         });
-        this.up.addEventListener('click',() => {
+        this.down.addEventListener('click',() => {
             console.log('down');
         });
-        this.up.addEventListener('click',() => {
+        this.left.addEventListener('click',() => {
             console.log('left');
         });
         
