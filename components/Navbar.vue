@@ -1,5 +1,5 @@
 <template> 
-    <nav class="bg-selaras-black py-4 fixed w-full z-10">
+    <nav class="bg-selaras-black py-4 fixed w-full z-20">
         <div class="flex flex-row justify-between">
             <img class="ml-5 sm:ml-10" src="~/assets/SelarasLogo.svg"/>
 

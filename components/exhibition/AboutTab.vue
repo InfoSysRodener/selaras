@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="pt-5" src="~/assets/SelarasGalleryLogo.svg">
+        <img src="~/assets/SelarasGalleryLogo.svg">
         <div class="text-sm text-center my-10 ">
           <p> 
             'Selaras art space' adalah sebuah ruang presentasi

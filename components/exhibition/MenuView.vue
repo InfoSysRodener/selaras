@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div v-if="menu">
+        <div v-if="menu" class="z-10">
             <div v-if="view === 'menu-view'" class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" @click="toggleTab"/>
+                               <button> <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" @click="toggleTab"/> </button>
                             </span>
                         </div>
                     </li>
@@ -60,20 +60,25 @@
                     </li> 
                 </ul>
             </div>
-            <div v-else-if="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
+            <div v-else-if="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none opacity-75 z-10">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
+                            <p class="pr-3 text-sm font-medium"> Exits detail view</p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" @click="toggleTab"/>
+                                <button @click.prevent="toggleTab"> 
+                                    <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" /> 
+                                </button>
                             </span>
                         </div>
                     </li>
                     <li class="py-3 px-2 text-right relative cursor-pointer" >
                         <div class="flex items-center justify-end" @click="openPaintingInfo">
-                            <p class="pr-3 text-sm font-medium"> Painting Info </p>
+                            <p class="pr-3 text-sm font-medium"> Painting info </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
+                                <button @click.prevent="toggleTab"> 
+                                    <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
+                                </button>
                             </span>
                         </div>
                     </li> 
@@ -90,21 +95,21 @@
         </div>
         
         <!-- controls -->
-        <div v-show="view === 'menu-view'" class="hidden md:block px-10 bottom-5 right-0 absolute w-64 h-auto select-none">
+        <div v-show="view === 'menu-view'" class="hidden md:block px-10 bottom-5 left-10 absolute w-64 h-auto select-none">
             <div class="grid grid-cols-3 gap-5 mb-5">
                 <span ref="btnUp" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
-                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-up.svg"/>
+                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-up.svg"/>
                 </span>
             </div>
             <div class="grid grid-cols-3 gap-5">
                 <span ref="btnLeft" class="col-start-1 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
-                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-left.svg"/>
+                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-left.svg"/>
                 </span>   
                 <span ref="btnDown" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
-                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-down.svg"/>
+                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-down.svg"/>
                 </span>
                 <span ref="btnRight" class="col-start-3 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
-                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/chevron-right.svg"/>
+                    <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-right.svg"/>
                 </span>
             </div>
         </div>
@@ -231,10 +236,10 @@
            }
         },
         created(){
-            this.$nuxt.$on('MENU-VIEW-EVENT', (payload) => {
-                this.view = payload; 
+            this.$nuxt.$on('SELECTED-PAINTING-EVENT', (payload) => {
+                this.selectedPaintings = payload;
+                this.menu = true;
             });
-            
         },
         beforeDestroy(){
             this.$nuxt.$off('MENU-VIEW-EVENT');
@@ -242,16 +247,21 @@
         },
         mounted(){
             
-            this.$nuxt.$on('SELECTED-PAINTING-EVENT', (payload) => {
-                this.selectedPaintings = payload;
-
-                ListenModeInit({ 
-                    previous: this.$refs.btnPrevious,
-                    next: this.$refs.btnNext,
-                    play: this.$refs.btnPlay
-                }); 
+            this.$nuxt.$on('MENU-VIEW-EVENT', (payload) => {
+                this.view = payload; 
             });
 
+            this.$nuxt.$on('LOADING-SCENE', (payload) => {
+                if(payload.progress === 100) {
+                    this.toggleSelectedTab('help');
+                }
+            });
+            
+            ListenModeInit({ 
+                previous: this.$refs.btnPrevious,
+                next: this.$refs.btnNext,
+                play: this.$refs.btnPlay
+            });  
     
            NavigationControlInit({
                 up: this.$refs.btnUp,
@@ -269,12 +279,14 @@
                 this.modal = true;
                 this.selectedTab = val;
             },
+            // closeDetailView(){
+            //     this.view = 'menu-view';
+            //     this.menu = !this.menu;
+            // },
             openPaintingInfo(){
-                // if(this.$store.state.paintings.selectedPaintings != null) {
-                //    this.selectedPaintings = this.$store.state.paintings.selectedPaintings;
-                // }
                 this.modalPainting = true;
             },
+
         },
          
     }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <Navbar/>
-        <div class="w-full h-full  relative bg-exhibition bg-cover bg-repeat bg-bottom">
+        <div class="w-full h-full relative bg-exhibition bg-cover bg-repeat bg-bottom">
             <div class="backdrop-filter backdrop-brightness-185 backdrop-blur-lg">
                <Nuxt/>
             </div>
