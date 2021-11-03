@@ -1,29 +1,28 @@
 
 class NavigationControl {
     up
-    right 
+    right
     down
     left
 
-    constructor(options){
+    constructor(options) {
         this.up = options.up;
         this.right = options.right;
         this.down = options.down;
         this.left = options.left;
-     
-        this.up.addEventListener('click',() => {
-            console.log('up');
+
+        this.up.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("moveFoward"))
         });
-        this.right.addEventListener('click',() => {
-            console.log('right');
+        this.right.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("moveRight"))
         });
-        this.down.addEventListener('click',() => {
-            console.log('down');
+        this.down.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("moveBackwards"))
         });
-        this.left.addEventListener('click',() => {
-            console.log('left');
+        this.left.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("moveLeft"))
         });
-        
     }
 
 
