@@ -71,10 +71,8 @@ class SceneInit {
                 // this.camera.position.copy(this.lastCorrectPos)
                 this.controlOn = false
                 gsap.to(this.camera.position,
-                     {x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
-                        onUpdate: () => {
-                            this.needToRender(60)
-                        },
+                    {
+                        x: this.lastCorrectPos.x, z: this.lastCorrectPos.z, duration: 1,
                         onComplete: () => {
                             this.controlOn = true
                         }
@@ -84,7 +82,6 @@ class SceneInit {
                 this.lastCorrectPos = this.camera.position.clone()
             }
         }, 100)
-        this.needToRender(100)
 
         const self = this
 
@@ -92,7 +89,6 @@ class SceneInit {
             self.sortJsObject(self.loader.allPaintingsDict)
             self.showcaseTimeline(self.loader.allPaintingsDict)
             self.arr = Object.values(self.showcase)
-            this.needToRender(600)
             setTimeout(() => {
                 for (let i = 0; i < self.loader.allSounds.length; i++) {
                     if (self.loader.allSounds[i].index === 27) {
@@ -118,7 +114,7 @@ class SceneInit {
 
         document.addEventListener("playSound", () => {
             if (self.currentObj.sound !== '') {
-                if(self.currentSound){
+                if (self.currentSound) {
                     self.currentSound.stop()
                 }
                 self.bgMusic.setVolume(0.25)
@@ -128,6 +124,26 @@ class SceneInit {
                     self.bgMusic.setVolume(1)
                 })
             }
+        })
+
+        document.addEventListener("moveFoward", () => {
+            this.controls.moveForward = true
+        })
+        document.addEventListener("moveRight", () => {
+            this.controls.moveRight = true
+        })
+        document.addEventListener("moveBackwards", () => {
+            this.controls.moveBackward = true
+        })
+        document.addEventListener("moveLeft", () => {
+            this.controls.moveLeft = true
+        })
+
+        document.addEventListener("pointerup", () => {
+            this.controls.moveForward = false
+            this.controls.moveRight = false
+            this.controls.moveBackward = false
+            this.controls.moveLeft = false
         })
 
         this.showcase = []
@@ -194,36 +210,27 @@ class SceneInit {
         const animate = () => {
             requestAnimationFrame(animate);
 
-            if (this.shouldRender) {
-                if (this.renderTime >= 1) {
-                    if (this.renderTime > 1) {
-                        this.renderTime -= 1;
-                    } else {
-                        this.shouldRender = false;
-                    }
-                }
-                let x = 0
-                let y = 0
-                if (this.controls.moveForward && this.controlOn) {
-                    y += 1
-                }
-                if (this.controls.moveBackward && this.controlOn) {
-                    y -= 1
-                }
-                if (this.controls.moveLeft && this.controlOn) {
-                    x += 1
-                }
-                if (this.controls.moveRight && this.controlOn) {
-                    x -= 1
-                }
-                if (x !== 0 || y !== 0 && this.controlOn) {
-                    this.cameraControls.move(x, y)
-                }
-                this.cameraControls.updateMovement()
-                this.collCube.position.copy(this.camera.position)
-
-                this.renderer.render(this.scene, this.camera);
+            let x = 0
+            let y = 0
+            if (this.controls.moveForward && this.controlOn) {
+                y += 1
             }
+            if (this.controls.moveBackward && this.controlOn) {
+                y -= 1
+            }
+            if (this.controls.moveLeft && this.controlOn) {
+                x += 1
+            }
+            if (this.controls.moveRight && this.controlOn) {
+                x -= 1
+            }
+            if (x !== 0 || y !== 0 && this.controlOn) {
+                this.cameraControls.move(x, y)
+            }
+            this.cameraControls.updateMovement()
+            this.collCube.position.copy(this.camera.position)
+
+            this.renderer.render(this.scene, this.camera);
         }
         animate()
     }
@@ -266,19 +273,11 @@ class SceneInit {
         }
     }
 
-    needToRender(value = 1) {
-        this.renderTime = value
-        this.shouldRender = true
-    }
-
     showcaseTimeline(dict) {
         const self = this
         for (const key in dict) {
             // const t = gsap.to(this.camera.position, {
             //     x: dict[key].object.position.x, z: dict[key].object.position.z, duration: 10,
-            //     onUpdate: () => {
-            //         self.needToRender(60)
-            //     }
             // })
             self.showcase.push(dict[key])
         }
@@ -304,14 +303,9 @@ class SceneInit {
     }
 
     goTo(target) {
-
-        const self = this
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
-            onUpdate: () => {
-                self.needToRender(60)
-            },
             onComplete: () => {
                 this.collisionOn = true
             }
@@ -329,7 +323,7 @@ class SceneInit {
                 if (i > 0) {
                     this.previousObj = this.arr[i - 1]
                 }
-                window.$nuxt.$emit('MENU-VIEW-EVENT','painting-view');
+                window.$nuxt.$emit('MENU-VIEW-EVENT', 'painting-view');
                 window.$nuxt.$emit('SELECTED-PAINTING-EVENT', target.details);
                 // window.$nuxt.$store.dispatch('paintings/selected', target.details);
             }
@@ -357,7 +351,7 @@ class SceneInit {
             this.currentSound = this.bgMusic
             this.currentSound.play()
         }
-        else{
+        else {
             this.collisionOn = true
         }
     }
@@ -397,7 +391,7 @@ class SceneInit {
             gsap.globalTimeline.children[i].kill()
         }
         // stop sounds
-        for(let i = 0; i < this.allSounds.length; i++){
+        for (let i = 0; i < this.allSounds.length; i++) {
             this.allSounds[i].stop()
         }
     }
