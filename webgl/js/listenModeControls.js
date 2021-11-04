@@ -6,16 +6,7 @@ class ListenMode {
     pause
 
     constructor(options){
-        this.previous = options.previous;
-        this.next = options.next;
         this.play = options.play;
-     
-        this.previous.addEventListener('pointerdown',() => {
-            document.dispatchEvent(new Event("clickPrevious"))
-        });
-        this.next.addEventListener('pointerdown',() => {
-            document.dispatchEvent(new Event("clickNext"))
-        });
         this.play.addEventListener('pointerdown', () => {
             document.dispatchEvent(new Event("playSound"))
         })

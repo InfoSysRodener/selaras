@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // eslint-disable-next-line import/no-named-as-default
 import gsap from "gsap";
 import { CameraControls } from './CameraControls';
@@ -36,11 +35,19 @@ class SceneInit {
         this.camera.position.z = 1
 
 
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         this.collCube = new THREE.Mesh(geometry, material);
         this.collCube.position.copy(this.camera.position)
         this.scene.add(this.collCube);
+
+        const geometryExit = new THREE.BoxGeometry(1, 7, 5);
+        const materialExit = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const exitCube = new THREE.Mesh(geometryExit, materialExit);
+        exitCube.visible = false
+        this.scene.add(exitCube);
+        exitCube.position.set(-12, 0, 0)
+        console.log(exitCube)
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.width, this.height);
@@ -53,6 +60,9 @@ class SceneInit {
         this.container.appendChild(this.renderer.domElement);
 
         // this.control = new OrbitControls(this.camera, this.container);
+
+        const light = new THREE.AmbientLight(0x404040, 0.5);
+        this.scene.add(light)
 
         window.addEventListener('resize', this.onResize.bind(this));
 
@@ -86,6 +96,7 @@ class SceneInit {
         const self = this
 
         document.addEventListener('onModelLoad', () => {
+            this.loader.allMeshes.push(exitCube)
             self.sortJsObject(self.loader.allPaintingsDict)
             self.showcaseTimeline(self.loader.allPaintingsDict)
             self.arr = Object.values(self.showcase)
@@ -102,14 +113,6 @@ class SceneInit {
 
         document.addEventListener('pointerdown', (evt) => {
             self.setTarget(evt, self.loader.allPaintingsDict)
-        })
-
-        document.addEventListener("clickPrevious", () => {
-            self.goTo(self.nextObj)
-        })
-
-        document.addEventListener("clickNext", () => {
-            self.goTo(self.previousObj)
         })
 
         document.addEventListener("playSound", () => {
@@ -147,8 +150,6 @@ class SceneInit {
         })
 
         this.showcase = []
-        this.nextObj = {}
-        this.previousObj = {}
         this.currentObj = {}
 
     }
@@ -276,9 +277,6 @@ class SceneInit {
     showcaseTimeline(dict) {
         const self = this
         for (const key in dict) {
-            // const t = gsap.to(this.camera.position, {
-            //     x: dict[key].object.position.x, z: dict[key].object.position.z, duration: 10,
-            // })
             self.showcase.push(dict[key])
         }
     }
@@ -303,26 +301,35 @@ class SceneInit {
     }
 
     goTo(target) {
+
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
             onComplete: () => {
                 this.collisionOn = true
+                // this.camera.lookAt(target.object.position);
+                // backup original rotation
+                const startRotation = new THREE.Euler().copy(this.camera.rotation);
+
+                // final rotation (with lookAt)
+                this.camera.lookAt(target.object.position);
+                const endRotation = new THREE.Euler().copy(this.camera.rotation);
+
+                // revert to original rotation
+                this.camera.rotation.copy(startRotation);
+
+                gsap.to(this.camera.rotation, {
+                    x: endRotation.x,
+                    y: endRotation.y,
+                    z: endRotation.z,
+                    duration: 2,
+                })
             }
         })
 
-        gsap.to(this.camera.rotation, {
-            y: target.rotate, duration: 2,
-        })
 
         for (let i = 0; i < this.arr.length; i++) {
             if (this.arr[i].object.name === target.object.name) {
-                if (i < this.arr.length - 1) {
-                    this.nextObj = this.arr[i + 1]
-                }
-                if (i > 0) {
-                    this.previousObj = this.arr[i - 1]
-                }
                 window.$nuxt.$emit('MENU-VIEW-EVENT', 'painting-view');
                 window.$nuxt.$emit('SELECTED-PAINTING-EVENT', target.details);
                 // window.$nuxt.$store.dispatch('paintings/selected', target.details);
