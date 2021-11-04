@@ -41,6 +41,14 @@ class SceneInit {
         this.collCube.position.copy(this.camera.position)
         this.scene.add(this.collCube);
 
+        const geometryExit = new THREE.BoxGeometry(1, 7, 5);
+        const materialExit = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const exitCube = new THREE.Mesh(geometryExit, materialExit);
+        exitCube.visible = false
+        this.scene.add(exitCube);
+        exitCube.position.set(-12, 0, 0)
+        console.log(exitCube)
+
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.width, this.height);
         this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -88,6 +96,7 @@ class SceneInit {
         const self = this
 
         document.addEventListener('onModelLoad', () => {
+            this.loader.allMeshes.push(exitCube)
             self.sortJsObject(self.loader.allPaintingsDict)
             self.showcaseTimeline(self.loader.allPaintingsDict)
             self.arr = Object.values(self.showcase)
