@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="menu" class="z-10">
-            <div v-if="view === 'menu-view'" class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
+        <div v-show="menu" class="z-10">
+            <div v-show="view === 'menu-view'" class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
@@ -60,7 +60,7 @@
                     </li> 
                 </ul>
             </div>
-            <div v-else-if="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none opacity-75 z-10">
+            <div v-show="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none opacity-75 z-10">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
@@ -82,10 +82,34 @@
                             </span>
                         </div>
                     </li> 
+                    <li class="py-3 px-2 text-right relative cursor-pointer" >
+                        <div ref="btnPlay" class="flex items-center justify-end" >
+                            <p class="pr-3 text-sm font-medium"> Play </p>
+                            <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                <img  class="w-10 h-auto m-auto block" src="~/assets/icons/media/play.svg"/>
+                            </span>
+                        </div>
+                    </li> 
+                    <li class="py-3 px-2 text-right relative cursor-pointer" >
+                        <div ref="btnPrevious" class="flex items-center justify-end" >
+                            <p class="pr-3 text-sm font-medium"> Previous </p>
+                            <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                <img  class="w-10 h-auto m-auto block" src="~/assets/icons/media/previous.svg"/>
+                            </span>
+                        </div>
+                    </li> 
+                    <li class="py-3 px-2 text-right relative cursor-pointer" >
+                        <div  ref="btnNext" class="flex items-center justify-end">
+                            <p class="pr-3 text-sm font-medium"> Next </p>
+                            <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                <img  class="w-10 h-auto  m-auto block" src="~/assets/icons/media/next.svg"/>
+                            </span>
+                        </div>
+                    </li> 
                 </ul>
             </div>
         </div>
-        <div v-else class="py-3 pl-10 right-0 top-12 block absolute w-64 select-none">
+        <div v-show="!menu" class="py-3 pl-10 right-0 top-12 block absolute w-64 select-none">
             <div class="flex items-center justify-end px-2">
                 <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
                     <img class="cursor-pointer w-10 p-1 h-auto m-auto block" src="~/assets/icons/menu/hamburger.svg" @click="toggleTab"/>
@@ -95,7 +119,7 @@
         </div>
         
         <!-- controls -->
-        <div v-show="view === 'menu-view'" class="hidden md:block px-10 bottom-5 left-10 absolute w-64 h-auto select-none">
+        <div v-show="view === 'menu-view'" class="md:block px-10 bottom-5 left-10 absolute w-64 h-auto select-none">
             <div class="grid grid-cols-3 gap-5 mb-5">
                 <span ref="btnUp" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-up.svg"/>
@@ -115,30 +139,7 @@
         </div>
         <div v-show="view === 'painting-view'" class=" md:block bottom-5 right-0 absolute w-64 h-auto select-none">
              <ul>
-                <li class="py-3 px-2 text-right relative cursor-pointer" >
-                    <div ref="btnPlay" class="flex items-center justify-end" >
-                        <p class="pr-3 text-sm font-medium"> Play </p>
-                        <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                            <img  class="w-10 h-auto m-auto block" src="~/assets/icons/media/play.svg"/>
-                        </span>
-                    </div>
-                </li> 
-               <li class="py-3 px-2 text-right relative cursor-pointer" >
-                    <div ref="btnPrevious" class="flex items-center justify-end" >
-                        <p class="pr-3 text-sm font-medium"> Previous </p>
-                        <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                            <img  class="w-10 h-auto m-auto block" src="~/assets/icons/media/previous.svg"/>
-                        </span>
-                    </div>
-                </li> 
-                <li class="py-3 px-2 text-right relative cursor-pointer" >
-                    <div  ref="btnNext" class="flex items-center justify-end">
-                        <p class="pr-3 text-sm font-medium"> Next </p>
-                        <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                            <img  class="w-10 h-auto  m-auto block" src="~/assets/icons/media/next.svg"/>
-                        </span>
-                    </div>
-                </li> 
+                
             </ul>
         </div>
 
