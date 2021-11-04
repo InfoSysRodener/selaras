@@ -1002,8 +1002,8 @@ export class Loader {
             console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
         this.loadingManager.onLoad = () => {
-            const event = new Event(this.onModelLoadEventName);
-            document.dispatchEvent(event)
+            // const event = new Event(this.onModelLoadEventName);
+            // document.dispatchEvent(event)
         };
         this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
             console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
