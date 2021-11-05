@@ -1,7 +1,8 @@
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType, AudioLoader, AudioListener, Audio } from 'three'
+import { LoadingManager, TextureLoader, PMREMGenerator, UnsignedByteType } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import { Howl } from 'howler';
 
 
 export class Loader {
@@ -800,7 +801,7 @@ export class Loader {
         dracoLoader.setDecoderPath('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/'); // use a full url path
         // dracoLoader.setDecoderPath('/draco/'); 
         
-        this.gltfLoader = new GLTFLoader();
+        this.gltfLoader = new GLTFLoader(this.loadingManager);
         this.gltfLoader.setDRACOLoader(dracoLoader);
 
         this.textureLoader = new TextureLoader(this.loadingManager);
@@ -855,149 +856,145 @@ export class Loader {
     }
 
     loadAudio(sounds) {
-        const audioLoader = new AudioLoader(this.loadingManager);
-        const listener = new AudioListener();
         this.allSounds = []
         for (let i = 0; i < sounds.length; i++) {
-            const sound = new Audio(listener);
-            audioLoader.load(sounds[i], (buffer) => {
-                sound.setBuffer(buffer);
-                this.allSounds.push({
-                    soundObj: sound,
-                    index: i
-                })
-                switch (i) {
-                    case 1: {
-                        this.allPaintingsDict.subjection1.sound = sound
-                        this.allPaintingsDict.subjection2.sound = sound
-                        this.allPaintingsDict.subjection3.sound = sound
-                        break
-                    }
-                    case 2: {
-                        this.allPaintingsDict.sentient1.sound = sound
-                        this.allPaintingsDict.sentient2.sound = sound
-                        this.allPaintingsDict.sentient3.sound = sound
-                        break
-                    }
-                    case 3: {
-                        this.allPaintingsDict.suplication1.sound = sound
-                        this.allPaintingsDict.suplication2.sound = sound
-                        this.allPaintingsDict.suplication3.sound = sound
-                        this.allPaintingsDict.suplication4.sound = sound
-                        this.allPaintingsDict.suplication5.sound = sound
-                        break
-                    }
-                    case 4: {
-                        this.allPaintingsDict.contrive.sound = sound
-                        break
-                    }
-                    case 5: {
-                        this.allPaintingsDict.inunct1.sound = sound
-                        this.allPaintingsDict.inunct2.sound = sound
-                        this.allPaintingsDict.inunct3.sound = sound
-                        this.allPaintingsDict.inunct4.sound = sound
-                        break
-                    }
-                    case 6: {
-                        this.allPaintingsDict.exempt.sound = sound
-                        break
-                    }
-                    case 7: {
-                        this.allPaintingsDict.baur.sound = sound
-                        break
-                    }
-                    case 8: {
-                        this.allPaintingsDict.hikayathidup1.sound = sound
-                        break
-                    }
-                    case 9: {
-                        this.allPaintingsDict.hikayathidup2.sound = sound
-                        break
-                    }
-                    case 10: {
-                        this.allPaintingsDict.hikayathidup3.sound = sound
-                        break
-                    }
-                    case 11: {
-                        this.allPaintingsDict.kontemplasi1.sound = sound
-                        break
-                    }
-                    case 12: {
-                        this.allPaintingsDict.kontemplasi1.sound = sound
-                        break
-                    }
-                    case 13: {
-                        this.allPaintingsDict.kontemplasi2.sound = sound
-                        break
-                    }
-                    case 14: {
-                        this.allPaintingsDict.kontemplasi3.sound = sound
-                        break
-                    }
-                    case 15: {
-                        this.allPaintingsDict.kontemplasi4.sound = sound
-                        break
-                    }
-                    case 16: {
-                        this.allPaintingsDict.kontemplasi5.sound = sound
-                        break
-                    }
-                    case 17: {
-                        this.allPaintingsDict.kontemplasi6.sound = sound
-                        break
-                    }
-                    case 18: {
-                        this.allPaintingsDict.kontemplasi7.sound = sound
-                        break
-                    }
-                    case 19: {
-                        this.allPaintingsDict.kontemplasi8.sound = sound
-                        break
-                    }
-                    case 20: {
-                        this.allPaintingsDict.landscapeoflife1.sound = sound
-                        break
-                    }
-                    case 21: {
-                        this.allPaintingsDict.landscapeoflife2.sound = sound
-                        break
-                    }
-                    case 22: {
-                        this.allPaintingsDict.landscapeoflife3.sound = sound
-                        break
-                    }
-                    case 23: {
-                        this.allPaintingsDict.landscapeoflife4.sound = sound
-                        break
-                    }
-                    case 24: {
-                        this.allPaintingsDict.landscapeoflife5.sound = sound
-                        break
-                    }
-                    case 25: {
-                        this.allPaintingsDict.landscapeoflife6.sound = sound
-                        break
-                    }
-                    case 26: {
-                        this.allPaintingsDict.untitled1.sound = sound
-                        break
-                    }
-                    case 27: {
-                        this.allPaintingsDict.untitled2.sound = sound
-                        break
-                    }
-                    default:
-                        break
+            const sound = new Howl({
+                src: sounds[i]
+            })
+
+            this.allSounds.push({
+                soundObj: sound,
+                index: i
+            })
+            switch (i) {
+                case 1: {
+                    this.allPaintingsDict.subjection1.sound = sound
+                    this.allPaintingsDict.subjection2.sound = sound
+                    this.allPaintingsDict.subjection3.sound = sound
+                    break
                 }
-            });
+                case 2: {
+                    this.allPaintingsDict.sentient1.sound = sound
+                    this.allPaintingsDict.sentient2.sound = sound
+                    this.allPaintingsDict.sentient3.sound = sound
+                    break
+                }
+                case 3: {
+                    this.allPaintingsDict.suplication1.sound = sound
+                    this.allPaintingsDict.suplication2.sound = sound
+                    this.allPaintingsDict.suplication3.sound = sound
+                    this.allPaintingsDict.suplication4.sound = sound
+                    this.allPaintingsDict.suplication5.sound = sound
+                    break
+                }
+                case 4: {
+                    this.allPaintingsDict.contrive.sound = sound
+                    break
+                }
+                case 5: {
+                    this.allPaintingsDict.inunct1.sound = sound
+                    this.allPaintingsDict.inunct2.sound = sound
+                    this.allPaintingsDict.inunct3.sound = sound
+                    this.allPaintingsDict.inunct4.sound = sound
+                    break
+                }
+                case 6: {
+                    this.allPaintingsDict.exempt.sound = sound
+                    break
+                }
+                case 7: {
+                    this.allPaintingsDict.baur.sound = sound
+                    break
+                }
+                case 8: {
+                    this.allPaintingsDict.hikayathidup1.sound = sound
+                    break
+                }
+                case 9: {
+                    this.allPaintingsDict.hikayathidup2.sound = sound
+                    break
+                }
+                case 10: {
+                    this.allPaintingsDict.hikayathidup3.sound = sound
+                    break
+                }
+                case 11: {
+                    this.allPaintingsDict.kontemplasi1.sound = sound
+                    break
+                }
+                case 12: {
+                    this.allPaintingsDict.kontemplasi1.sound = sound
+                    break
+                }
+                case 13: {
+                    this.allPaintingsDict.kontemplasi2.sound = sound
+                    break
+                }
+                case 14: {
+                    this.allPaintingsDict.kontemplasi3.sound = sound
+                    break
+                }
+                case 15: {
+                    this.allPaintingsDict.kontemplasi4.sound = sound
+                    break
+                }
+                case 16: {
+                    this.allPaintingsDict.kontemplasi5.sound = sound
+                    break
+                }
+                case 17: {
+                    this.allPaintingsDict.kontemplasi6.sound = sound
+                    break
+                }
+                case 18: {
+                    this.allPaintingsDict.kontemplasi7.sound = sound
+                    break
+                }
+                case 19: {
+                    this.allPaintingsDict.kontemplasi8.sound = sound
+                    break
+                }
+                case 20: {
+                    this.allPaintingsDict.landscapeoflife1.sound = sound
+                    break
+                }
+                case 21: {
+                    this.allPaintingsDict.landscapeoflife2.sound = sound
+                    break
+                }
+                case 22: {
+                    this.allPaintingsDict.landscapeoflife3.sound = sound
+                    break
+                }
+                case 23: {
+                    this.allPaintingsDict.landscapeoflife4.sound = sound
+                    break
+                }
+                case 24: {
+                    this.allPaintingsDict.landscapeoflife5.sound = sound
+                    break
+                }
+                case 25: {
+                    this.allPaintingsDict.landscapeoflife6.sound = sound
+                    break
+                }
+                case 26: {
+                    this.allPaintingsDict.untitled1.sound = sound
+                    break
+                }
+                case 27: {
+                    this.allPaintingsDict.untitled2.sound = sound
+                    break
+                }
+                default:
+                    break
+            }
         }
     }
 
 
 
     setUpLoadManager() {
-
-
         this.loadingManager.onStart = (url, itemsLoaded, itemsTotal) => {
             console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
         };
@@ -1013,7 +1010,6 @@ export class Loader {
         this.loadingManager.onError = (url) => {
             console.log( 'There was an error loading ' + url );
         };
-
     }
 
 

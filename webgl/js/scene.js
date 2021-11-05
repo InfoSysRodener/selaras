@@ -140,7 +140,7 @@ class SceneInit {
                 for (let i = 0; i < self.loader.allSounds.length; i++) {
                     if (self.loader.allSounds[i].index === 27) {
                         self.bgMusic = self.loader.allSounds[i].soundObj
-                        self.bgMusic.setLoop(true);
+                        self.bgMusic.loop(true)
                         self.bgMusic.play();
                     }
                 }
@@ -164,11 +164,13 @@ class SceneInit {
                 if (self.currentSound) {
                     self.currentSound.stop()
                 }
-                self.bgMusic.setVolume(0.25)
+                self.bgMusic.volume(0.25)
+                self.bgMusic.loop(true)
+                console.log(self.bgMusic)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play()
                 gsap.delayedCall(self.currentSound.buffer.duration, () => {
-                    self.bgMusic.setVolume(1)
+                    self.bgMusic.volume(1)
                 })
             }
         })
@@ -195,7 +197,6 @@ class SceneInit {
 
         this.showcase = []
         this.currentObj = {}
-
     }
 
     addLoader() {
@@ -203,9 +204,9 @@ class SceneInit {
     }
 
     addObjects() {
+        this.loader.loadModel('artPaintings.glb', false, true);
         this.loader.loadModel('artSpace.glb', true);
         this.loader.loadModel('artSpaceLCD.glb', true);
-        this.loader.loadModel('artPaintings.glb', false, true);
     }
 
     addSounds() {
@@ -248,11 +249,9 @@ class SceneInit {
         this.controls.addMobileEvents()
     }
 
-
     animate() {
         const animate = () => {
-            requestAnimationFrame(animate);
-
+            this.animFrame = requestAnimationFrame(animate);
             let x = 0
             let y = 0
             if (this.controls.moveForward && this.controlOn) {
@@ -286,7 +285,6 @@ class SceneInit {
         }
         animate()
     }
-
 
     onResize() {
         this.width = this.container.clientWidth;
@@ -432,12 +430,33 @@ class SceneInit {
         else {
             this.video.volume = 0
         }
-        console.log(this.video.volume)
     }
 
     dispose() {
         clearInterval(this.collisionInterval)
 
+         // stop sounds
+         for (let i = 0; i < this.loader.allSounds.length; i++) {
+            this.loader.allSounds[i].soundObj.stop()
+        }
+
+        this.video.pause()
+        this.video.removeAttribute('src'); // empty source
+        this.video.load();
+
+
+        const cleanMaterial = material => {
+            // dispose material
+            material.dispose()
+
+            // dispose textures
+            for (const key of Object.keys(material)) {
+                const value = material[key]
+                if (value && typeof value === 'object' && 'minFilter' in value) {
+                    value.dispose()
+                }
+            }
+        }
         this.scene.traverse(object => {
             if (!object.isMesh) return
 
@@ -451,28 +470,16 @@ class SceneInit {
                 for (const material of object.material) cleanMaterial(material)
             }
         })
-
-        const cleanMaterial = material => {
-            // dispose material
-            material.dispose()
-
-            // dispose textures
-            for (const key of Object.keys(material)) {
-                const value = material[key]
-                if (value && typeof value === 'object' && 'minFilter' in value) {
-                    console.log('dispose texture!')
-                    value.dispose()
-                }
-            }
-        }
-
-        for (let i = 0; i < gsap.globalTimeline.children.length; i++) {
+        for (let i = 0; i < gsap.globalTimeline.getChildren().length; i++) {
             gsap.globalTimeline.children[i].kill()
         }
-        // stop sounds
-        for (let i = 0; i < this.allSounds.length; i++) {
-            this.allSounds[i].stop()
-        }
+
+        this.scene = null
+        this.camera = null
+        this.renderer && this.renderer.renderLists.dispose()
+        this.renderer = null
+
+        cancelAnimationFrame(this.animFrame)
     }
 
 }
