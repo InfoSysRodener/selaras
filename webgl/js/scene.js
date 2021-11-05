@@ -140,23 +140,25 @@ class SceneInit {
                 for (let i = 0; i < self.loader.allSounds.length; i++) {
                     if (self.loader.allSounds[i].index === 27) {
                         self.bgMusic = self.loader.allSounds[i].soundObj
-                        self.bgMusic.setLoop(true);
+                        self.bgMusic.loop(true)
                         self.bgMusic.play();
                     }
                 }
                 self.loader.allMeshes[0].children[1].material = movieMaterial
+                self.loader.allMeshes[0].children[1].userData.ingore = true
                 self.movieMesh = new THREE.Mesh(geometry, material);
-                self.movieMesh.name = "screenAudio"
+                self.movieMesh.userData.ingore = true
                 self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
                 self.movieMesh.visible = false
                 this.scene.add(self.movieMesh);
+
+                self.video.play();
+                this.videoIsPlaying = true
             }, 1000)
         })
 
-        document.addEventListener('pointerdown', (evt) => {
+        document.addEventListener('setTarget', (evt) => {
             self.setTarget(evt, self.loader.allPaintingsDict)
-            self.video.play();
-            this.videoIsPlaying = true
         })
 
         document.addEventListener("playSound", () => {
@@ -164,11 +166,11 @@ class SceneInit {
                 if (self.currentSound) {
                     self.currentSound.stop()
                 }
-                self.bgMusic.setVolume(0.25)
+                self.bgMusic.volume(0.25)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play()
                 gsap.delayedCall(self.currentSound.buffer.duration, () => {
-                    self.bgMusic.setVolume(1)
+                    self.bgMusic.volume(1)
                 })
             }
         })
@@ -193,9 +195,21 @@ class SceneInit {
             this.controls.moveLeft = false
         })
 
+        document.addEventListener("pauseCurrentSound", () => {
+            if (self.currentSound) {
+                self.currentSound.pause()
+            }
+
+        })
+
+        document.addEventListener("resumeCurrentSound", () => {
+            if (self.currentSound) {
+                this.currentSound.play()
+            }
+        })
+
         this.showcase = []
         this.currentObj = {}
-
     }
 
     addLoader() {
@@ -203,9 +217,9 @@ class SceneInit {
     }
 
     addObjects() {
+        this.loader.loadModel('artPaintings.glb', false, true);
         this.loader.loadModel('artSpace.glb', true);
         this.loader.loadModel('artSpaceLCD.glb', true);
-        this.loader.loadModel('artPaintings.glb', false, true);
     }
 
     addSounds() {
@@ -248,11 +262,9 @@ class SceneInit {
         this.controls.addMobileEvents()
     }
 
-
     animate() {
         const animate = () => {
-            requestAnimationFrame(animate);
-
+            this.animFrame = requestAnimationFrame(animate);
             let x = 0
             let y = 0
             if (this.controls.moveForward && this.controlOn) {
@@ -286,7 +298,6 @@ class SceneInit {
         }
         animate()
     }
-
 
     onResize() {
         this.width = this.container.clientWidth;
@@ -354,7 +365,7 @@ class SceneInit {
     }
 
     goTo(target) {
-
+        document.dispatchEvent(new Event("pauseCurrentSound"))
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
@@ -422,8 +433,10 @@ class SceneInit {
 
     checkYColl() {
         const collisionResults = this.yRaycaster.intersectObjects(this.loader.allMeshes);
-        if (collisionResults[0].object.name !== "screenAudio") {
-            this.camera.position.y += 1.8 - collisionResults[0].distance
+        if (collisionResults.length > 0) {
+            if (collisionResults[0].object.userData.ingore !== true) {
+                this.camera.position.y += 1.8 - collisionResults[0].distance
+            }
         }
 
     }
@@ -436,12 +449,50 @@ class SceneInit {
         else {
             this.video.volume = 0
         }
-        console.log(this.video.volume)
+    }
+
+    moveBackCamera() {
+        const oldPos = new THREE.Vector3().copy(this.camera.position)
+        const v = new THREE.Vector3()
+        v.setFromMatrixColumn(this.camera.matrix, 0);
+
+        v.crossVectors(this.camera.up, v);
+
+        this.camera.position.addScaledVector(v, -1)
+        const newPos = new THREE.Vector3().copy(this.camera.position);
+        this.camera.position.copy(oldPos)
+
+        gsap.to(this.camera.position, {
+            x: newPos.x, y: newPos.y, z: newPos.z,
+            duration: 1
+        })
     }
 
     dispose() {
         clearInterval(this.collisionInterval)
 
+        // stop sounds
+        for (let i = 0; i < this.loader.allSounds.length; i++) {
+            this.loader.allSounds[i].soundObj.stop()
+        }
+
+        this.video.pause()
+        this.video.removeAttribute('src'); // empty source
+        this.video.load();
+
+
+        const cleanMaterial = material => {
+            // dispose material
+            material.dispose()
+
+            // dispose textures
+            for (const key of Object.keys(material)) {
+                const value = material[key]
+                if (value && typeof value === 'object' && 'minFilter' in value) {
+                    value.dispose()
+                }
+            }
+        }
         this.scene.traverse(object => {
             if (!object.isMesh) return
 
@@ -455,28 +506,16 @@ class SceneInit {
                 for (const material of object.material) cleanMaterial(material)
             }
         })
-
-        const cleanMaterial = material => {
-            // dispose material
-            material.dispose()
-
-            // dispose textures
-            for (const key of Object.keys(material)) {
-                const value = material[key]
-                if (value && typeof value === 'object' && 'minFilter' in value) {
-                    console.log('dispose texture!')
-                    value.dispose()
-                }
-            }
-        }
-
-        for (let i = 0; i < gsap.globalTimeline.children.length; i++) {
+        for (let i = 0; i < gsap.globalTimeline.getChildren().length; i++) {
             gsap.globalTimeline.children[i].kill()
         }
-        // stop sounds
-        for (let i = 0; i < this.allSounds.length; i++) {
-            this.allSounds[i].stop()
-        }
+
+        this.scene = null
+        this.camera = null
+        this.renderer && this.renderer.renderLists.dispose()
+        this.renderer = null
+
+        cancelAnimationFrame(this.animFrame)
     }
 
 }

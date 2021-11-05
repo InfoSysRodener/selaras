@@ -53,8 +53,6 @@ export class CameraControls {
         this.controlsFoward(distance)
         if (this.checkLimits(this.camera.position.x, this.camera.position.y, this.camera.position.z) === false) {
             this.controlsFoward(-distance)
-
-
         }
     }
 
