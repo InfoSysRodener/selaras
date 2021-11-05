@@ -11,16 +11,20 @@ class NavigationControl {
         this.down = options.down;
         this.left = options.left;
 
-        this.up.addEventListener('pointerdown', () => {
+        this.up.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             document.dispatchEvent(new Event("moveFoward"))
         });
-        this.right.addEventListener('pointerdown', () => {
+        this.right.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             document.dispatchEvent(new Event("moveRight"))
         });
-        this.down.addEventListener('pointerdown', () => {
+        this.down.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             document.dispatchEvent(new Event("moveBackwards"))
         });
-        this.left.addEventListener('pointerdown', () => {
+        this.left.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             document.dispatchEvent(new Event("moveLeft"))
         });
     }

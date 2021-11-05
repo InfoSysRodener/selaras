@@ -85,25 +85,25 @@ export class ControlEvents {
                 case 'ArrowUp':
                 case 'KeyW':
                     this.moveForward = false;
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowLeft':
                 case 'KeyA':
                     this.moveLeft = false;
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowDown':
                 case 'KeyS':
                     this.moveBackward = false;
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
                     break;
 
                 case 'ArrowRight':
                 case 'KeyD':
                     this.moveRight = false;
-                    window.$nuxt.$emit('MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
                     break;
 
             }

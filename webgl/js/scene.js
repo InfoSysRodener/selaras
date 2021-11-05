@@ -377,20 +377,24 @@ class SceneInit {
                     z: endRotation.z,
                     duration: 2,
                 })
+                
+                // make stay the painting view
+                window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','painting-view');
             }
         })
 
-
         for (let i = 0; i < this.arr.length; i++) {
             if (this.arr[i].object.name === target.object.name) {
-                window.$nuxt.$emit('MENU-VIEW-EVENT', 'painting-view');
+                window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT', 'painting-view');
                 window.$nuxt.$emit('SELECTED-PAINTING-EVENT', target.details);
-                // window.$nuxt.$store.dispatch('paintings/selected', target.details);
             }
         }
     }
 
     setTarget(evt, dict) {
+        console.log('event',evt);
+        evt.stopPropagation();
+
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
 

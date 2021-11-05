@@ -34,14 +34,14 @@
                             </span>
                         </div>
                     </li>
-                    <li class="py-3 px-2 text-right relative cursor-pointer">
+                    <!-- <li class="py-3 px-2 text-right relative cursor-pointer">
                         <div class="flex items-center justify-end">
                             <p class="pr-3 text-sm font-medium">  Start tour </p>
                             <span class="rounded-full bg-white w-10 h-10 shadow-lg">
                                 <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/play-svgrepo-com.svg"/>
                             </span>
                         </div>
-                    </li> 
+                    </li>  -->
                     <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('about')">
                         <div class="flex items-center justify-end">
                             <p class="pr-3 text-sm font-medium"> About </p>
@@ -60,13 +60,13 @@
                     </li> 
                 </ul>
             </div>
-            <div v-show="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none opacity-75 z-10">
+            <div v-show="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none z-10">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
                             <p class="pr-3 text-sm font-medium"> Exits detail view</p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <button @click.prevent="toggleTab"> 
+                                <button @click.self="toggleTab"> 
                                     <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" /> 
                                 </button>
                             </span>
@@ -76,7 +76,7 @@
                         <div class="flex items-center justify-end" @click="openPaintingInfo">
                             <p class="pr-3 text-sm font-medium"> Painting info </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <button @click.prevent="toggleTab"> 
+                                <button @click.self="toggleTab"> 
                                     <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
                                 </button>
                             </span>
@@ -137,19 +137,22 @@
                 </span>
             </div>
         </div>
-        <div v-show="view === 'painting-view'" class=" md:block bottom-5 right-0 absolute w-64 h-auto select-none">
+        <!-- <div v-show="view === 'painting-view'" class=" md:block bottom-5 right-0 absolute w-64 h-auto select-none">
              <ul>
-                
+                  
             </ul>
-        </div>
-
+        </div> -->
         <!-- Modal -->
-        <div v-if="modal" class="right-0 sm:right-28 top-0 w-96 px-10 absolute overflow-hidden h-full select-none ">
-            <div class="absolute right-5 top-28">
+        <div v-if="modal" class="right-0 w-72 absolute h-full select-none bg-gray-50 overflow-y-auto overflow-hidden">
+            <!-- <div class="absolute right-5 top-28">
                 <img class="w-10 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
+            </div> -->
+           
+            <div class="flex justify-end mt-14">
+                <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
             </div>
-            <!-- content  -->
-            <div  class="py-5 px-10 block mt-32 bg-gray-50 overflow-y-auto overflow-x-hidden h-4/5  shadow-xl">
+             <!-- content  -->
+            <div  class="py-10 px-10 my-5">
                 <AboutTab v-if="selectedTab === 'about'"/>
                 <ArtCatalogue v-if="selectedTab === 'art-catalogue'"/>
                 <MeetTheArtistTab v-if="selectedTab === 'meet-the-artist'"/>
@@ -243,12 +246,12 @@
             });
         },
         beforeDestroy(){
-            this.$nuxt.$off('MENU-VIEW-EVENT');
+            this.$nuxt.$off('CHANGE-MENU-VIEW-EVENT');
             this.$nuxt.$off('SELECTED-PAINTING-EVENT');
         },
         mounted(){
             
-            this.$nuxt.$on('MENU-VIEW-EVENT', (payload) => {
+            this.$nuxt.$on('CHANGE-MENU-VIEW-EVENT', (payload) => {
                 this.view = payload; 
             });
 
@@ -257,14 +260,14 @@
                     this.toggleSelectedTab('help');
                 }
             });
-            
+
             ListenModeInit({ 
                 previous: this.$refs.btnPrevious,
                 next: this.$refs.btnNext,
                 play: this.$refs.btnPlay
-            });  
+            }); 
     
-           NavigationControlInit({
+            NavigationControlInit({
                 up: this.$refs.btnUp,
                 left:this.$refs.btnLeft,
                 down:this.$refs.btnDown,
@@ -280,14 +283,12 @@
                 this.modal = true;
                 this.selectedTab = val;
             },
-            // closeDetailView(){
-            //     this.view = 'menu-view';
-            //     this.menu = !this.menu;
-            // },
             openPaintingInfo(){
                 this.modalPainting = true;
             },
-
+            closePaintingInfo(){
+                this.$nuxt.emit('CLOSED-PAINTING-VIEW','putangina ano ba to.');
+            }
         },
          
     }

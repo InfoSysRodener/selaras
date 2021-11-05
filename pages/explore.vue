@@ -10,7 +10,6 @@
             </div>
          </div>
        </Scene>
-      
     </div>
 </template>
 
@@ -39,7 +38,6 @@
       });
     },
     beforeDestroy(){
-      this.isLoading = true;
       this.$nuxt.$off('LOADING-SCENE');
     },
   }
