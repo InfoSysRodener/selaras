@@ -157,7 +157,7 @@ class SceneInit {
             }, 1000)
         })
 
-        document.addEventListener('pointerdown', (evt) => {
+        document.addEventListener('setTarget', (evt) => {
             self.setTarget(evt, self.loader.allPaintingsDict)
         })
 
@@ -429,7 +429,7 @@ class SceneInit {
 
     checkYColl() {
         const collisionResults = this.yRaycaster.intersectObjects(this.loader.allMeshes);
-        if(collisionResults.length > 0){
+        if (collisionResults.length > 0) {
             if (collisionResults[0].object.userData.ingore !== true) {
                 this.camera.position.y += 1.8 - collisionResults[0].distance
             }
@@ -445,6 +445,23 @@ class SceneInit {
         else {
             this.video.volume = 0
         }
+    }
+
+    moveBackCamera() {
+        const oldPos = new THREE.Vector3().copy(this.camera.position)
+        const v = new THREE.Vector3()
+        v.setFromMatrixColumn(this.camera.matrix, 0);
+
+        v.crossVectors(this.camera.up, v);
+
+        this.camera.position.addScaledVector(v, -1)
+        const newPos = new THREE.Vector3().copy(this.camera.position);
+        this.camera.position.copy(oldPos)
+
+        gsap.to(this.camera.position, {
+            x: newPos.x, y: newPos.y, z: newPos.z,
+            duration: 1
+        })
     }
 
     dispose() {
