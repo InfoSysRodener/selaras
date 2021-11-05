@@ -145,18 +145,20 @@ class SceneInit {
                     }
                 }
                 self.loader.allMeshes[0].children[1].material = movieMaterial
+                self.loader.allMeshes[0].children[1].userData.ingore = true
                 self.movieMesh = new THREE.Mesh(geometry, material);
-                self.movieMesh.name = "screenAudio"
+                self.movieMesh.userData.ingore = true
                 self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
                 self.movieMesh.visible = false
                 this.scene.add(self.movieMesh);
+
+                self.video.play();
+                this.videoIsPlaying = true
             }, 1000)
         })
 
         document.addEventListener('pointerdown', (evt) => {
             self.setTarget(evt, self.loader.allPaintingsDict)
-            self.video.play();
-            this.videoIsPlaying = true
         })
 
         document.addEventListener("playSound", () => {
@@ -165,8 +167,6 @@ class SceneInit {
                     self.currentSound.stop()
                 }
                 self.bgMusic.volume(0.25)
-                self.bgMusic.loop(true)
-                console.log(self.bgMusic)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play()
                 gsap.delayedCall(self.currentSound.buffer.duration, () => {
@@ -193,6 +193,19 @@ class SceneInit {
             this.controls.moveRight = false
             this.controls.moveBackward = false
             this.controls.moveLeft = false
+        })
+
+        document.addEventListener("pauseCurrentSound", () => {
+            if (self.currentSound) {
+                self.currentSound.pause()
+            }
+
+        })
+
+        document.addEventListener("resumeCurrentSound", () => {
+            if (self.currentSound) {
+                this.currentSound.play()
+            }
         })
 
         this.showcase = []
@@ -352,7 +365,7 @@ class SceneInit {
     }
 
     goTo(target) {
-
+        document.dispatchEvent(new Event("pauseCurrentSound"))
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
@@ -416,8 +429,10 @@ class SceneInit {
 
     checkYColl() {
         const collisionResults = this.yRaycaster.intersectObjects(this.loader.allMeshes);
-        if (collisionResults[0].object.name !== "screenAudio") {
-            this.camera.position.y += 1.8 - collisionResults[0].distance
+        if(collisionResults.length > 0){
+            if (collisionResults[0].object.userData.ingore !== true) {
+                this.camera.position.y += 1.8 - collisionResults[0].distance
+            }
         }
 
     }
@@ -435,8 +450,8 @@ class SceneInit {
     dispose() {
         clearInterval(this.collisionInterval)
 
-         // stop sounds
-         for (let i = 0; i < this.loader.allSounds.length; i++) {
+        // stop sounds
+        for (let i = 0; i < this.loader.allSounds.length; i++) {
             this.loader.allSounds[i].soundObj.stop()
         }
 
