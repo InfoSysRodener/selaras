@@ -157,8 +157,12 @@ class SceneInit {
             }, 1000)
         })
 
-        document.addEventListener('setTarget', (evt) => {
-            self.setTarget(evt, self.loader.allPaintingsDict)
+        // document.addEventListener('setTarget', (evt) => {
+        document.addEventListener('pointerdown', (evt) => {
+            console.log('evnt',evt);
+            if(evt.target.tagName === 'CANVAS'){
+                self.setTarget(evt, self.loader.allPaintingsDict)
+            }
         })
 
         document.addEventListener("playSound", () => {
@@ -168,11 +172,18 @@ class SceneInit {
                 }
                 self.bgMusic.volume(0.25)
                 self.currentSound = self.currentObj.sound
-                self.currentSound.play()
+                self.currentSound.play();
+                
+                // the selected painting sounds play event
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', true);
+
                 gsap.delayedCall(self.currentSound.buffer.duration, () => {
                     self.bgMusic.volume(1)
                 })
             }
+            
+
+           
         })
 
         document.addEventListener("moveFoward", () => {
@@ -197,15 +208,21 @@ class SceneInit {
 
         document.addEventListener("pauseCurrentSound", () => {
             if (self.currentSound) {
-                self.currentSound.pause()
+                self.currentSound.pause();
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', false); 
             }
 
         })
 
         document.addEventListener("resumeCurrentSound", () => {
             if (self.currentSound) {
-                this.currentSound.play()
+                this.currentSound.play();
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', true);
             }
+        })
+
+        document.addEventListener("fullscreen",() => {
+            this.fullScreen();
         })
 
         this.showcase = []
@@ -403,8 +420,6 @@ class SceneInit {
     }
 
     setTarget(evt, dict) {
-        console.log('event',evt);
-        evt.stopPropagation();
 
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
@@ -516,6 +531,26 @@ class SceneInit {
         this.renderer = null
 
         cancelAnimationFrame(this.animFrame)
+    }
+
+    fullScreen(){
+        const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+
+        if(!fullscreenElement){
+            if(this.container.requestFullscreen){
+                this.container.requestFullscreen();
+            }else if(this.container.webkitRequestFullscreen){
+                this.container.webkitRequestFullscreen();
+            } 
+        }
+        else {
+            // eslint-disable-next-line no-lonely-if
+            if(document.exitFullscreen){
+                document.exitFullscreen();
+            }else if(document.webkitExitFullscreen){
+                document.webkitExitFullscreen();
+            }
+        }
     }
 
 }

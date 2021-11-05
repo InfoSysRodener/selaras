@@ -1,6 +1,6 @@
 <template>
    <div>
-        <div id="threeDiv" ref="container" class="w-full h-screen" style="touch-action:none">
+        <div id="threeDiv" ref="container" class="w-full h-screen">
             <slot/>
         </div>
         <div id="controlsDiv"></div>
@@ -19,7 +19,7 @@
             this.scene = new SceneInit({ dom: this.$refs.container });
 
             this.$nuxt.$on('CLOSED-PAINTING-VIEW',() => {
-                console.log('closed painting view');
+                this.scene.moveBackCamera();
             })
         },
         beforeDestroy(){

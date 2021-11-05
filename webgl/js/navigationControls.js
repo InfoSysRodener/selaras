@@ -4,12 +4,14 @@ class NavigationControl {
     right
     down
     left
+    fullscreen
 
     constructor(options) {
         this.up = options.up;
         this.right = options.right;
         this.down = options.down;
         this.left = options.left;
+        this.fullscreen = options.fullscreen;
 
         this.up.addEventListener('pointerdown', (e) => {
             e.preventDefault();
@@ -26,6 +28,10 @@ class NavigationControl {
         this.left.addEventListener('pointerdown', (e) => {
             e.preventDefault();
             document.dispatchEvent(new Event("moveLeft"))
+        });
+
+        this.fullscreen.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("fullscreen"))
         });
     }
 

@@ -11,7 +11,7 @@
                         </div>
                     </li>
                     <li class="py-3 px-2 text-right relative cursor-pointer" >
-                        <div class="flex items-center justify-end">
+                        <div ref="btnFullscreen" class="flex items-center justify-end">
                             <p class="pr-3 text-sm font-medium"> Enter fullscreen </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
                                 <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/fullscreen-svgrepo-com.svg"/>
@@ -34,14 +34,6 @@
                             </span>
                         </div>
                     </li>
-                    <!-- <li class="py-3 px-2 text-right relative cursor-pointer">
-                        <div class="flex items-center justify-end">
-                            <p class="pr-3 text-sm font-medium">  Start tour </p>
-                            <span class="rounded-full bg-white w-10 h-10 shadow-lg">
-                                <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/play-svgrepo-com.svg"/>
-                            </span>
-                        </div>
-                    </li>  -->
                     <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('about')">
                         <div class="flex items-center justify-end">
                             <p class="pr-3 text-sm font-medium"> About </p>
@@ -66,7 +58,7 @@
                         <div class="flex items-center justify-end px-2">
                             <p class="pr-3 text-sm font-medium"> Exits detail view</p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <button @click.self="toggleTab"> 
+                                <button @click="closePaintingInfo"> 
                                     <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" /> 
                                 </button>
                             </span>
@@ -76,13 +68,13 @@
                         <div class="flex items-center justify-end" @click="openPaintingInfo">
                             <p class="pr-3 text-sm font-medium"> Painting info </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <button @click.self="toggleTab"> 
+                                <button @click="toggleTab"> 
                                     <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
                                 </button>
                             </span>
                         </div>
                     </li> 
-                    <li class="py-3 px-2 text-right relative cursor-pointer" >
+                    <li v-show="!isSoundPlay" class="py-3 px-2 text-right relative cursor-pointer" >
                         <div ref="btnPlay" class="flex items-center justify-end" >
                             <p class="pr-3 text-sm font-medium"> Play </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
@@ -90,7 +82,15 @@
                             </span>
                         </div>
                     </li> 
-                    <li class="py-3 px-2 text-right relative cursor-pointer" >
+                    <li v-show="isSoundPlay" class="py-3 px-2 text-right relative cursor-pointer" >
+                        <div ref="btnPause" class="flex items-center justify-end" >
+                            <p class="pr-3 text-sm font-medium"> Pause </p>
+                            <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                <img  class="w-10 h-auto m-auto block" src="~/assets/icons/media/pause.svg"/>
+                            </span>
+                        </div>
+                    </li> 
+                    <!-- <li class="py-3 px-2 text-right relative cursor-pointer" >
                         <div ref="btnPrevious" class="flex items-center justify-end" >
                             <p class="pr-3 text-sm font-medium"> Previous </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
@@ -105,7 +105,7 @@
                                 <img  class="w-10 h-auto  m-auto block" src="~/assets/icons/media/next.svg"/>
                             </span>
                         </div>
-                    </li> 
+                    </li>  -->
                 </ul>
             </div>
         </div>
@@ -119,7 +119,7 @@
         </div>
         
         <!-- controls -->
-        <div v-show="view === 'menu-view'" class="md:block px-10 bottom-5 left-10 absolute w-64 h-auto select-none">
+        <div v-show="view === 'menu-view'" class="md:block px-10 bottom-5 left-0 sm:left-10 absolute w-64 h-auto select-none">
             <div class="grid grid-cols-3 gap-5 mb-5">
                 <span ref="btnUp" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-up.svg"/>
@@ -217,6 +217,7 @@
                 selectedTab:null,
                 view:'menu-view',
                 modalPainting:false,
+                isSoundPlay:false,
 
                 selectedPaintings:{
                     artistName:"Artist Name",
@@ -244,6 +245,9 @@
                 this.selectedPaintings = payload;
                 this.menu = true;
             });
+
+           
+
         },
         beforeDestroy(){
             this.$nuxt.$off('CHANGE-MENU-VIEW-EVENT');
@@ -261,10 +265,16 @@
                 }
             });
 
+            this.$nuxt.$on('CHANGE-PLAY-SOUND-EVENT', (payload) => {
+                alert(payload);
+                this.isSoundPlay = payload;
+            });
+
             ListenModeInit({ 
-                previous: this.$refs.btnPrevious,
-                next: this.$refs.btnNext,
-                play: this.$refs.btnPlay
+                // previous: this.$refs.btnPrevious,
+                // next: this.$refs.btnNext,
+                play: this.$refs.btnPlay,
+                pause:this.$refs.btnPause
             }); 
     
             NavigationControlInit({
@@ -272,6 +282,7 @@
                 left:this.$refs.btnLeft,
                 down:this.$refs.btnDown,
                 right:this.$refs.btnRight,
+                fullscreen: this.$refs.btnFullscreen
             });
 
         },
@@ -287,7 +298,8 @@
                 this.modalPainting = true;
             },
             closePaintingInfo(){
-                this.$nuxt.emit('CLOSED-PAINTING-VIEW','putangina ano ba to.');
+                this.view = 'menu-view';
+                this.$nuxt.$emit('CLOSED-PAINTING-VIEW');
             }
         },
          

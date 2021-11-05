@@ -7,8 +7,14 @@ class ListenMode {
 
     constructor(options){
         this.play = options.play;
+        this.pause = options.pause;
+
         this.play.addEventListener('pointerdown', () => {
             document.dispatchEvent(new Event("playSound"))
+        });
+
+        this.pause.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("pauseCurrentSound"))
         })
     }
 
