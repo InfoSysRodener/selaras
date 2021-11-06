@@ -82,7 +82,7 @@
                             </span>
                         </div>
                     </li> 
-                    <li v-show="!isSoundPlay" class="py-3 px-2 text-right relative cursor-pointer" >
+                    <li v-show="soundStatus === 'stop'" class="py-3 px-2 text-right relative cursor-pointer" >
                         <div ref="btnPlay" class="flex items-center justify-end" >
                             <p class="pr-3 text-sm font-medium"> Play </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
@@ -90,7 +90,7 @@
                             </span>
                         </div>
                     </li> 
-                    <li v-show="isSoundPlay" class="py-3 px-2 text-right relative cursor-pointer" >
+                    <li v-show="soundStatus === 'playing'" class="py-3 px-2 text-right relative cursor-pointer" >
                         <div ref="btnPause" class="flex items-center justify-end" >
                             <p class="pr-3 text-sm font-medium"> Pause </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
@@ -98,6 +98,14 @@
                             </span>
                         </div>
                     </li> 
+                    <li v-show="soundStatus === 'pause'" class="py-3 px-2 text-right relative cursor-pointer" >
+                        <div ref="btnResume" class="flex items-center justify-end" >
+                            <p class="pr-3 text-sm font-medium"> Resume </p>
+                            <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                 <img  class="w-10 h-auto m-auto block" src="~/assets/icons/media/play.svg"/>
+                            </span>
+                        </div>
+                    </li>
                     <!-- <li class="py-3 px-2 text-right relative cursor-pointer" >
                         <div ref="btnPrevious" class="flex items-center justify-end" >
                             <p class="pr-3 text-sm font-medium"> Previous </p>
@@ -217,6 +225,7 @@
                 view:'menu-view',
                 modalPainting:false,
                 isSoundPlay:false,
+                soundStatus:'stop',
                 isFullscreen:false,
 
                 selectedPaintings:{
@@ -266,22 +275,21 @@
             });
 
             this.$nuxt.$on('CHANGE-PLAY-SOUND-EVENT', (payload) => {
-                this.isSoundPlay = payload;
+                this.soundStatus = payload;
             });
 
             this.$nuxt.$on('FULLSCREEN-EVENT', (payload) => {
                 this.isFullscreen = payload;
             });
 
-            if(Document.fullscreenElement) {
-                this.isFullscreen = true;
-            }
 
             ListenModeInit({ 
                 // previous: this.$refs.btnPrevious,
                 // next: this.$refs.btnNext,
                 play: this.$refs.btnPlay,
-                pause:this.$refs.btnPause
+                pause:this.$refs.btnPause,
+                resume:this.$refs.btnResume
+
             }); 
     
             NavigationControlInit({

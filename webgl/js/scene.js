@@ -168,14 +168,15 @@ class SceneInit {
         document.addEventListener("playSound", () => {
             if (self.currentObj.sound !== '') {
                 if (self.currentSound) {
-                    self.currentSound.stop()
+                    self.currentSound.stop();
+                    window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
                 self.bgMusic.volume(0.25)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
 
                 // the selected painting sounds play event
-                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', true);
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
 
                 gsap.delayedCall(self.currentSound.buffer.duration, () => {
                     self.bgMusic.volume(1)
@@ -206,21 +207,21 @@ class SceneInit {
         document.addEventListener("pauseCurrentSound", () => {
             if (self.currentSound) {
                 self.currentSound.pause();
-                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', false); 
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause'); 
             }
         });
 
         document.addEventListener("resumeCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.play();
-                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', true);
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
             }
         })
 
         document.addEventListener("stopCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.stop();
-                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', false);
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
             }
         })
 
@@ -400,7 +401,7 @@ class SceneInit {
     }
 
     goTo(target) {
-        document.dispatchEvent(new Event("pauseCurrentSound"))
+        document.dispatchEvent(new Event("stopCurrentSound"))
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,

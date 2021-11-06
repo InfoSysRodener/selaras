@@ -4,10 +4,12 @@ class ListenMode {
     next 
     play
     pause
+    resume
 
     constructor(options){
         this.play = options.play;
         this.pause = options.pause;
+        this.resume = options.resume;
 
         this.play.addEventListener('pointerdown', () => {
             document.dispatchEvent(new Event("playSound"))
@@ -15,6 +17,10 @@ class ListenMode {
 
         this.pause.addEventListener('pointerdown', () => {
             document.dispatchEvent(new Event("pauseCurrentSound"))
+        });
+
+        this.resume.addEventListener('pointerdown', () => {
+            document.dispatchEvent(new Event("resumeCurrentSound"))
         })
     }
 
