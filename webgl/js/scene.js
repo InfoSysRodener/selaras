@@ -228,6 +228,11 @@ class SceneInit {
             this.fullScreen();
         })
 
+        document.addEventListener('disposeAll',() => {
+            console.log('disposed');
+            this.dispose();
+        });
+
         this.showcase = []
         this.currentObj = {}
     }

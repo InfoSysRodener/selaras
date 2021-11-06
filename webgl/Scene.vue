@@ -10,11 +10,6 @@
 <script>
     import SceneInit from './js/scene.js';    
     export default {
-        data() {
-            return {
-                scene:null
-            }
-        },
         mounted() {
             this.scene = new SceneInit({ dom: this.$refs.container });
 
@@ -24,7 +19,7 @@
         },
         beforeDestroy(){
             this.$nuxt.$off('CLOSED-PAINTING-VIEW');
-            this.scene.dispose();
+            document.dispatchEvent(new Event('disposeAll'));
         }
     }
 </script>
