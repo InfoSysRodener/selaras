@@ -173,7 +173,7 @@ class SceneInit {
                 self.bgMusic.volume(0.25)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
-                
+
                 // the selected painting sounds play event
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', true);
 
@@ -181,9 +181,6 @@ class SceneInit {
                     self.bgMusic.volume(1)
                 })
             }
-            
-
-           
         })
 
         document.addEventListener("moveFoward", () => {
@@ -211,13 +208,19 @@ class SceneInit {
                 self.currentSound.pause();
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', false); 
             }
-
-        })
+        });
 
         document.addEventListener("resumeCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.play();
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', true);
+            }
+        })
+
+        document.addEventListener("stopCurrentSound", () => {
+            if (self.currentSound) {
+                this.currentSound.stop();
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', false);
             }
         })
 
@@ -467,6 +470,8 @@ class SceneInit {
     }
 
     moveBackCamera() {
+        document.dispatchEvent(new Event("stopCurrentSound"));
+
         const oldPos = new THREE.Vector3().copy(this.camera.position)
         const v = new THREE.Vector3()
         v.setFromMatrixColumn(this.camera.matrix, 0);
@@ -542,6 +547,8 @@ class SceneInit {
             }else if(this.container.webkitRequestFullscreen){
                 this.container.webkitRequestFullscreen();
             } 
+
+            window.$nuxt.$emit('FULLSCREEN-EVENT', true);
         }
         else {
             // eslint-disable-next-line no-lonely-if
@@ -550,6 +557,8 @@ class SceneInit {
             }else if(document.webkitExitFullscreen){
                 document.webkitExitFullscreen();
             }
+
+            window.$nuxt.$emit('FULLSCREEN-EVENT', false);
         }
     }
 

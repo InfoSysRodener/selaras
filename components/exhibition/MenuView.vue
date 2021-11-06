@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-show="menu" class="z-10">
-            <div v-show="view === 'menu-view'" class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
+            <div v-show="view === 'menu-view'" :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="pl-10 right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
@@ -11,11 +11,19 @@
                         </div>
                     </li>
                     <li class="py-3 px-2 text-right relative cursor-pointer" >
-                        <div ref="btnFullscreen" class="flex items-center justify-end">
-                            <p class="pr-3 text-sm font-medium"> Enter fullscreen </p>
-                            <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/fullscreen-svgrepo-com.svg"/>
-                            </span>
+                        <div ref="btnFullscreen">
+                            <div v-if="isFullscreen" class="flex items-center justify-end">
+                                <p  class="pr-3 text-sm font-medium"> Exits fullscreen </p>
+                                 <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                    <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/fullscreen-svgrepo-com-exits.svg"/>
+                                </span>
+                            </div>
+                            <div v-else class="flex items-center justify-end">
+                                <p  class="pr-3 text-sm font-medium"> Enter fullscreen </p>
+                                <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
+                                    <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/fullscreen-svgrepo-com.svg"/>
+                                </span>
+                            </div>
                         </div>
                     </li> 
                     <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('art-catalogue')">
@@ -52,7 +60,7 @@
                     </li> 
                 </ul>
             </div>
-            <div v-show="view === 'painting-view'"  class="pl-10 right-0 top-12 block absolute w-64 bg-gray-50 rounded-bl-lg select-none z-10">
+            <div v-show="view === 'painting-view'"  :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="pl-10 right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none z-10">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
@@ -109,14 +117,13 @@
                 </ul>
             </div>
         </div>
-        <div v-show="!menu" class="py-3 pl-10 right-0 top-12 block absolute w-64 select-none">
+        <div v-show="!menu" :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="py-3 pl-10 right-0 block absolute w-64 select-none">
             <div class="flex items-center justify-end px-2">
                 <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
                     <img class="cursor-pointer w-10 p-1 h-auto m-auto block" src="~/assets/icons/menu/hamburger.svg" @click="toggleTab"/>
                 </span>
             </div>
-            <!-- <img class="cursor-pointer object-contain object-right w-full h-10" src="~/assets/icons/menu/hamburger.svg" @click="toggleTab"/> -->
-        </div>
+       </div>
         
         <!-- controls -->
         <div v-show="view === 'menu-view'" class="md:block px-10 bottom-5 left-0 sm:left-10 absolute w-64 h-auto select-none">
@@ -137,17 +144,9 @@
                 </span>
             </div>
         </div>
-        <!-- <div v-show="view === 'painting-view'" class=" md:block bottom-5 right-0 absolute w-64 h-auto select-none">
-             <ul>
-                  
-            </ul>
-        </div> -->
+        
         <!-- Modal -->
         <div v-if="modal" class="right-0 w-72 absolute h-full select-none bg-gray-50 overflow-y-auto overflow-hidden">
-            <!-- <div class="absolute right-5 top-28">
-                <img class="w-10 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
-            </div> -->
-           
             <div class="flex justify-end mt-14">
                 <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
             </div>
@@ -218,6 +217,7 @@
                 view:'menu-view',
                 modalPainting:false,
                 isSoundPlay:false,
+                isFullscreen:false,
 
                 selectedPaintings:{
                     artistName:"Artist Name",
@@ -266,8 +266,11 @@
             });
 
             this.$nuxt.$on('CHANGE-PLAY-SOUND-EVENT', (payload) => {
-                alert(payload);
                 this.isSoundPlay = payload;
+            });
+
+            this.$nuxt.$on('FULLSCREEN-EVENT', (payload) => {
+                this.isFullscreen = payload;
             });
 
             ListenModeInit({ 
