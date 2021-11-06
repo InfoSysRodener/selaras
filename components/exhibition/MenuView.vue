@@ -273,6 +273,10 @@
                 this.isFullscreen = payload;
             });
 
+            if(Document.fullscreenElement) {
+                this.isFullscreen = true;
+            }
+
             ListenModeInit({ 
                 // previous: this.$refs.btnPrevious,
                 // next: this.$refs.btnNext,

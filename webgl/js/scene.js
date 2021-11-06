@@ -228,9 +228,19 @@ class SceneInit {
             this.fullScreen();
         })
 
+        // default listener
+        this.container.addEventListener('fullscreenchange', (event) => {
+            if (document.fullscreenElement) {
+                window.$nuxt.$emit('FULLSCREEN-EVENT', true);
+            }else{
+                window.$nuxt.$emit('FULLSCREEN-EVENT', false);
+            }
+        });
+
+
         document.addEventListener('disposeAll',() => {
-            console.log('disposed');
             this.dispose();
+            console.log('disposed');
         });
 
         this.showcase = []
@@ -549,8 +559,10 @@ class SceneInit {
         if(!fullscreenElement){
             if(this.container.requestFullscreen){
                 this.container.requestFullscreen();
+                window.$nuxt.$emit('FULLSCREEN-EVENT', true);
             }else if(this.container.webkitRequestFullscreen){
                 this.container.webkitRequestFullscreen();
+                window.$nuxt.$emit('FULLSCREEN-EVENT', true);
             } 
 
             window.$nuxt.$emit('FULLSCREEN-EVENT', true);
@@ -559,11 +571,13 @@ class SceneInit {
             // eslint-disable-next-line no-lonely-if
             if(document.exitFullscreen){
                 document.exitFullscreen();
+                window.$nuxt.$emit('FULLSCREEN-EVENT', false);
             }else if(document.webkitExitFullscreen){
                 document.webkitExitFullscreen();
+                window.$nuxt.$emit('FULLSCREEN-EVENT', false);
             }
 
-            window.$nuxt.$emit('FULLSCREEN-EVENT', false);
+            
         }
     }
 
