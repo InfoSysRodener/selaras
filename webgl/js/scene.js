@@ -174,6 +174,9 @@ class SceneInit {
                 self.bgMusic.volume(0.25)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
+                self.currentSound.once("end", () => {
+                    document.dispatchEvent("stopCurrentSound")
+                })
 
                 // the selected painting sounds play event
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
