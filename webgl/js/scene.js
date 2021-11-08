@@ -22,6 +22,9 @@ class SceneInit {
     videoImageContext
     videoIsPlaying = false
     movieMesh
+    pointerdownCount = 0
+    mouseRaycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
 
     constructor(options) {
         this.container = options.dom;
@@ -159,8 +162,8 @@ class SceneInit {
 
         // document.addEventListener('setTarget', (evt) => {
         document.addEventListener('pointerdown', (evt) => {
-            console.log('evnt',evt);
-            if(evt.target.tagName === 'CANVAS'){
+            console.log('evnt', evt);
+            if (evt.target.tagName === 'CANVAS') {
                 self.setTarget(evt, self.loader.allPaintingsDict)
             }
         })
@@ -210,7 +213,7 @@ class SceneInit {
         document.addEventListener("pauseCurrentSound", () => {
             if (self.currentSound) {
                 self.currentSound.pause();
-                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause'); 
+                window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause');
             }
         });
 
@@ -228,21 +231,42 @@ class SceneInit {
             }
         })
 
-        document.addEventListener("fullscreen",() => {
+        document.addEventListener("fullscreen", () => {
             this.fullScreen();
+        })
+
+        document.addEventListener("pointerdown", (evt) => {
+            self.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
+            self.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+
+            self.pointerdownCount++
+            setTimeout(() => {
+                self.pointerdownCount = 0
+            }, 500)
+            if (self.pointerdownCount >= 2) {
+                self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
+                const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
+                if (intersects[0].object === self.loader.allMeshes[7].children[8] || intersects[0].object === self.loader.allMeshes[7].children[9]){
+                    gsap.to(self.camera.position, {
+                        x: intersects[0].point.x,
+                        z: intersects[0].point.z,
+                        duration: 1
+                    })
+                }
+            }
         })
 
         // default listener
         this.container.addEventListener('fullscreenchange', (event) => {
             if (document.fullscreenElement) {
                 window.$nuxt.$emit('FULLSCREEN-EVENT', true);
-            }else{
+            } else {
                 window.$nuxt.$emit('FULLSCREEN-EVENT', false);
             }
         });
 
 
-        document.addEventListener('disposeAll',() => {
+        document.addEventListener('disposeAll', () => {
             this.dispose();
             console.log('disposed');
         });
@@ -428,9 +452,9 @@ class SceneInit {
                 //     z: endRotation.z,
                 //     duration: 2,
                 // })
-                
+
                 // make stay the painting view
-                window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','painting-view');
+                window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT', 'painting-view');
             }
         })
 
@@ -558,31 +582,31 @@ class SceneInit {
         cancelAnimationFrame(this.animFrame)
     }
 
-    fullScreen(){
+    fullScreen() {
         const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
 
-        if(!fullscreenElement){
-            if(this.container.requestFullscreen){
+        if (!fullscreenElement) {
+            if (this.container.requestFullscreen) {
                 this.container.requestFullscreen();
                 window.$nuxt.$emit('FULLSCREEN-EVENT', true);
-            }else if(this.container.webkitRequestFullscreen){
+            } else if (this.container.webkitRequestFullscreen) {
                 this.container.webkitRequestFullscreen();
                 window.$nuxt.$emit('FULLSCREEN-EVENT', true);
-            } 
+            }
 
             window.$nuxt.$emit('FULLSCREEN-EVENT', true);
         }
         else {
             // eslint-disable-next-line no-lonely-if
-            if(document.exitFullscreen){
+            if (document.exitFullscreen) {
                 document.exitFullscreen();
                 window.$nuxt.$emit('FULLSCREEN-EVENT', false);
-            }else if(document.webkitExitFullscreen){
+            } else if (document.webkitExitFullscreen) {
                 document.webkitExitFullscreen();
                 window.$nuxt.$emit('FULLSCREEN-EVENT', false);
             }
 
-            
+
         }
     }
 
