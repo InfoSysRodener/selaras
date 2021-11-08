@@ -159,7 +159,7 @@ class SceneInit {
 
         // document.addEventListener('setTarget', (evt) => {
         document.addEventListener('pointerdown', (evt) => {
-            console.log('evnt',evt);
+            // console.log('evnt',evt);
             if(evt.target.tagName === 'CANVAS'){
                 self.setTarget(evt, self.loader.allPaintingsDict)
             }

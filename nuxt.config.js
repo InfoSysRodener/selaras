@@ -43,7 +43,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@braid/vue-formulate/nuxt',
-    'nuxt-font-loader'
+    // 'nuxt-font-loader'
   ],
 
 

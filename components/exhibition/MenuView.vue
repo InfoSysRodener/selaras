@@ -76,9 +76,9 @@
                         <div class="flex items-center justify-end" @click="openPaintingInfo">
                             <p class="pr-3 text-sm font-medium"> Painting info </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <button @click="toggleTab"> 
+                                <!-- <button @click="toggleTab">  -->
                                     <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
-                                </button>
+                                <!-- </button> -->
                             </span>
                         </div>
                     </li> 
@@ -155,7 +155,8 @@
         
         <!-- Modal -->
         <div v-if="modal" class="right-0 w-72 absolute h-full select-none bg-gray-50 overflow-y-auto overflow-hidden">
-            <div class="flex justify-end mt-14">
+            <div class="flex justify-between items-center mt-14">
+                <p class="capitalize ml-10 font-medium"> {{ selectedTab.replaceAll('-', ' ') }} </p>
                 <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
             </div>
              <!-- content  -->
