@@ -670,8 +670,8 @@ export class Loader {
         {
             position: 32,
             distance: 2,
-            x: 28.5,
-            z: -48.51,
+            x: 28.43,
+            z: -45.6,
             rotate: 3.14159,
             object: {},
             sound: '',
@@ -712,8 +712,8 @@ export class Loader {
         {
             position: 34,
             distance: 2,
-            x: 24.2,
-            z: -39.33,
+            x: 25,
+            z: -42.39,
             rotate: -0.315,
             object: {},
             sound: '',

@@ -402,28 +402,29 @@ class SceneInit {
 
     goTo(target) {
         document.dispatchEvent(new Event("stopCurrentSound"))
+        console.log(target)
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
             onComplete: () => {
                 this.collisionOn = true
-                // this.camera.lookAt(target.object.position);
-                // backup original rotation
-                const startRotation = new THREE.Euler().copy(this.camera.rotation);
-
-                // final rotation (with lookAt)
                 this.camera.lookAt(target.object.position);
-                const endRotation = new THREE.Euler().copy(this.camera.rotation);
+                // // backup original rotation
+                // const startRotation = new THREE.Euler().copy(this.camera.rotation);
 
-                // revert to original rotation
-                this.camera.rotation.copy(startRotation);
+                // // final rotation (with lookAt)
+                // this.camera.lookAt(target.object.position);
+                // const endRotation = new THREE.Euler().copy(this.camera.rotation);
 
-                gsap.to(this.camera.rotation, {
-                    x: endRotation.x,
-                    y: endRotation.y,
-                    z: endRotation.z,
-                    duration: 2,
-                })
+                // // revert to original rotation
+                // this.camera.rotation.copy(startRotation);
+
+                // gsap.to(this.camera.rotation, {
+                //     x: endRotation.x,
+                //     y: endRotation.y,
+                //     z: endRotation.z,
+                //     duration: 2,
+                // })
                 
                 // make stay the painting view
                 window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','painting-view');
