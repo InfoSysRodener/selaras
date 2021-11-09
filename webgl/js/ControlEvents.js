@@ -51,6 +51,10 @@ export class ControlEvents {
             }
         })
 
+        document.getElementById("threeDiv").addEventListener('mouseleave', (evt) => {
+            self.mouseDown = false
+        })
+
         const onKeyDown = (event) => {
 
             switch (event.code) {
