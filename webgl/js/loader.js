@@ -923,66 +923,63 @@ export class Loader {
                     break
                 }
                 case 12: {
-                    this.allPaintingsDict.kontemplasi1.sound = sound
-                    break
-                }
-                case 13: {
                     this.allPaintingsDict.kontemplasi2.sound = sound
                     break
                 }
-                case 14: {
+                case 13: {
                     this.allPaintingsDict.kontemplasi3.sound = sound
                     break
                 }
-                case 15: {
+                case 14: {
                     this.allPaintingsDict.kontemplasi4.sound = sound
                     break
                 }
-                case 16: {
+                case 15: {
                     this.allPaintingsDict.kontemplasi5.sound = sound
                     break
                 }
-                case 17: {
+                case 16: {
                     this.allPaintingsDict.kontemplasi6.sound = sound
                     break
                 }
-                case 18: {
+                case 17: {
                     this.allPaintingsDict.kontemplasi7.sound = sound
                     break
                 }
-                case 19: {
+                case 18: {
                     this.allPaintingsDict.kontemplasi8.sound = sound
                     break
                 }
-                case 20: {
+                case 19: {
                     this.allPaintingsDict.landscapeoflife1.sound = sound
                     break
                 }
-                case 21: {
+                case 20: {
                     this.allPaintingsDict.landscapeoflife2.sound = sound
                     break
                 }
-                case 22: {
+                case 21: {
                     this.allPaintingsDict.landscapeoflife3.sound = sound
                     break
                 }
-                case 23: {
+                case 22: {
                     this.allPaintingsDict.landscapeoflife4.sound = sound
                     break
                 }
-                case 24: {
+                case 23: {
                     this.allPaintingsDict.landscapeoflife5.sound = sound
                     break
                 }
-                case 25: {
+                case 24: {
                     this.allPaintingsDict.landscapeoflife6.sound = sound
                     break
                 }
-                case 26: {
+                case 25: {
                     this.allPaintingsDict.untitled1.sound = sound
                     break
                 }
-                case 27: {
+                case 26: {
+                    console.log(sound)
                     this.allPaintingsDict.untitled2.sound = sound
                     break
                 }

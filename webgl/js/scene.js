@@ -178,6 +178,7 @@ class SceneInit {
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
                 self.bgMusic.volume(0.25)
+                console.log(self.currentSound)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
                 self.currentSound.once("end", () => {
@@ -188,7 +189,7 @@ class SceneInit {
                 // the selected painting sounds play event
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
 
-                gsap.delayedCall(self.currentSound.buffer.duration, () => {
+                gsap.delayedCall(self.currentSound.duration(), () => {
                     self.bgMusic.volume(1)
                 })
             }
