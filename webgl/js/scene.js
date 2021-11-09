@@ -119,7 +119,8 @@ class SceneInit {
             this.loader.allMeshes.push(exitCube)
             this.loader.allMeshes.push(exitCube2)
             this.video = document.createElement('video');
-            this.video.src = "3D/test.mp4";
+            this.video.src = "3D/selarasvideo.mp4";
+            this.video.loop = true;
             this.video.load();
 
             const videoImage = document.createElement('canvas');
@@ -133,6 +134,8 @@ class SceneInit {
             this.videoTexture = new THREE.Texture(videoImage);
             this.videoTexture.minFilter = THREE.LinearFilter;
             this.videoTexture.magFilter = THREE.LinearFilter;
+            this.videoTexture.mapping = THREE.UVMapping
+            this.videoTexture.flipY = false
 
             const movieMaterial = new THREE.MeshBasicMaterial({ map: this.videoTexture });
 
