@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div v-for="artist in artists" :key="artist.title">
+        <div v-for="artist in artists" :key="artist.title" class="my-5">
             <h1 class="text-lg font-semibold mb-5">{{ artist.title }}</h1>
-                <img src="~/assets/images/2.svg"/>
+                <img :src="require(`~/assets/artists/${artist.image}`)" />
                 <p class="my-5 text-sm">
                     {{ artist.description }}
                 </p>
@@ -22,12 +22,20 @@
             return {
                 artists:[
                     {
+                        image:'WidiWardani.jpg',
                         title: 'Widi Wardani Purama',
                         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr ,sed',
+                        social:[
+
+                        ]
                     },
                     {
-                        title: 'Artist Name',
+                        image:'SandyTisa.jpg',
+                        title: 'Sandy Tisa',
                         description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr ,sed',
+                        social:[
+
+                        ]
                     }
                 ]
             }

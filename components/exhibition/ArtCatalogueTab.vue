@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="art in arts" :key="art">
-            <img class="py-2" :src="require(`~/assets/images/${art}`)" />
+            <img class="py-2" :src="require(`~/assets/artCategory/${art.replace('./', '')}`)" />
         </div>
     </div>
 </template>
@@ -10,11 +10,22 @@
     export default {
         data() {
             return {
-                arts:[
-                    '3.svg',
-                    '2.svg',
-                ]
+                arts:[]
+            }
+        },
+        mounted(){
+            // console.log(arts);
+             this.fetchArts(require.context('../../assets/artCategory/', true));
+        },
+        methods:{
+            fetchArts(art){
+                art.keys().forEach(element => {
+                      console.log(element);  
+                      this.arts.push(element);
+                });
+                
             }
         }
+        
     }
 </script>

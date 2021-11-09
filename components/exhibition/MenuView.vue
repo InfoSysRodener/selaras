@@ -76,9 +76,7 @@
                         <div class="flex items-center justify-end" @click="openPaintingInfo">
                             <p class="pr-3 text-sm font-medium"> Painting info </p>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
-                                <!-- <button @click="toggleTab">  -->
-                                    <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
-                                <!-- </button> -->
+                                <img  class="w-auto h-auto m-auto block" src="~/assets/icons/menu/PaintingInfo.png"/>
                             </span>
                         </div>
                     </li> 
@@ -156,13 +154,13 @@
         <!-- Modal -->
         <div v-if="modal" class="right-0 w-72 absolute h-full select-none bg-gray-50 overflow-y-auto overflow-hidden">
             <div class="flex justify-between items-center mt-14">
-                <p class="capitalize ml-10 font-medium"> {{ selectedTab.replaceAll('-', ' ') }} </p>
+                <p class="capitalize ml-10 font-medium text-lg"> {{ selectedTab.replaceAll('-', ' ') }} </p>
                 <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
             </div>
              <!-- content  -->
             <div  class="py-10 px-10 my-5">
                 <AboutTab v-if="selectedTab === 'about'"/>
-                <ArtCatalogue v-if="selectedTab === 'art-catalogue'"/>
+                <ArtCatalogue v-show="selectedTab === 'art-catalogue'"/>
                 <MeetTheArtistTab v-if="selectedTab === 'meet-the-artist'"/>
                 <Help v-if="selectedTab === 'help'"/>
             </div>
@@ -256,8 +254,7 @@
                 this.menu = true;
             });
 
-           
-
+        
         },
         beforeDestroy(){
             this.$nuxt.$off('CHANGE-MENU-VIEW-EVENT');
