@@ -135,7 +135,9 @@ class SceneInit {
             this.videoTexture.minFilter = THREE.LinearFilter;
             this.videoTexture.magFilter = THREE.LinearFilter;
             this.videoTexture.mapping = THREE.UVMapping
-            this.videoTexture.flipY = false
+            this.videoTexture.flipY = true
+            this.videoTexture.wrapS = THREE.RepeatWrapping;
+            this.videoTexture.repeat.x = - 1;
 
             const movieMaterial = new THREE.MeshBasicMaterial({ map: this.videoTexture });
 
@@ -176,6 +178,7 @@ class SceneInit {
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
                 self.bgMusic.volume(0.25)
+                console.log(self.currentSound)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
                 self.currentSound.once("end", () => {
@@ -186,7 +189,7 @@ class SceneInit {
                 // the selected painting sounds play event
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
 
-                gsap.delayedCall(self.currentSound.buffer.duration, () => {
+                gsap.delayedCall(self.currentSound.duration(), () => {
                     self.bgMusic.volume(1)
                 })
             }
@@ -248,7 +251,7 @@ class SceneInit {
             if (self.pointerdownCount >= 2) {
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
-                if (intersects[0].object === self.loader.allMeshes[7].children[8] || intersects[0].object === self.loader.allMeshes[7].children[9]){
+                if (intersects[0].object === self.loader.allMeshes[7].children[8] || intersects[0].object === self.loader.allMeshes[7].children[9]) {
                     gsap.to(self.camera.position, {
                         x: intersects[0].point.x,
                         z: intersects[0].point.z,
