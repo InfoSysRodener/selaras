@@ -158,10 +158,10 @@
                 <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
             </div>
              <!-- content  -->
-            <div  class="py-10 px-10 my-5">
+            <div  class="py-5 px-10 my-5">
                 <AboutTab v-if="selectedTab === 'about'"/>
                 <ArtCatalogue v-show="selectedTab === 'art-catalogue'"/>
-                <MeetTheArtistTab v-if="selectedTab === 'meet-the-artist'"/>
+                <MeetTheArtistTab v-show="selectedTab === 'meet-the-artist'"/>
                 <Help v-if="selectedTab === 'help'"/>
             </div>
         </div>

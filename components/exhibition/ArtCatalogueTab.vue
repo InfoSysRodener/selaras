@@ -20,7 +20,7 @@
         methods:{
             fetchArts(art){
                 art.keys().forEach(element => {
-                      console.log(element);  
+                    //   console.log(element);  
                       this.arts.push(element);
                 });
                 
