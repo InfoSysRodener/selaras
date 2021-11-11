@@ -119,28 +119,40 @@ class SceneInit {
             this.loader.allMeshes.push(exitCube)
             this.loader.allMeshes.push(exitCube2)
             this.video = document.createElement('video');
-            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo.mp4";
+            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo+(1).mp4";
             this.video.loop = true;
             this.video.crossOrigin = "anonymous"
             this.video.load();
+            this.video.oncanplay = () => {
+                const videoImage = document.createElement('canvas');
+                videoImage.width = self.video.videoWidth;
+                videoImage.height = self.video.videoHeight;
 
-            const videoImage = document.createElement('canvas');
-            videoImage.width = 1920;
-            videoImage.height = 936;
+                self.videoImageContext = videoImage.getContext('2d');
+                self.videoImageContext.fillStyle = '#000000';
+                self.videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height);
 
-            this.videoImageContext = videoImage.getContext('2d');
-            this.videoImageContext.fillStyle = '#000000';
-            this.videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height);
+                self.videoTexture = new THREE.Texture(videoImage);
+                self.videoTexture.minFilter = THREE.LinearFilter;
+                self.videoTexture.magFilter = THREE.LinearFilter;
+                self.videoTexture.mapping = THREE.UVMapping
+                self.videoTexture.flipY = true
+                self.videoTexture.wrapS = THREE.RepeatWrapping;
+                self.videoTexture.repeat.x = - 1;
 
-            this.videoTexture = new THREE.Texture(videoImage);
-            this.videoTexture.minFilter = THREE.LinearFilter;
-            this.videoTexture.magFilter = THREE.LinearFilter;
-            this.videoTexture.mapping = THREE.UVMapping
-            this.videoTexture.flipY = true
-            this.videoTexture.wrapS = THREE.RepeatWrapping;
-            this.videoTexture.repeat.x = - 1;
+                const movieMaterial = new THREE.MeshBasicMaterial({ map: self.videoTexture });
+                self.loader.allMeshes[0].children[1].material = movieMaterial
+                self.loader.allMeshes[0].children[1].userData.ingore = true
+                self.movieMesh = new THREE.Mesh(geometry, material);
+                self.movieMesh.userData.ingore = true
+                self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
+                self.movieMesh.visible = false
+                self.scene.add(self.movieMesh);
 
-            const movieMaterial = new THREE.MeshBasicMaterial({ map: this.videoTexture });
+                self.video.play();
+                self.videoIsPlaying = true
+            }
+
 
             self.sortJsObject(self.loader.allPaintingsDict)
             self.showcaseTimeline(self.loader.allPaintingsDict)
@@ -153,16 +165,6 @@ class SceneInit {
                         self.bgMusic.play();
                     }
                 }
-                self.loader.allMeshes[0].children[1].material = movieMaterial
-                self.loader.allMeshes[0].children[1].userData.ingore = true
-                self.movieMesh = new THREE.Mesh(geometry, material);
-                self.movieMesh.userData.ingore = true
-                self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
-                self.movieMesh.visible = false
-                this.scene.add(self.movieMesh);
-
-                self.video.play();
-                this.videoIsPlaying = true
             }, 1000)
         })
 
