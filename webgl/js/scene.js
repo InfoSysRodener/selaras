@@ -119,7 +119,7 @@ class SceneInit {
             this.loader.allMeshes.push(exitCube)
             this.loader.allMeshes.push(exitCube2)
             this.video = document.createElement('video');
-            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo+(1).mp4";
+            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo.mp4";
             this.video.loop = true;
             this.video.crossOrigin = "anonymous"
             this.video.load();
@@ -151,6 +151,8 @@ class SceneInit {
 
                 self.video.play();
                 self.videoIsPlaying = true
+
+                console.log(self.scene)
             }
 
 
@@ -176,17 +178,18 @@ class SceneInit {
 
         document.addEventListener("playSound", () => {
             if (self.currentObj.sound !== '') {
+                self.video.volume = 0
                 if (self.currentSound) {
                     self.currentSound.stop();
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
                 self.bgMusic.volume(0.25)
-                console.log(self.currentSound)
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
                 self.currentSound.once("end", () => {
                     // document.dispatchEvent("stopCurrentSound");
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
+                    self.video.volume = 1
                 })
 
                 // the selected painting sounds play event
@@ -222,6 +225,7 @@ class SceneInit {
             if (self.currentSound) {
                 self.currentSound.pause();
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause');
+                self.video.volume = 0
             }
         });
 
@@ -229,6 +233,7 @@ class SceneInit {
             if (self.currentSound) {
                 this.currentSound.play();
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
+                self.video.volume = 0
             }
         })
 
@@ -236,6 +241,7 @@ class SceneInit {
             if (self.currentSound) {
                 this.currentSound.stop();
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
+                self.video.volume = 1
             }
         })
 
