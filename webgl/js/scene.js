@@ -52,19 +52,24 @@ class SceneInit {
         this.scene.add(this.collCube);
 
         const geometryExit = new THREE.BoxGeometry(1, 7, 5);
-        const materialExit = new THREE.MeshBasicMaterial({ wireframe: true });
+        const materialExit = new THREE.MeshBasicMaterial();
         const exitCube = new THREE.Mesh(geometryExit, materialExit);
         exitCube.visible = false
         this.scene.add(exitCube);
         exitCube.position.set(-12, 0, 0)
 
         const geometryExit2 = new THREE.BoxGeometry(12, 5, 1);
-        const materialExit2 = new THREE.MeshBasicMaterial({ wireframe: true });
-        const exitCube2 = new THREE.Mesh(geometryExit2, materialExit2);
+        const exitCube2 = new THREE.Mesh(geometryExit2, materialExit);
         exitCube2.rotateOnAxis(new THREE.Vector3(0, 1, 0), 1.2)
         exitCube2.visible = false
         this.scene.add(exitCube2);
         exitCube2.position.set(17.778081426688274, 2.203651356697083, -30.044229785896388)
+
+        const geometryExit3 = new THREE.BoxGeometry(1, 7, 7.5);
+        const exitCube3 = new THREE.Mesh(geometryExit3, materialExit);
+        exitCube3.visible = false
+        this.scene.add(exitCube3);
+        exitCube3.position.set(0, 0, 0)
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.width, this.height);
@@ -119,6 +124,7 @@ class SceneInit {
         document.addEventListener('paintingsLoaded', () => {
             this.loader.allMeshes.push(exitCube)
             this.loader.allMeshes.push(exitCube2)
+            this.loader.allMeshes.push(exitCube3)
             this.video = document.createElement('video');
             this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo.mp4";
             this.video.loop = true;
