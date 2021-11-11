@@ -160,7 +160,7 @@
              <!-- content  -->
             <div  class="py-5 px-10 my-5">
                 <AboutTab v-if="selectedTab === 'about'"/>
-                <ArtCatalogue v-show="selectedTab === 'art-catalogue'"/>
+                <ArtCatalogue v-if="selectedTab === 'art-catalogue'"/>
                 <MeetTheArtistTab v-show="selectedTab === 'meet-the-artist'"/>
                 <Help v-if="selectedTab === 'help'"/>
             </div>
@@ -320,7 +320,10 @@
 </script>
 
 <style scoped>
-
+    div {
+        -webkit-touch-callout: none;
+        /* -webkit-user-select: none */
+    }
     ::-webkit-scrollbar,
     ::-webkit-scrollbar-thumb,
     ::-webkit-scrollbar-track { 

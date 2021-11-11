@@ -10,7 +10,7 @@
                         <p class="text-xs my-2">{{ artist.education }}</p>
                     </div>
                     <div v-if="artist.showless">
-                         <div v-for="resume in artist.resume.slice(0,1)" :key="resume" >
+                         <div v-for="(resume,index) in artist.resume.slice(0,1)" :key="index" >
                             <p class="font-bold text-base my-2">{{ resume.title }}</p>
                             <p v-for="work in resume.works" :key="work" class="text-xs my-2" >
                                 {{ work }}
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div v-else>
-                        <div v-for="resume in artist.resume" :key="resume" >
+                        <div v-for="(resume,index) in artist.resume" :key="index" >
                             <p class="font-bold text-base my-2">{{ resume.title }}</p>
                             <p v-for="work in resume.works" :key="work" class="text-xs my-2" >
                                 {{ work }}
