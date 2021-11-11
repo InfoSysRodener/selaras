@@ -250,6 +250,7 @@ class SceneInit {
         })
 
         document.addEventListener("pointerdown", (evt) => {
+            console.log("TEST")
             self.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
             self.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 
@@ -260,7 +261,7 @@ class SceneInit {
             if (self.pointerdownCount >= 2) {
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
-                if (intersects[0].object === self.loader.allMeshes[7].children[8] || intersects[0].object === self.loader.allMeshes[7].children[9]) {
+                if (intersects[0].object === self.loader.allMeshes[8].children[8] || intersects[0].object === self.loader.allMeshes[8].children[9] || intersects[0].object ===  self.loader.allMeshes[7]) {
                     gsap.to(self.camera.position, {
                         x: intersects[0].point.x,
                         z: intersects[0].point.z,
