@@ -19,6 +19,7 @@ export class ControlEvents {
     addMobileEvents() {
         let thisPoint, lastPoint
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
+            console.log(event);
             lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
         })
         document.getElementById("threeDiv").addEventListener("touchmove", (event) => {
