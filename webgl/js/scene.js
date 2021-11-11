@@ -25,6 +25,7 @@ class SceneInit {
     pointerdownCount = 0
     mouseRaycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
+    videoAudio = true
 
     constructor(options) {
         this.container = options.dom;
@@ -51,19 +52,24 @@ class SceneInit {
         this.scene.add(this.collCube);
 
         const geometryExit = new THREE.BoxGeometry(1, 7, 5);
-        const materialExit = new THREE.MeshBasicMaterial({ wireframe: true });
+        const materialExit = new THREE.MeshBasicMaterial();
         const exitCube = new THREE.Mesh(geometryExit, materialExit);
         exitCube.visible = false
         this.scene.add(exitCube);
         exitCube.position.set(-12, 0, 0)
 
         const geometryExit2 = new THREE.BoxGeometry(12, 5, 1);
-        const materialExit2 = new THREE.MeshBasicMaterial({ wireframe: true });
-        const exitCube2 = new THREE.Mesh(geometryExit2, materialExit2);
+        const exitCube2 = new THREE.Mesh(geometryExit2, materialExit);
         exitCube2.rotateOnAxis(new THREE.Vector3(0, 1, 0), 1.2)
         exitCube2.visible = false
         this.scene.add(exitCube2);
         exitCube2.position.set(17.778081426688274, 2.203651356697083, -30.044229785896388)
+
+        const geometryExit3 = new THREE.BoxGeometry(1, 7, 7.5);
+        const exitCube3 = new THREE.Mesh(geometryExit3, materialExit);
+        exitCube3.visible = false
+        this.scene.add(exitCube3);
+        exitCube3.position.set(0, 0, 0)
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.width, this.height);
@@ -118,29 +124,45 @@ class SceneInit {
         document.addEventListener('paintingsLoaded', () => {
             this.loader.allMeshes.push(exitCube)
             this.loader.allMeshes.push(exitCube2)
+            this.loader.allMeshes.push(exitCube3)
             this.video = document.createElement('video');
             this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo+(1).mp4";
             this.video.loop = true;
+            this.video.volume = 1
             this.video.crossOrigin = "anonymous"
             this.video.load();
+            this.video.oncanplay = () => {
+                const videoImage = document.createElement('canvas');
+                videoImage.width = self.video.videoWidth;
+                videoImage.height = self.video.videoHeight;
 
-            const videoImage = document.createElement('canvas');
-            videoImage.width = 1920;
-            videoImage.height = 936;
+                self.videoImageContext = videoImage.getContext('2d');
+                self.videoImageContext.fillStyle = '#000000';
+                self.videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height);
 
-            this.videoImageContext = videoImage.getContext('2d');
-            this.videoImageContext.fillStyle = '#000000';
-            this.videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height);
+                self.videoTexture = new THREE.Texture(videoImage);
+                self.videoTexture.minFilter = THREE.LinearFilter;
+                self.videoTexture.magFilter = THREE.LinearFilter;
+                self.videoTexture.mapping = THREE.UVMapping
+                self.videoTexture.flipY = true
+                self.videoTexture.wrapS = THREE.RepeatWrapping;
+                self.videoTexture.repeat.x = - 1;
 
-            this.videoTexture = new THREE.Texture(videoImage);
-            this.videoTexture.minFilter = THREE.LinearFilter;
-            this.videoTexture.magFilter = THREE.LinearFilter;
-            this.videoTexture.mapping = THREE.UVMapping
-            this.videoTexture.flipY = true
-            this.videoTexture.wrapS = THREE.RepeatWrapping;
-            this.videoTexture.repeat.x = - 1;
+                const movieMaterial = new THREE.MeshBasicMaterial({ map: self.videoTexture });
+                self.loader.allMeshes[0].children[1].material = movieMaterial
+                self.loader.allMeshes[0].children[1].userData.ingore = true
+                self.movieMesh = new THREE.Mesh(geometry, material);
+                self.movieMesh.userData.ingore = true
+                self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
+                self.movieMesh.visible = false
+                self.scene.add(self.movieMesh);
 
-            const movieMaterial = new THREE.MeshBasicMaterial({ map: this.videoTexture });
+                self.video.play();
+                self.videoIsPlaying = true
+
+                console.log(self.scene)
+            }
+
 
             self.sortJsObject(self.loader.allPaintingsDict)
             self.showcaseTimeline(self.loader.allPaintingsDict)
@@ -153,16 +175,6 @@ class SceneInit {
                         self.bgMusic.play();
                     }
                 }
-                self.loader.allMeshes[0].children[1].material = movieMaterial
-                self.loader.allMeshes[0].children[1].userData.ingore = true
-                self.movieMesh = new THREE.Mesh(geometry, material);
-                self.movieMesh.userData.ingore = true
-                self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
-                self.movieMesh.visible = false
-                this.scene.add(self.movieMesh);
-
-                self.video.play();
-                this.videoIsPlaying = true
             }, 1000)
         })
 
@@ -179,7 +191,8 @@ class SceneInit {
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
                 self.bgMusic.volume(0.25)
-                console.log(self.currentSound)
+                self.video.volume = 0
+                self.videoAudio = false
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
                 self.currentSound.once("end", () => {
@@ -192,6 +205,7 @@ class SceneInit {
 
                 gsap.delayedCall(self.currentSound.duration(), () => {
                     self.bgMusic.volume(1)
+                    self.videoAudio = true
                 })
             }
         })
@@ -219,6 +233,8 @@ class SceneInit {
         document.addEventListener("pauseCurrentSound", () => {
             if (self.currentSound) {
                 self.currentSound.pause();
+                self.bgMusic.volume(1)
+                self.videoAudio = true
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause');
             }
         });
@@ -233,6 +249,8 @@ class SceneInit {
         document.addEventListener("stopCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.stop();
+                self.bgMusic.volume(1)
+                self.videoAudio = true
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
             }
         })
@@ -252,7 +270,7 @@ class SceneInit {
             if (self.pointerdownCount >= 2) {
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
-                if (intersects[0].object === self.loader.allMeshes[7].children[8] || intersects[0].object === self.loader.allMeshes[7].children[9]) {
+                if (intersects[0].object === self.loader.allMeshes[8].children[8] || intersects[0].object === self.loader.allMeshes[8].children[9] || intersects[0].object === self.loader.allMeshes[7]) {
                     gsap.to(self.camera.position, {
                         x: intersects[0].point.x,
                         z: intersects[0].point.z,
@@ -435,7 +453,6 @@ class SceneInit {
 
     goTo(target) {
         document.dispatchEvent(new Event("stopCurrentSound"))
-        console.log(target)
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
@@ -510,12 +527,14 @@ class SceneInit {
     }
 
     checkVideoDistance() {
-        const dist = this.camera.position.distanceToSquared(this.movieMesh.position)
-        if (dist * 0.03 >= 0 && dist * 0.03 <= 1) {
-            this.video.volume = 1 - (dist * 0.03)
-        }
-        else {
-            this.video.volume = 0
+        if (this.videoAudio) {
+            const dist = this.camera.position.distanceToSquared(this.movieMesh.position)
+            if (dist * 0.03 >= 0 && dist * 0.03 <= 1) {
+                this.video.volume = 1 - (dist * 0.03)
+            }
+            else {
+                this.video.volume = 0
+            }
         }
     }
 
