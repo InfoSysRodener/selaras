@@ -119,8 +119,9 @@ class SceneInit {
             this.loader.allMeshes.push(exitCube)
             this.loader.allMeshes.push(exitCube2)
             this.video = document.createElement('video');
-            this.video.src = "3D/selarasvideo.mp4";
+            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo.mp4";
             this.video.loop = true;
+            this.video.crossOrigin = "anonymous"
             this.video.load();
 
             const videoImage = document.createElement('canvas');
