@@ -25,6 +25,7 @@ class SceneInit {
     pointerdownCount = 0
     mouseRaycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
+    videoAudio = true
 
     constructor(options) {
         this.container = options.dom;
@@ -121,6 +122,7 @@ class SceneInit {
             this.video = document.createElement('video');
             this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo.mp4";
             this.video.loop = true;
+            this.video.volume = 1
             this.video.crossOrigin = "anonymous"
             this.video.load();
             this.video.oncanplay = () => {
@@ -178,18 +180,18 @@ class SceneInit {
 
         document.addEventListener("playSound", () => {
             if (self.currentObj.sound !== '') {
-                self.video.volume = 0
                 if (self.currentSound) {
                     self.currentSound.stop();
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
                 self.bgMusic.volume(0.25)
+                self.video.volume = 0
+                self.videoAudio = false
                 self.currentSound = self.currentObj.sound
                 self.currentSound.play();
                 self.currentSound.once("end", () => {
                     // document.dispatchEvent("stopCurrentSound");
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
-                    self.video.volume = 1
                 })
 
                 // the selected painting sounds play event
@@ -197,6 +199,7 @@ class SceneInit {
 
                 gsap.delayedCall(self.currentSound.duration(), () => {
                     self.bgMusic.volume(1)
+                    self.videoAudio = true
                 })
             }
         })
@@ -224,8 +227,9 @@ class SceneInit {
         document.addEventListener("pauseCurrentSound", () => {
             if (self.currentSound) {
                 self.currentSound.pause();
+                self.bgMusic.volume(1)
+                self.videoAudio = true
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause');
-                self.video.volume = 0
             }
         });
 
@@ -233,15 +237,15 @@ class SceneInit {
             if (self.currentSound) {
                 this.currentSound.play();
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
-                self.video.volume = 0
             }
         })
 
         document.addEventListener("stopCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.stop();
+                self.bgMusic.volume(1)
+                self.videoAudio = true
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
-                self.video.volume = 1
             }
         })
 
@@ -250,7 +254,6 @@ class SceneInit {
         })
 
         document.addEventListener("pointerdown", (evt) => {
-            console.log("TEST")
             self.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
             self.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 
@@ -261,7 +264,7 @@ class SceneInit {
             if (self.pointerdownCount >= 2) {
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
-                if (intersects[0].object === self.loader.allMeshes[8].children[8] || intersects[0].object === self.loader.allMeshes[8].children[9] || intersects[0].object ===  self.loader.allMeshes[7]) {
+                if (intersects[0].object === self.loader.allMeshes[8].children[8] || intersects[0].object === self.loader.allMeshes[8].children[9] || intersects[0].object === self.loader.allMeshes[7]) {
                     gsap.to(self.camera.position, {
                         x: intersects[0].point.x,
                         z: intersects[0].point.z,
@@ -444,7 +447,6 @@ class SceneInit {
 
     goTo(target) {
         document.dispatchEvent(new Event("stopCurrentSound"))
-        console.log(target)
         this.currentObj = target
         gsap.to(this.camera.position, {
             x: target.x, z: target.z, duration: 2,
@@ -519,12 +521,14 @@ class SceneInit {
     }
 
     checkVideoDistance() {
-        const dist = this.camera.position.distanceToSquared(this.movieMesh.position)
-        if (dist * 0.03 >= 0 && dist * 0.03 <= 1) {
-            this.video.volume = 1 - (dist * 0.03)
-        }
-        else {
-            this.video.volume = 0
+        if (this.videoAudio) {
+            const dist = this.camera.position.distanceToSquared(this.movieMesh.position)
+            if (dist * 0.03 >= 0 && dist * 0.03 <= 1) {
+                this.video.volume = 1 - (dist * 0.03)
+            }
+            else {
+                this.video.volume = 0
+            }
         }
     }
 
