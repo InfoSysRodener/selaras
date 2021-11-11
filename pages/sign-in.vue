@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-row justify-center w-full content-center h-screen static items-center">
+    <div class="flex flex-row justify-center w-full content-center h-full static items-center">
       <div class="py-4 px-5 sm:px-10 sm:w-3/4 lg:w-2/5">
         <AppLogo/>
         <Alert v-if="errorMessage" :message="errorMessage"/>

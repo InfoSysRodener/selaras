@@ -126,7 +126,7 @@ class SceneInit {
             this.loader.allMeshes.push(exitCube2)
             this.loader.allMeshes.push(exitCube3)
             this.video = document.createElement('video');
-            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo+(1).mp4";
+            this.video.src = "https://selaras-assets.s3.ap-southeast-1.amazonaws.com/selarasvideo+(2).mp4";
             this.video.loop = true;
             this.video.volume = 1
             this.video.crossOrigin = "anonymous"
@@ -242,6 +242,9 @@ class SceneInit {
         document.addEventListener("resumeCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.play();
+                self.bgMusic.volume(0.25)
+                self.video.volume = 0
+                self.videoAudio = false
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
             }
         })
