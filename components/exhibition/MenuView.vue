@@ -60,7 +60,7 @@
                     </li> 
                 </ul>
             </div>
-            <div v-show="view === 'painting-view'"  :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="pl-10 right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none z-10">
+            <div v-show="view === 'painting-view'"  :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="pl-10 right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
                         <div class="flex items-center justify-end px-2">
@@ -132,7 +132,7 @@
        </div>
         
         <!-- controls -->
-        <div v-show="view === 'menu-view'" class="md:block px-10 bottom-5 left-0 sm:left-10 absolute w-64 h-auto select-none">
+        <div v-show="view === 'menu-view'" class="md:block px-10 bottom-14 sm:bottom-5 left-0 sm:left-10 absolute w-64 h-auto select-none">
             <div class="grid grid-cols-3 gap-5 mb-5">
                 <span ref="btnUp" class="col-start-2 rounded-md w-12 h-12 bg-white inline-block shadow-lg">
                     <img class="cursor-pointer p-4 m-auto block w-12 h-12" src="~/assets/icons/controls/control-up.svg"/>
@@ -152,30 +152,30 @@
         </div>
         
         <!-- Modal -->
-        <div v-if="modal" class="right-0 w-72 absolute h-full select-none bg-gray-50 overflow-y-auto overflow-hidden">
+        <div v-if="modal" class="right-0 w-72 absolute h-full bg-gray-50 overflow-y-auto overflow-x-hidden select-none">
             <div class="flex justify-between items-center mt-14">
                 <p class="capitalize ml-10 font-medium text-lg"> {{ selectedTab.replaceAll('-', ' ') }} </p>
-                <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modal = false"/>
+                <img class="w-12 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="closeSelectedTab"/>
             </div>
              <!-- content  -->
-            <div  class="py-5 px-10 my-5">
+            <div  class="py-5 block px-10 my-5">
                 <AboutTab v-if="selectedTab === 'about'"/>
-                <ArtCatalogue v-show="selectedTab === 'art-catalogue'"/>
+                <ArtCatalogue v-if="selectedTab === 'art-catalogue'"/>
                 <MeetTheArtistTab v-show="selectedTab === 'meet-the-artist'"/>
                 <Help v-if="selectedTab === 'help'"/>
             </div>
         </div>
 
         <!-- painting information modal -->
-        <div v-if="modalPainting" class="right-0 left-0 sm:top-20 sm:left-1/4 w-1/2 px-10 absolute overflow-hidden h-full select-none ">
-            <div class="absolute right-5 top-28">
+        <div v-if="modalPainting" class="right-0 left-0 top-64 w-full sm:top-52 sm:left-1/4 sm:w-1/2 px-10 absolute overflow-y-auto overflow-x-hidden h-full select-none z-10 ">
+            <div class="absolute right-5">
                 <img class="w-10 cursor-pointer" src="~/assets/icons/menu/close.svg" @click="modalPainting = false"/>
             </div>
             <!-- content  -->
-            <div  class="py-5 px-10 block mt-32 bg-gray-50 overflow-y-auto overflow-x-hidden h-auto  shadow-xl">
-                <div class="sm:flex sm:items-start py-10">
+            <div  class="py-2 sm:py-5 px-2 sm:px-10 block mt-4 bg-gray-50 overflow-y-auto overflow-x-hidden h-auto">
+                <div class="sm:flex sm:items-start py-2 sm:py-10">
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 id="modal-title" class="text-2xl leading-6 font-medium text-gray-900" >
+                        <h3 class="text-2xl leading-6 font-medium text-gray-900" >
                             {{ selectedPaintings.title }}
                         </h3>
                         <h1 class="mt-1 mb-2 text-gray-700 text-lg">{{ selectedPaintings.artistName }}</h1>
@@ -190,7 +190,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-100 px-4 py-3 pr-2 sm:px-6 sm:flex justify-end items-center">
+            <div class="bg-gray-100 px-4 py-1 sm:py-3 pr-2 sm:px-6 flex justify-end items-center">
                 <label class="text-xs underline pr-5 cursor-pointer">Buy</label>
                 <img class="w-10 cursor-pointer" src="~/assets/icons/menu/cart.svg"/>
             </div>
@@ -241,12 +241,12 @@
             }
         },
         watch:{
-           menu(val) {
-             if(val) this.modal = false;
-           },
-           modal(val){
-             if(val) this.menu = false;
-           }
+        //    menu(val) {
+        //      if(val) this.modal = false;
+        //    },
+        //    modal(val){
+        //      if(val) this.menu = false;
+        //    }
         },
         created(){
             this.$nuxt.$on('SELECTED-PAINTING-EVENT', (payload) => {
@@ -254,7 +254,6 @@
                 this.menu = true;
             });
 
-        
         },
         beforeDestroy(){
             this.$nuxt.$off('CHANGE-MENU-VIEW-EVENT');
@@ -307,11 +306,15 @@
                 this.modal = true;
                 this.selectedTab = val;
             },
+            closeSelectedTab(){
+                this.modal = false;
+            },
             openPaintingInfo(){
                 this.modalPainting = true;
             },
             closePaintingInfo(){
                 this.view = 'menu-view';
+                this.modalPainting = false;
                 this.$nuxt.$emit('CLOSED-PAINTING-VIEW');
             }
         },
@@ -321,6 +324,18 @@
 
 <style scoped>
 
+    /* div {
+        -webkit-tap-highlight-color: transparent;
+        
+    } */
+    /* div { */
+        /* -webkit-touch-callout: none; */
+        /* -webkit-user-select: none */
+    /* } */
+    .scrolling-touch {
+         /* -webkit-overflow-scrolling: touch; */
+         touch-action:auto;
+     }
     ::-webkit-scrollbar,
     ::-webkit-scrollbar-thumb,
     ::-webkit-scrollbar-track { 
