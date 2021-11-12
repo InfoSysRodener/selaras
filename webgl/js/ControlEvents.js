@@ -19,41 +19,54 @@ export class ControlEvents {
     addMobileEvents() {
         let thisPoint, lastPoint
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
-            console.log(event);
-            lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
+            console.log(event.target);
+            if(event.target.tagName === 'CANVAS'){
+                lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
+            }
+            
         })
         document.getElementById("threeDiv").addEventListener("touchmove", (event) => {
-            if (event.targetTouches.length === 1) {
-                thisPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
-                this.camera.forwardRotationScalar = (thisPoint.x - lastPoint.x) / 100;
-                this.camera.sideRotationScalar = (thisPoint.y - lastPoint.y) / 30000;
-                event.preventDefault()
+            if(event.target.tagName === 'CANVAS'){
+                if (event.targetTouches.length === 1) {
+                    thisPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
+                    this.camera.forwardRotationScalar = (thisPoint.x - lastPoint.x) / 100;
+                    this.camera.sideRotationScalar = (thisPoint.y - lastPoint.y) / 30000;
+                    event.preventDefault()
+                }
             }
         })
 
-        document.getElementById("threeDiv").addEventListener("touchend", () => {
-            this.camera.forwardRotationScalar = 0;
-            this.camera.sideRotationScalar = 0;
+        document.getElementById("threeDiv").addEventListener("touchend", (event) => {
+            if(event.target.tagName === 'CANVAS'){
+                this.camera.forwardRotationScalar = 0;
+                this.camera.sideRotationScalar = 0;
+            }
         })
     }
 
     addDesktopEvents() {
         const self = this
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
-            self.camera.setInitPointRotate(evt.clientX, evt.clientY)
-            self.mouseDown = true
+            if(evt.target.tagName === 'CANVAS'){
+                self.camera.setInitPointRotate(evt.clientX, evt.clientY)
+                self.mouseDown = true
+            }
         })
 
         document.getElementById("threeDiv").addEventListener('mousemove', (evt) => {
-            if (self.mouseDown === true) {
-                self.camera.rotateMouse(evt.clientX)
-                self.camera.rotateVerticalMouse(evt.clientY)
-                self.camera.setInitPointRotate(evt.clientX, evt.clientY)
+            if(evt.target.tagName === 'CANVAS'){
+                if (self.mouseDown === true) {
+                    self.camera.rotateMouse(evt.clientX)
+                    self.camera.rotateVerticalMouse(evt.clientY)
+                    self.camera.setInitPointRotate(evt.clientX, evt.clientY)
+                }
             }
         })
 
         document.getElementById("threeDiv").addEventListener('mouseleave', (evt) => {
-            self.mouseDown = false
+            if(evt.target.tagName === 'CANVAS'){
+                self.mouseDown = false
+            }
         })
 
         const onKeyDown = (event) => {
