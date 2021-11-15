@@ -324,10 +324,10 @@
 
 <style scoped>
 
-    /* div {
+    div {
         -webkit-tap-highlight-color: transparent;
         
-    } */
+    }
     /* div { */
         /* -webkit-touch-callout: none; */
         /* -webkit-user-select: none */
