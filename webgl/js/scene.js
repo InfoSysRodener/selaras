@@ -41,12 +41,12 @@ class SceneInit {
             100000
         );
         this.camera.position.x = -2
-        this.camera.position.y = 2
+        this.camera.position.y = 1.5
         this.camera.position.z = 1
 
 
-        const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const geometry = new THREE.BoxGeometry(1, 0.5, 1);
+        const material = new THREE.MeshBasicMaterial();
         this.collCube = new THREE.Mesh(geometry, material);
         this.collCube.position.copy(this.camera.position)
         this.scene.add(this.collCube);
@@ -520,7 +520,7 @@ class SceneInit {
         const collisionResults = this.yRaycaster.intersectObjects(this.loader.allMeshes);
         if (collisionResults.length > 0) {
             if (collisionResults[0].object.userData.ingore !== true) {
-                this.camera.position.y += 1.8 - collisionResults[0].distance
+                this.camera.position.y += 1.65 - collisionResults[0].distance
             }
         }
 

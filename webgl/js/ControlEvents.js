@@ -20,13 +20,13 @@ export class ControlEvents {
         let thisPoint, lastPoint
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             console.log(event.target);
-            if(event.target.tagName === 'CANVAS'){
+            if (event.target.tagName === 'CANVAS') {
                 lastPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
             }
-            
+
         })
         document.getElementById("threeDiv").addEventListener("touchmove", (event) => {
-            if(event.target.tagName === 'CANVAS'){
+            if (event.target.tagName === 'CANVAS') {
                 if (event.targetTouches.length === 1) {
                     thisPoint = new Vector2(event.targetTouches[0].clientX, event.targetTouches[0].clientY)
                     this.camera.forwardRotationScalar = (thisPoint.x - lastPoint.x) / 100;
@@ -37,36 +37,30 @@ export class ControlEvents {
         })
 
         document.getElementById("threeDiv").addEventListener("touchend", (event) => {
-            if(event.target.tagName === 'CANVAS'){
-                this.camera.forwardRotationScalar = 0;
-                this.camera.sideRotationScalar = 0;
-            }
+            this.camera.forwardRotationScalar = 0;
+            this.camera.sideRotationScalar = 0;
         })
     }
 
     addDesktopEvents() {
         const self = this
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
-            if(evt.target.tagName === 'CANVAS'){
+            if (evt.target.tagName === 'CANVAS') {
                 self.camera.setInitPointRotate(evt.clientX, evt.clientY)
                 self.mouseDown = true
             }
         })
 
         document.getElementById("threeDiv").addEventListener('mousemove', (evt) => {
-            if(evt.target.tagName === 'CANVAS'){
-                if (self.mouseDown === true) {
-                    self.camera.rotateMouse(evt.clientX)
-                    self.camera.rotateVerticalMouse(evt.clientY)
-                    self.camera.setInitPointRotate(evt.clientX, evt.clientY)
-                }
+            if (self.mouseDown === true) {
+                self.camera.rotateMouse(evt.clientX)
+                self.camera.rotateVerticalMouse(evt.clientY)
+                self.camera.setInitPointRotate(evt.clientX, evt.clientY)
             }
         })
 
         document.getElementById("threeDiv").addEventListener('mouseleave', (evt) => {
-            if(evt.target.tagName === 'CANVAS'){
-                self.mouseDown = false
-            }
+            self.mouseDown = false
         })
 
         const onKeyDown = (event) => {
@@ -103,28 +97,28 @@ export class ControlEvents {
                 case 'ArrowUp':
                 case 'KeyW':
                     this.moveForward = false;
-                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT', 'menu-view');
                     document.dispatchEvent(new Event("stopCurrentSound"))
                     break;
 
                 case 'ArrowLeft':
                 case 'KeyA':
                     this.moveLeft = false;
-                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT', 'menu-view');
                     document.dispatchEvent(new Event("stopCurrentSound"))
                     break;
 
                 case 'ArrowDown':
                 case 'KeyS':
                     this.moveBackward = false;
-                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT', 'menu-view');
                     document.dispatchEvent(new Event("stopCurrentSound"))
                     break;
 
                 case 'ArrowRight':
                 case 'KeyD':
                     this.moveRight = false;
-                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT','menu-view');
+                    window.$nuxt.$emit('CHANGE-MENU-VIEW-EVENT', 'menu-view');
                     document.dispatchEvent(new Event("stopCurrentSound"))
                     break;
 
