@@ -84,7 +84,7 @@ class SceneInit {
         this.yRaycaster = new THREE.Raycaster(this.camera.position, new THREE.Vector3(0, -1, 0))
 
 
-        const light = new THREE.AmbientLight(0x404040, 0.5);
+        const light = new THREE.AmbientLight(0x404040, 4);
         this.scene.add(light)
 
         window.addEventListener('resize', this.onResize.bind(this));
