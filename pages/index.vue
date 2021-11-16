@@ -4,7 +4,7 @@
       <div class="p-4">
         <AppLogo/>
         <div class="text-center font-bold text-xl mt-14">
-          <p>Comming Soon...</p>
+          <p>Coming Soon...</p>
         </div>
         <!-- <div>
           <div class="text-sm text-center my-14  sm:hidden">
