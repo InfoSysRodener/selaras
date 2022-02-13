@@ -1,21 +1,21 @@
 <template>
     <div class="flex flex-col items-center w-full h-full">
-        <div class="pt-20 flex flex-row justify-center items-center">
+        <div class="pt-28 flex flex-row justify-center items-center">
           <h1 class="font-semibold text-lg xl:text-4xl tracking-widest text-center"> Meet The Artist </h1>
         </div>
-        <div class="my-10 grid grid-cols-7">
+        <div class="my-14 flex flex-row">
             <div class="col-span-2">
-              <img class="h-32 sm:h-56 lg:h-96 w-full object-cover" src="~/assets/images/3.svg">
+              <img class="h-xl w-full object-contain" src="~/assets/images/3.svg">
             </div>
-            <div class="col-span-3"> 
-                <video class="w-full  h-full lg:h-96" controls>
-                  <!-- <source src="mov_bbb.mp4" type="video/mp4">
-                    <source src="mov_bbb.ogg" type="video/ogg"> -->
+            <div class="col-span-7"> 
+                <video  class="w-full h-xl" controls Autoplay=autoplay>
+                    <source src="/3D/meet_the_artist.mov" type="video/mp4">
+                     <!-- <source src="/3D/selarasvideo.mp4" type="video/mp4">  -->
                     Your browser does not support HTML video.
                 </video>
             </div>
             <div class="col-span-2">
-                <img class="h-32 sm:h-56 lg:h-96 w-full object-cover" src="~/assets/images/5.svg">
+                <img class="h-xl w-full object-contain" src="~/assets/images/5.svg">
             </div>
         </div>
         <div class="pb-10 w-1/3">

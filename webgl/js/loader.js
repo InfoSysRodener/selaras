@@ -847,7 +847,11 @@ export class Loader {
             }
             if (storePainting) {
                 for (let i = 0; i < object.scene.children.length; i++) {
-                    self.allPaintingsDict[object.scene.children[i].name].object = object.scene.children[i]
+                    // console.log('fixing',  self.allPaintingsDict[object.scene.children[i].name]);
+                    // console.log( 'object length', object.scene.children.length)
+                    if(typeof self.allPaintingsDict[object.scene.children[i].name] !== 'undefined'){
+                        self.allPaintingsDict[object.scene.children[i].name].object = object.scene.children[i]
+                    }
                 }
                 document.dispatchEvent(new Event("paintingsLoaded"))
             }
