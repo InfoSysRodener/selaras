@@ -5,6 +5,7 @@ import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
 // eslint-disable-next-line import/namespace
 import { Loader } from './loader'
+import { Color } from 'three';
 
 
 class SceneInit {
@@ -30,6 +31,8 @@ class SceneInit {
     constructor(options) {
         this.container = options.dom;
         this.scene = new THREE.Scene();
+        //set scene bg color
+        this.scene.background = new THREE.Color(0xffffff)
 
         this.width = this.container.clientWidth;
         this.height = this.container.clientHeight;
@@ -159,6 +162,7 @@ class SceneInit {
 
                 self.video.play();
                 self.videoIsPlaying = true
+                console.log(this.scene.children)
             }
 
 

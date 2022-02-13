@@ -9,10 +9,12 @@
             <div>
                 <h1 class="font-medium text-2xl">Art Catalogue</h1>
                 <div class="flex w-32 mt-3">
-                    <p class="text-xs underline w-32 cursor-pointer">
-                        download
-                    </p>
-                    <img class="cursor-pointer" src="~/assets/icons/pdf.svg" />
+                    <a class="flex items-center" href="/3D/Selaras-Art-Space-ecatalog.pdf" download>
+                        <p class="text-xs underline w-32 cursor-pointer">
+                            download
+                        </p>
+                        <img class="cursor-pointer" src="~/assets/icons/pdf.svg" />
+                    </a>
                 </div>
             </div>
         </div> 
