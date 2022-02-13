@@ -33,7 +33,7 @@ class SceneInit {
         this.scene = new THREE.Scene();
         //set scene bg color
         this.scene.background = new THRE.Color(0xffffff)
-        
+
         this.width = this.container.clientWidth;
         this.height = this.container.clientHeight;
 
@@ -162,6 +162,7 @@ class SceneInit {
 
                 self.video.play();
                 self.videoIsPlaying = true
+                console.log(this.scene.children)
             }
 
 
