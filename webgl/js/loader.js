@@ -24,16 +24,16 @@ export class Loader {
             z: -40.6,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUBJECTION I',
-                meshName:'subjection1',
-                size:'40x30 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'3,500,000',
-                audio:'2. subjection.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUBJECTION I',
+                meshName: 'subjection1',
+                size: '40x30 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '3,500,000',
+                audio: '2. subjection.mp3'
             }
         },
         subjection2:
@@ -45,16 +45,16 @@ export class Loader {
             rotate: -0.6,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUBJECTION II',
-                meshName:'subjection2',
-                size:'40x30 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'3,500,000',
-                audio:'2. subjection.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUBJECTION II',
+                meshName: 'subjection2',
+                size: '40x30 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '3,500,000',
+                audio: '2. subjection.mp3'
             }
         },
         subjection3:
@@ -66,16 +66,16 @@ export class Loader {
             rotate: -0.4,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUBJECTION III',
-                meshName:'subjection3',
-                size:'40x30 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'3,500,000',
-                audio:'2. subjection.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUBJECTION III',
+                meshName: 'subjection3',
+                size: '40x30 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '3,500,000',
+                audio: '2. subjection.mp3'
             }
         },
         sentient1:
@@ -87,16 +87,16 @@ export class Loader {
             rotate: -1.25,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SENTIENT I',
-                meshName:'sentient1',
-                size:'40x30 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'3,500,000',
-                audio:'3. sentient.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SENTIENT I',
+                meshName: 'sentient1',
+                size: '40x30 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '3,500,000',
+                audio: '3. sentient.mp3'
             }
         },
         sentient2:
@@ -108,16 +108,16 @@ export class Loader {
             rotate: -1.25,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SENTIENT II',
-                meshName:'sentient2',
-                size:'40x30 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'3,500,000',
-                audio:'3. sentient.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SENTIENT II',
+                meshName: 'sentient2',
+                size: '40x30 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '3,500,000',
+                audio: '3. sentient.mp3'
             }
         },
         sentient3:
@@ -129,16 +129,16 @@ export class Loader {
             rotate: -1.1,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SENTIENT III',
-                meshName:'sentient3',
-                size:'40x30 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'3,500,000',
-                audio:'3. sentient.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SENTIENT III',
+                meshName: 'sentient3',
+                size: '40x30 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '3,500,000',
+                audio: '3. sentient.mp3'
             }
         },
         suplication1:
@@ -150,16 +150,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUPLICATION I',
-                meshName:'suplication1',
-                size:'50x70 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,500,000',
-                audio:'4. suplication.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUPLICATION I',
+                meshName: 'suplication1',
+                size: '50x70 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,500,000',
+                audio: '4. suplication.mp3'
             }
         },
         suplication2:
@@ -171,16 +171,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUPLICATION II',
-                meshName:'suplication2',
-                size:'50x70 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,500,000',
-                audio:'4. suplication.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUPLICATION II',
+                meshName: 'suplication2',
+                size: '50x70 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,500,000',
+                audio: '4. suplication.mp3'
             }
         },
         suplication3:
@@ -192,16 +192,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUPLICATION III',
-                meshName:'suplication3',
-                size:'50x70 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,500,000',
-                audio:'4. suplication.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUPLICATION III',
+                meshName: 'suplication3',
+                size: '50x70 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,500,000',
+                audio: '4. suplication.mp3'
             }
         },
         suplication4:
@@ -213,16 +213,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUPLICATION IV',
-                meshName:'suplication4',
-                size:'50x70 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,500,000',
-                audio:'4. suplication.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUPLICATION IV',
+                meshName: 'suplication4',
+                size: '50x70 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,500,000',
+                audio: '4. suplication.mp3'
             }
         },
         suplication5:
@@ -234,16 +234,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'SUPLICATION V',
-                meshName:'suplication5',
-                size:'50x70 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,500,000',
-                audio:'4. suplication.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'SUPLICATION V',
+                meshName: 'suplication5',
+                size: '50x70 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,500,000',
+                audio: '4. suplication.mp3'
             }
         },
         contrive:
@@ -255,16 +255,16 @@ export class Loader {
             rotate: 4.71239,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'CONTRIVE',
-                meshName:'contrive',
-                size:'60x40 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'5,500,000',
-                audio:'5. contrive.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'CONTRIVE',
+                meshName: 'contrive',
+                size: '60x40 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '5,500,000',
+                audio: '5. contrive.mp3'
             }
         },
         inunct1:
@@ -276,16 +276,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'INUNCT I',
-                meshName:'inunct1',
-                size:'60x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'6,500,000',
-                audio:'6. inunct.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'INUNCT I',
+                meshName: 'inunct1',
+                size: '60x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '6,500,000',
+                audio: '6. inunct.mp3'
             }
         },
         inunct2:
@@ -297,16 +297,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'INUNCT II',
-                meshName:'inunct2',
-                size:'60x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'6,500,000',
-                audio:'6. inunct.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'INUNCT II',
+                meshName: 'inunct2',
+                size: '60x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '6,500,000',
+                audio: '6. inunct.mp3'
             }
         },
         inunct3:
@@ -318,16 +318,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'INUNCT III',
-                meshName:'inunct3',
-                size:'60x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'6,500,000',
-                audio:'6. inunct.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'INUNCT III',
+                meshName: 'inunct3',
+                size: '60x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '6,500,000',
+                audio: '6. inunct.mp3'
             }
         },
         inunct4:
@@ -339,16 +339,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'INUNCT IV',
-                meshName:'inunct4',
-                size:'60x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'6,500,000',
-                audio:'6. inunct.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'INUNCT IV',
+                meshName: 'inunct4',
+                size: '60x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '6,500,000',
+                audio: '6. inunct.mp3'
             }
         },
         exempt:
@@ -360,16 +360,16 @@ export class Loader {
             rotate: 2.4,
             object: {},
             sound: '',
-            details:{
-                artistName:'Widi Wardani',
-                photo:'',
-                title:'EXEMPT',
-                meshName:'exempt',
-                size:'100x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'9,000,000',
-                audio:'7. ecempt.mp3' 
+            details: {
+                artistName: 'Widi Wardani',
+                photo: '',
+                title: 'EXEMPT',
+                meshName: 'exempt',
+                size: '100x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '9,000,000',
+                audio: '7. ecempt.mp3'
             }
         },
         landscapeoflife5:
@@ -381,16 +381,16 @@ export class Loader {
             rotate: 3.125,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'LANDSCAPE OF LIFE SERIES',
-                meshName:'landscapeoflife5',
-                size:'100x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'LOL_01.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'LANDSCAPE OF LIFE SERIES',
+                meshName: 'landscapeoflife5',
+                size: '100x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'LOL_01.mp4'
             }
         },
         landscapeoflife1:
@@ -402,16 +402,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'LANDSCAPE OF LIFE SERIES',
-                meshName:'landscapeoflife1',
-                size:'100x60 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'7,500,000',
-                audio:'LOL_02.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'LANDSCAPE OF LIFE SERIES',
+                meshName: 'landscapeoflife1',
+                size: '100x60 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '7,500,000',
+                audio: 'LOL_02.mp4'
             }
         },
         landscapeoflife6:
@@ -423,16 +423,16 @@ export class Loader {
             rotate: 3.15,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'LANDSCAPE OF LIFE SERIES',
-                meshName:'landscapeoflife6',
-                size:'125x60 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'LOL_03.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'LANDSCAPE OF LIFE SERIES',
+                meshName: 'landscapeoflife6',
+                size: '125x60 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'LOL_03.mp4'
             }
         },
         landscapeoflife4:
@@ -444,16 +444,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'LANDSCAPE OF LIFE SERIES',
-                meshName:'landscapeoflife4',
-                size:'100x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'LOL_04.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'LANDSCAPE OF LIFE SERIES',
+                meshName: 'landscapeoflife4',
+                size: '100x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'LOL_04.mp4'
             }
         },
         landscapeoflife3:
@@ -465,16 +465,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'LANDSCAPE OF LIFE SERIES',
-                meshName:'landscapeoflife3',
-                size:'100x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'LOL_05.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'LANDSCAPE OF LIFE SERIES',
+                meshName: 'landscapeoflife3',
+                size: '100x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'LOL_05.mp4'
             }
         },
         landscapeoflife2:
@@ -486,16 +486,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'LANDSCAPE OF LIFE SERIES',
-                meshName:'landscapeoflife2',
-                size:'100x60 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'7,500,000',
-                audio:'LOL_06.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'LANDSCAPE OF LIFE SERIES',
+                meshName: 'landscapeoflife2',
+                size: '100x60 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '7,500,000',
+                audio: 'LOL_06.mp4'
             }
         },
         kontemplasi1:
@@ -507,16 +507,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi1',
-                size:'50x50 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,000,000',
-                audio:'KS_02.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi1',
+                size: '50x50 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,000,000',
+                audio: 'KS_02.mp4'
             }
         },
         kontemplasi2:
@@ -528,16 +528,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi2',
-                size:'50x50 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'4,000,000',
-                audio:'KS_03.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi2',
+                size: '50x50 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '4,000,000',
+                audio: 'KS_03.mp4'
             }
         },
         kontemplasi3:
@@ -549,16 +549,16 @@ export class Loader {
             rotate: 0,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi3',
-                size:'100x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'KS_01.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi3',
+                size: '100x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'KS_01.mp4'
             }
         },
         untitled2:
@@ -570,16 +570,16 @@ export class Loader {
             rotate: -1.5708,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'UNTITLED',
-                meshName:'untitled2',
-                size:'100x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'UTL_01.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'UNTITLED',
+                meshName: 'untitled2',
+                size: '100x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'UTL_01.mp4'
             }
         },
         hikayathidup2:
@@ -591,16 +591,16 @@ export class Loader {
             rotate: 1.15,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'HIKAYAT POHON HIDUP SERIES',
-                meshName:'hikayathidup2',
-                size:'100x60 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'7,500,000',
-                audio:'HPH_02.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'HIKAYAT POHON HIDUP SERIES',
+                meshName: 'hikayathidup2',
+                size: '100x60 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '7,500,000',
+                audio: 'HPH_02.mp4'
             }
         },
         hikayathidup1:
@@ -612,16 +612,16 @@ export class Loader {
             rotate: 1.25,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'HIKAYAT POHON HIDUP SERIES',
-                meshName:'hikayathidup1',
-                size:'100x60 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'7,500,000',
-                audio:'HPH_01.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'HIKAYAT POHON HIDUP SERIES',
+                meshName: 'hikayathidup1',
+                size: '100x60 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '7,500,000',
+                audio: 'HPH_01.mp4'
             }
         },
         untitled1:
@@ -633,16 +633,16 @@ export class Loader {
             rotate: -1.5708,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'UNTITLED',
-                meshName:'untitled1',
-                size:'100x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'UTL_02.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'UNTITLED',
+                meshName: 'untitled1',
+                size: '100x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'UTL_02.mp4'
             }
         },
         hikayathidup3:
@@ -654,16 +654,16 @@ export class Loader {
             rotate: 1.05,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'HIKAYAT POHON HIDUP SERIES',
-                meshName:'hikayathidup3',
-                size:'80x150 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'10,000,000',
-                audio:'HPH_03.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'HIKAYAT POHON HIDUP SERIES',
+                meshName: 'hikayathidup3',
+                size: '80x150 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '10,000,000',
+                audio: 'HPH_03.mp4'
             }
         },
         kontemplasi4:
@@ -675,16 +675,16 @@ export class Loader {
             rotate: 3.14159,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi4',
-                size:'100x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'KS_04.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi4',
+                size: '100x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'KS_04.mp4'
             }
         },
         kontemplasi5:
@@ -696,16 +696,16 @@ export class Loader {
             rotate: -1.5708,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi5',
-                size:'70x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'7,000,000',
-                audio:'KS_05.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi5',
+                size: '70x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '7,000,000',
+                audio: 'KS_05.mp4'
             }
         },
         baur:
@@ -717,16 +717,16 @@ export class Loader {
             rotate: -0.315,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'BAUR',
-                meshName:'baur',
-                size:'125x125 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'10,000,000',
-                audio:'BAUR.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'BAUR',
+                meshName: 'baur',
+                size: '125x125 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '10,000,000',
+                audio: 'BAUR.mp4'
             }
         },
         kontemplasi7:
@@ -738,16 +738,16 @@ export class Loader {
             rotate: -1.5708,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi7',
-                size:'100x80 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'KS_06.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi7',
+                size: '100x80 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'KS_06.mp4'
             }
         },
         kontemplasi8:
@@ -759,16 +759,16 @@ export class Loader {
             rotate: -1.5708,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi8',
-                size:'140x120 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'12,000,000',
-                audio:'KS_07.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi8',
+                size: '140x120 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '12,000,000',
+                audio: 'KS_07.mp4'
             }
         },
         kontemplasi6:
@@ -780,16 +780,16 @@ export class Loader {
             rotate: -1.5708,
             object: {},
             sound: '',
-            details:{
-                artistName:'Sandy Tisa',
-                photo:'',
-                title:'KONTEMPLASI SERIES',
-                meshName:'kontemplasi6',
-                size:'80x100 cm',
-                media:'acrylic on kanvas',
-                year:'2021',
-                price:'8,000,000',
-                audio:'KS_08.mp4' 
+            details: {
+                artistName: 'Sandy Tisa',
+                photo: '',
+                title: 'KONTEMPLASI SERIES',
+                meshName: 'kontemplasi6',
+                size: '80x100 cm',
+                media: 'acrylic on kanvas',
+                year: '2021',
+                price: '8,000,000',
+                audio: 'KS_08.mp4'
             }
         }
     }
@@ -800,7 +800,7 @@ export class Loader {
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/'); // use a full url path
         // dracoLoader.setDecoderPath('/draco/'); 
-        
+
         this.gltfLoader = new GLTFLoader(this.loadingManager);
         this.gltfLoader.setDRACOLoader(dracoLoader);
 
@@ -829,7 +829,7 @@ export class Loader {
                 texture.dispose();
                 pmremGenerator.dispose();
 
-                //    that.renderer.render(that.scene, that.scene.camera);
+                that.renderer.render(that.scene, that.scene.camera);
             })
     }
 
@@ -849,7 +849,7 @@ export class Loader {
                 for (let i = 0; i < object.scene.children.length; i++) {
                     // console.log('fixing',  self.allPaintingsDict[object.scene.children[i].name]);
                     // console.log( 'object length', object.scene.children.length)
-                    if(typeof self.allPaintingsDict[object.scene.children[i].name] !== 'undefined'){
+                    if (typeof self.allPaintingsDict[object.scene.children[i].name] !== 'undefined') {
                         self.allPaintingsDict[object.scene.children[i].name].object = object.scene.children[i]
                     }
                 }
@@ -997,19 +997,19 @@ export class Loader {
 
     setUpLoadManager() {
         this.loadingManager.onStart = (url, itemsLoaded, itemsTotal) => {
-            console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+            console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
         };
         this.loadingManager.onLoad = () => {
             // const event = new Event(this.onModelLoadEventName);
             // document.dispatchEvent(event)
         };
         this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
-            console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+            console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
             const progress = (itemsLoaded / itemsTotal * 100);
-            window.$nuxt.$emit('LOADING-SCENE', { itemsLoaded, itemsTotal , progress });
+            window.$nuxt.$emit('LOADING-SCENE', { itemsLoaded, itemsTotal, progress });
         };
         this.loadingManager.onError = (url) => {
-            console.log( 'There was an error loading ' + url );
+            console.log('There was an error loading ' + url);
         };
     }
 
