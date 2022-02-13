@@ -34,8 +34,10 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 pr-2 sm:px-6 sm:flex justify-end items-center">
-                            <label class="text-xs underline pr-2 cursor-pointer">Buy</label>
-                            <img class="w-10 cursor-pointer" src="~/assets/icons/menu/cart.svg"/>
+                            <a href="https://wa.me/+6287774288558" target="_blank">
+                                <label class="text-xs underline pr-2 cursor-pointer">Buy</label>
+                                <img class="w-10 cursor-pointer" src="~/assets/icons/menu/cart.svg"/>
+                            </a>
                         </div>
                     </div>
                 </div>

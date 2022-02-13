@@ -20,8 +20,8 @@ export class Loader {
             position: 1,
             distance: 2,
             rotate: -0.85,
-            x: 19.4,
-            z: -40.6,
+            x: 25.36,
+            z: 55.67,
             object: {},
             sound: '',
             details:{
@@ -82,8 +82,8 @@ export class Loader {
         {
             position: 4,
             distance: 2,
-            x: 2.33,
-            z: -9.18,
+            x: 1.29,
+            z: -17,
             rotate: -1.25,
             object: {},
             sound: '',
@@ -103,8 +103,8 @@ export class Loader {
         {
             position: 5,
             distance: 2,
-            x: 1.96,
-            z: -10.65,
+            x: 1.29,
+            z: -20,
             rotate: -1.25,
             object: {},
             sound: '',
@@ -124,8 +124,8 @@ export class Loader {
         {
             position: 6,
             distance: 2,
-            x: 1.64,
-            z: -11.89,
+            x: 1.29,
+            z: -23,
             rotate: -1.1,
             object: {},
             sound: '',
@@ -848,7 +848,7 @@ export class Loader {
             if (storePainting) {
                 for (let i = 0; i < object.scene.children.length; i++) {
                     // console.log('fixing',  self.allPaintingsDict[object.scene.children[i].name]);
-                    // console.log( 'object length', object.scene.children.length)
+                    // console.log( 'object length', object.scene.children.length)w
                     if(typeof self.allPaintingsDict[object.scene.children[i].name] !== 'undefined'){
                         self.allPaintingsDict[object.scene.children[i].name].object = object.scene.children[i]
                     }

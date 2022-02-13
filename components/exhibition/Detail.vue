@@ -26,14 +26,14 @@
            {{ content[1] }}
         </p>
 
-        <div class="mt-14">
+        <!-- <div class="mt-14">
             <h1 class="text-lg">Share this exhibition</h1>
             <div class="mt-2 flex flex-row">
                 <img class="w-12" src="~/assets/icons/social/facebook-outline.svg" />
                 <img class="w-12" src="~/assets/icons/social/twitter-outline.svg"/>
                 <img class="w-12" src="~/assets/icons/social/email-outline.svg" />
             </div>
-        </div>
+        </div> -->
      </div>
     </div>
 </template>
