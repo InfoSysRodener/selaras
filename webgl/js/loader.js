@@ -823,7 +823,7 @@ export class Loader {
 
                 const envMap = pmremGenerator.fromEquirectangular(texture).texture;
 
-                that.scene.background = envMap;
+                // that.scene.background = envMap;
                 that.scene.environment = envMap;
 
                 texture.dispose();
