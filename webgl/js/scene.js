@@ -32,7 +32,7 @@ class SceneInit {
         this.container = options.dom;
         this.scene = new THREE.Scene();
         //set scene bg color
-        this.scene.background = new THRE.Color(0xffffff)
+        this.scene.background = new THREE.Color(0xffffff)
 
         this.width = this.container.clientWidth;
         this.height = this.container.clientHeight;
