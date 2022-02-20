@@ -1,12 +1,12 @@
 
 class ListenMode {
     previous
-    next 
+    next
     play
     pause
     resume
 
-    constructor(options){
+    constructor(options) {
         this.play = options.play;
         this.pause = options.pause;
         this.resume = options.resume;

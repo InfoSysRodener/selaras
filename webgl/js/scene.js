@@ -5,7 +5,6 @@ import { CameraControls } from './CameraControls';
 import { ControlEvents } from './ControlEvents';
 // eslint-disable-next-line import/namespace
 import { Loader } from './loader'
-import { Color } from 'three';
 
 
 class SceneInit {
@@ -22,7 +21,8 @@ class SceneInit {
     videoTexture
     videoImageContext
     videoIsPlaying = false
-    movieMesh
+    movieMesh1
+    movieMesh2
     pointerdownCount = 0
     mouseRaycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
@@ -31,7 +31,8 @@ class SceneInit {
     constructor(options) {
         this.container = options.dom;
         this.scene = new THREE.Scene();
-        //set scene bg color
+        //  set scene bg color
+
         this.scene.background = new THREE.Color(0xffffff)
 
         this.width = this.container.clientWidth;
@@ -150,19 +151,19 @@ class SceneInit {
                 self.videoTexture.flipY = true
                 self.videoTexture.wrapS = THREE.RepeatWrapping;
                 self.videoTexture.repeat.x = - 1;
-
-                const movieMaterial = new THREE.MeshBasicMaterial({ map: self.videoTexture });
-                self.loader.allMeshes[0].children[1].material = movieMaterial
-                self.loader.allMeshes[0].children[1].userData.ingore = true
-                self.movieMesh = new THREE.Mesh(geometry, material);
-                self.movieMesh.userData.ingore = true
-                self.movieMesh.position.set(self.loader.allMeshes[0].position.x, 2, -7.25)
-                self.movieMesh.visible = false
-                self.scene.add(self.movieMesh);
-
+                const movieMaterial = new THREE.MeshBasicMaterial({ map: self.videoTexture});
+                for (let i = 0; i < self.loader.allMeshes.length; i++) {
+                    if (self.loader.allMeshes[i].name === "gallery_lcd") {
+                        self.loader.allMeshes[i].children[1].material = movieMaterial
+                        self.movieMesh1 = self.loader.allMeshes[i].children[1]
+                    }
+                    if(self.loader.allMeshes[i].name === "rotunda_lcd"){
+                        self.loader.allMeshes[i].children[1].material = movieMaterial
+                        self.movieMesh2 = self.loader.allMeshes[i].children[1]
+                    }
+                }
                 self.video.play();
                 self.videoIsPlaying = true
-                console.log(this.scene.children)
             }
 
 
@@ -274,7 +275,7 @@ class SceneInit {
             if (self.pointerdownCount >= 2) {
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
-                if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length-1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length-1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length-2]) {
+                if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 2]) {
                     gsap.to(self.camera.position, {
                         x: intersects[0].point.x,
                         z: intersects[0].point.z,
@@ -494,15 +495,11 @@ class SceneInit {
     }
 
     setTarget(evt, dict) {
+        this.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
+        this.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
 
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-
-        mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
-
-        raycaster.setFromCamera(mouse, this.camera);
-        const intersects = raycaster.intersectObjects(this.scene.children);
+        this.mouseRaycaster.setFromCamera(this.mouse, this.camera);
+        const intersects = this.mouseRaycaster.intersectObjects(this.scene.children);
         if (intersects[0]) {
             for (const key in dict) {
                 if (intersects[0].object === dict[key].object.children[0]) {
@@ -532,8 +529,15 @@ class SceneInit {
 
     checkVideoDistance() {
         if (this.videoAudio) {
-            const dist = this.camera.position.distanceToSquared(this.movieMesh.position)
+            const dist = this.camera.position.distanceToSquared(this.movieMesh1.position)
             if (dist * 0.03 >= 0 && dist * 0.03 <= 1) {
+                this.video.volume = 1 - (dist * 0.03)
+            }
+            else {
+                this.video.volume = 0
+            }
+            const dist2 = this.camera.position.distanceToSquared(this.movieMesh2.position)
+            if (dist2 * 0.03 >= 0 && dist * 0.03 <= 1) {
                 this.video.volume = 1 - (dist * 0.03)
             }
             else {
