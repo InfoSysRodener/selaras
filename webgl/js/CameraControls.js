@@ -37,7 +37,7 @@ export class CameraControls {
 
         this.initAngle += clientY
         if (this.checkCameraRotationMouse(this.initAngle) === false) {
-            this.camera.rotateOnWorldAxis(v3, -clientY * 3)
+            this.camera.rotateOnWorldAxis(v3, -clientY * 2)
         } else {
             this.initAngle -= clientY
         }
@@ -45,7 +45,7 @@ export class CameraControls {
     }
 
     rotate(clientX) {
-        this.camera.rotateOnWorldAxis(new Vector3(0, 1, 0), (clientX / 150))
+        this.camera.rotateOnWorldAxis(new Vector3(0, 1, 0), (clientX / 100))
         this.camera.rotation.z = 0
     }
 
