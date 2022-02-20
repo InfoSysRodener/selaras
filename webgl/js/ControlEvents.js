@@ -1,4 +1,6 @@
 import { Vector2 } from 'three'
+import nipplejs from "nipplejs"
+
 
 export class ControlEvents {
 
@@ -14,10 +16,35 @@ export class ControlEvents {
     constructor(camera, scene) {
         this.camera = camera
         this.scene = scene
+        this.joystick = nipplejs.create({
+            zone: document.getElementById('controlsDiv'),
+            mode: 'static',
+            position: { left: '90%', top: '90%' },
+            color: 'gray'
+        });
     }
 
     addMobileEvents() {
         let thisPoint, lastPoint
+
+
+        // this.joystick.on("move", (evt, data) => {
+        //     if (this.touchDown) {
+        //         self.camera.forwardMovementScalar = data.vector.y / 10
+        //         self.camera.sideMovementScalar = data.vector.x / 10
+        //     }
+        // })
+
+        // this.joystick.on("start", () => {
+        //     this.touchDown = true
+        // })
+
+        // this.joystick.on("end", () => {
+        //     this.touchDown = false
+        //     self.camera.forwardMovementScalar = 0
+        //     self.camera.sideMovementScalar = 0
+        // })
+
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             console.log(event.target);
             if (event.target.tagName === 'CANVAS') {
