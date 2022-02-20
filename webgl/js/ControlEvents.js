@@ -26,24 +26,24 @@ export class ControlEvents {
 
     addMobileEvents() {
         let thisPoint, lastPoint
+        const self = this
 
+        this.joystick.on("move", (evt, data) => {
+            if (this.touchDown) {
+                self.camera.forwardMovementScalar = data.vector.y / 10
+                self.camera.sideMovementScalar = data.vector.x / 10
+            }
+        })
 
-        // this.joystick.on("move", (evt, data) => {
-        //     if (this.touchDown) {
-        //         self.camera.forwardMovementScalar = data.vector.y / 10
-        //         self.camera.sideMovementScalar = data.vector.x / 10
-        //     }
-        // })
+        this.joystick.on("start", () => {
+            this.touchDown = true
+        })
 
-        // this.joystick.on("start", () => {
-        //     this.touchDown = true
-        // })
-
-        // this.joystick.on("end", () => {
-        //     this.touchDown = false
-        //     self.camera.forwardMovementScalar = 0
-        //     self.camera.sideMovementScalar = 0
-        // })
+        this.joystick.on("end", () => {
+            this.touchDown = false
+            self.camera.forwardMovementScalar = 0
+            self.camera.sideMovementScalar = 0
+        })
 
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             console.log(event.target);

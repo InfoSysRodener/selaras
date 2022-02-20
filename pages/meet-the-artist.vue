@@ -8,14 +8,14 @@
               <img class="h-xl w-full object-contain" src="~/assets/images/3.svg">
             </div>
             <div class="col-span-7"> 
-                <video  class="w-full h-xl" controls Autoplay=autoplay>
+                <video  class="w-full h-32 sm:h-xl" controls Autoplay=autoplay>
                     <source src="/3D/meet_the_artist.mov" type="video/mp4">
                      <!-- <source src="/3D/selarasvideo.mp4" type="video/mp4">  -->
                     Your browser does not support HTML video.
                 </video>
             </div>
             <div class="col-span-2">
-                <img class="h-xl w-full object-contain" src="~/assets/images/5.svg">
+                <img class="h-32 sm:h-xl w-full object-contain" src="~/assets/images/5.svg">
             </div>
         </div>
         <div class="pb-10 w-1/3">
