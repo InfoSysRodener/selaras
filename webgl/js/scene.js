@@ -350,7 +350,9 @@ class SceneInit {
 
     addControls() {
         this.controls = new ControlEvents(this.cameraControls, this)
-        if (this.mobileAndTabletCheck()) {
+        const isMobile = this.mobileAndTabletCheck()
+        console.log(isMobile)
+        if (isMobile) {
             this.controls.addMobileEvents()
         }
         else {
