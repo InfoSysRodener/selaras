@@ -16,17 +16,18 @@ export class ControlEvents {
     constructor(camera, scene) {
         this.camera = camera
         this.scene = scene
+    }
+
+    addMobileEvents() {
+        let thisPoint, lastPoint
+        const self = this
+
         this.joystick = nipplejs.create({
             zone: document.getElementById('controlsDiv'),
             mode: 'static',
             position: { left: '90%', top: '90%' },
             color: 'gray'
         });
-    }
-
-    addMobileEvents() {
-        let thisPoint, lastPoint
-        const self = this
 
         this.joystick.on("move", (evt, data) => {
             if (this.touchDown) {
