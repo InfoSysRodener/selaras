@@ -29,9 +29,7 @@ export class ControlEvents {
         const self = this
 
         this.joystick.on("move", (evt, data) => {
-            console.log(this.touchDown)
             if (this.touchDown) {
-                console.log(data)
                 self.camera.forwardMovementScalar = data.vector.y / 10
                 self.camera.sideMovementScalar = data.vector.x / 10
             }
