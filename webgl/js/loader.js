@@ -983,7 +983,6 @@ export class Loader {
                     break
                 }
                 case 26: {
-                    console.log(sound)
                     this.allPaintingsDict.untitled2.sound = sound
                     break
                 }
@@ -997,14 +996,14 @@ export class Loader {
 
     setUpLoadManager() {
         this.loadingManager.onStart = (url, itemsLoaded, itemsTotal) => {
-            console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+            // console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
         };
         this.loadingManager.onLoad = () => {
             // const event = new Event(this.onModelLoadEventName);
             // document.dispatchEvent(event)
         };
         this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
-            console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+            // console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
             const progress = (itemsLoaded / itemsTotal * 100);
             window.$nuxt.$emit('LOADING-SCENE', { itemsLoaded, itemsTotal, progress });
         };
