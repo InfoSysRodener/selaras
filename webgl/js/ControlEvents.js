@@ -72,6 +72,7 @@ export class ControlEvents {
     addDesktopEvents() {
         const self = this
         self.joystick.remove()
+        console.log(self.joystick)
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
             if (evt.target.tagName === 'CANVAS') {
                 self.camera.setInitPointRotate(evt.clientX, evt.clientY)
