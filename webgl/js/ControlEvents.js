@@ -16,6 +16,11 @@ export class ControlEvents {
     constructor(camera, scene) {
         this.camera = camera
         this.scene = scene
+    }
+
+    addMobileEvents() {
+        let thisPoint, lastPoint
+        const self = this
 
         this.joystick = nipplejs.create({
             zone: document.getElementById('controlsDiv'),
@@ -23,30 +28,22 @@ export class ControlEvents {
             position: { left: '10%', top: '90%' },
             color: 'gray'
         });
-    }
+        this.joystick.on("move", (evt, data) => {
+            if (this.touchDown) {
+                self.camera.forwardMovementScalar = data.vector.y / 10
+                self.camera.sideMovementScalar = data.vector.x / 10
+            }
+        })
 
-    addMobileEvents() {
-        let thisPoint, lastPoint
-        const self = this
+        this.joystick.on("start", () => {
+            this.touchDown = true
+        })
 
-        if (this.joystick) {
-            this.joystick.on("move", (evt, data) => {
-                if (this.touchDown) {
-                    self.camera.forwardMovementScalar = data.vector.y / 10
-                    self.camera.sideMovementScalar = data.vector.x / 10
-                }
-            })
-
-            this.joystick.on("start", () => {
-                this.touchDown = true
-            })
-
-            this.joystick.on("end", () => {
-                this.touchDown = false
-                self.camera.forwardMovementScalar = 0
-                self.camera.sideMovementScalar = 0
-            })
-        }
+        this.joystick.on("end", () => {
+            this.touchDown = false
+            self.camera.forwardMovementScalar = 0
+            self.camera.sideMovementScalar = 0
+        })
 
 
 
@@ -75,9 +72,6 @@ export class ControlEvents {
 
     addDesktopEvents() {
         const self = this
-        if(self.joystick){
-            self.joystick.remove()
-        }
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
             if (evt.target.tagName === 'CANVAS') {
                 self.camera.setInitPointRotate(evt.clientX, evt.clientY)
