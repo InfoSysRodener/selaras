@@ -29,22 +29,26 @@ export class ControlEvents {
         let thisPoint, lastPoint
         const self = this
 
-        this.joystick.on("move", (evt, data) => {
-            if (this.touchDown) {
-                self.camera.forwardMovementScalar = data.vector.y / 10
-                self.camera.sideMovementScalar = data.vector.x / 10
-            }
-        })
+        if (this.joystick) {
+            this.joystick.on("move", (evt, data) => {
+                if (this.touchDown) {
+                    self.camera.forwardMovementScalar = data.vector.y / 10
+                    self.camera.sideMovementScalar = data.vector.x / 10
+                }
+            })
 
-        this.joystick.on("start", () => {
-            this.touchDown = true
-        })
+            this.joystick.on("start", () => {
+                this.touchDown = true
+            })
 
-        this.joystick.on("end", () => {
-            this.touchDown = false
-            self.camera.forwardMovementScalar = 0
-            self.camera.sideMovementScalar = 0
-        })
+            this.joystick.on("end", () => {
+                this.touchDown = false
+                self.camera.forwardMovementScalar = 0
+                self.camera.sideMovementScalar = 0
+            })
+        }
+
+
 
         document.getElementById("threeDiv").addEventListener("touchstart", (event) => {
             if (event.target.tagName === 'CANVAS') {
@@ -71,8 +75,9 @@ export class ControlEvents {
 
     addDesktopEvents() {
         const self = this
-        self.joystick.remove()
-        console.log(self.joystick)
+        if(self.joystick){
+            self.joystick.remove()
+        }
         document.getElementById("threeDiv").addEventListener('mousedown', (evt) => {
             if (evt.target.tagName === 'CANVAS') {
                 self.camera.setInitPointRotate(evt.clientX, evt.clientY)
