@@ -351,7 +351,6 @@ class SceneInit {
     addControls() {
         this.controls = new ControlEvents(this.cameraControls, this)
         const isMobile = this.mobileAndTabletCheck()
-        console.log(isMobile)
         if (isMobile) {
             this.controls.addMobileEvents()
         }
@@ -537,16 +536,13 @@ class SceneInit {
 
     checkVideoDistance() {
         if (this.videoAudio) {
-            const dist = this.camera.position.distanceToSquared(this.movieMesh1.position)
-            if (dist * 0.03 >= 0 && dist * 0.03 <= 1) {
-                this.video.volume = 1 - (dist * 0.03)
+            const dist1 = this.camera.position.distanceToSquared(this.movieMesh1.parent.position)
+            const dist2 = this.camera.position.distanceToSquared(this.movieMesh2.parent.position)
+            if (dist1 * 0.03 >= 0 && dist1 * 0.03 <= 1) {
+                this.video.volume = 1 - (dist1 * 0.03)
             }
-            else {
-                this.video.volume = 0
-            }
-            const dist2 = this.camera.position.distanceToSquared(this.movieMesh2.position)
-            if (dist2 * 0.03 >= 0 && dist * 0.03 <= 1) {
-                this.video.volume = 1 - (dist * 0.03)
+            else if(dist2 * 0.03 >= 0 && dist2 * 0.03 <= 1){
+                this.video.volume = 1 - (dist2 * 0.03)
             }
             else {
                 this.video.volume = 0
