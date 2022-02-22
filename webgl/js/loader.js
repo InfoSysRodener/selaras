@@ -989,7 +989,7 @@ export class Loader {
 
     setUpLoadManager() {
         this.loadingManager.onStart = (url, itemsLoaded, itemsTotal) => {
-            // console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+            console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
         };
         this.loadingManager.onLoad = () => {
             
