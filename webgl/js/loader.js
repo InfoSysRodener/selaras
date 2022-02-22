@@ -11,7 +11,6 @@ export class Loader {
     gltfLoader
     textureLoader
     scene
-    onModelLoadEventName = 'onModelLoad'
     assetPath = '/3D/'
     allMeshes = []
     allPaintingsDict = {
@@ -820,16 +819,10 @@ export class Loader {
         new RGBELoader().setDataType(UnsignedByteType)
             .setPath(this.assetPath)
             .load('urban_street_01_2k.hdr', function (texture) {
-
                 const envMap = pmremGenerator.fromEquirectangular(texture).texture;
-
-                // that.scene.background = envMap;
                 that.scene.environment = envMap;
-
                 texture.dispose();
                 pmremGenerator.dispose();
-
-                that.renderer.render(that.scene, that.scene.camera);
             })
     }
 
@@ -999,8 +992,7 @@ export class Loader {
             // console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
         };
         this.loadingManager.onLoad = () => {
-            // const event = new Event(this.onModelLoadEventName);
-            // document.dispatchEvent(event)
+            
         };
         this.loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
             // console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');

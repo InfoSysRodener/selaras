@@ -386,7 +386,7 @@ class SceneInit {
             this.collCube.position.copy(this.camera.position)
             this.yRaycaster.set(this.camera.position, new THREE.Vector3(0, -1, 0))
 
-            if (this.video !== undefined) {
+            if (this.video !== undefined && this.videoImageContext !== undefined) {
                 if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
                     this.videoImageContext.drawImage(this.video, 0, 0);
                     if (this.videoTexture)
