@@ -3,13 +3,17 @@
         <div id="threeDiv" ref="container" class="w-full h-screen">
             <slot/>
         </div>
-        <div id="controlsDiv"></div>
+        <div id="controlsDiv" class="ml-5"></div>
    </div>
 </template>
 
 <script>
     import SceneInit from './js/scene.js';    
     export default {
+        // beforeRouteLeave (to, from, next) { 
+        //     document.dispatchEvent(new Event('disposeAll'));
+        //     next();
+        // }, 
         mounted() {
             this.scene = new SceneInit({ dom: this.$refs.container });
 
@@ -20,7 +24,8 @@
         beforeDestroy(){
             this.$nuxt.$off('CLOSED-PAINTING-VIEW');
             document.dispatchEvent(new Event('disposeAll'));
-        }
+        },
+
     }
 </script>
 
