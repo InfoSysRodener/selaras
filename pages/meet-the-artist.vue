@@ -3,19 +3,19 @@
         <div class="pt-28 flex flex-row justify-center items-center">
           <h1 class="font-semibold text-lg xl:text-4xl tracking-widest text-center"> Meet The Artist </h1>
         </div>
-        <div class="my-14 flex flex-row">
-            <div class="hidden sm:block">
-              <img class="h-32 sm:h-xl w-full object-contain" src="~/assets/images/3.svg">
+        <div class="my-14 inline-flex justify-center items-center w-full relative h-xl">
+            <div class="hidden sm:block relative  left-0">
+              <img class="h-xl w-full object-contain" src="~/assets/images/3.svg">
             </div>
-            <div> 
+            <div class="block relative"> 
                 <video ref="myvideo" class="w-full h-full sm:h-xl" controls Autoplay=autoplay>
                     <source src="/3D/meet_the_artist.mov" type="video/mp4">
                      <!-- <source src="/3D/selarasvideo.mp4" type="video/mp4">  -->
                     Your browser does not support HTML video.
                 </video>
             </div>
-            <div class="hidden sm:block">
-                <img class="h-32 sm:h-xl w-full object-contain" src="~/assets/images/5.svg">
+            <div class="hidden sm:block relative right-0">
+                <img class="h-xl w-full object-contain" src="~/assets/images/5.svg">
             </div>
         </div>
         <div class="pb-10 w-1/3">

@@ -4,7 +4,7 @@
         <div class="flex flex-row justify-center w-full content-center h-screen static items-center">
             <div class="py-4 px-5 sm:px-10 sm:w-3/4 lg:w-2/5">
                 <AppLogo/>
-                <Alert v-if="alertMessage" :message="alertMessage" :type="alertType"/>
+                <Alert v-show="showAlert"  :message="alertMessage" :type="alertType"/>
                 <FormulateForm
                     v-if="step === steps.register"
                     key=1
@@ -131,7 +131,14 @@
                                 type="submit"
                                 :disabled="isLoading"
                                 :label="isLoading ? 'Loading...' : 'Sign Up'"
-                                input-class="w-full p-2 bg-orange text-white"
+                                input-class="w-full p-2 bg-orange text-white shadow-lg"
+                            />
+                             <FormulateInput
+                                v-if="showAlert"
+                                type="button"
+                                label="Back"
+                                input-class="w-full p-2 border-1 text-gray-700 mt-2 shadow-lg"
+                                @click="back"
                             />
                         </div>
                     </div>
@@ -167,8 +174,9 @@
                    phone_number:null,
                    phone_prefix:'+62',
                },
-               alertMessage:null,
-               alertType:null,
+               showAlert:false,
+               alertMessage:'',
+               alertType:'info',
                passwordError:null,
                userExists:false,
                isLoading:false,
@@ -178,39 +186,62 @@
             validateRegister(){
                 if(this.isCheck){
                     this.step = this.steps.confirm;
-                    this.alertMessage = null; 
+                    this.showAlert = false; 
                 }else{
                     this.alertType = 'info'
                     this.alertMessage = 'You need to check that you accept the Terms and Conditions';
                 } 
             },
-
-           async register(){
+            back(){
+                 this.step = this.steps.register;
+            },
+            register(){
                 this.isLoading = true;
                 const { email, password } = this.signupForm;
                 try {
 
                     // register
-                    await this.$store.dispatch('auth/register', this.signupForm)
-                    this.alertType = 'info'
-                    this.alertMessage = 'Successfully Register';
+                    this.$store.dispatch('auth/register', this.signupForm).then( async (result) => {
+                        console.log(result);
+                        this.alertType = 'info'
+                        this.alertMessage = 'Successfully Register';
 
-                    // login
-                    await this.$store.dispatch('auth/login', { email, password });
-                    this.isLoading = false;
-                    this.alertMessage = 'Redirecting...';
-                    this.$router.push('/exhibition');
+                        // login
+                        await this.$store.dispatch('auth/login', { email, password });
+                        this.isLoading = false;
+                        this.alertMessage = 'Redirecting...';
+                        this.$router.push('/exhibition');
+                    }).catch(error => {
+                        this.isLoading = false;
+                        this.showAlert = true;
+                        this.alertType = 'error'
+                        if(error.code !== 'InvalidParameterException'){
+                            this.alertMessage = error.message;
+                        }
+                        if(error.code === 'UsernameExistsException' || error.name === 'UsernameExistsException'){
+                            this.alertMessage = error.message;
+                            // this.userExists = true;
+
+                        }
+                        console.log({error});
+                    })
+
+                    
 
                 } catch (error) {
                     this.isLoading = false;
-                    console.log({ error });
+                    // console.log( { error } );
+                    // console.log( error.message );
+                    // console.log( error.name );
                     if(error.code !== 'InvalidParameterException'){
                         this.alertMessage = error.message;
                     }
-                    if(error.code === 'UsernameExistsException'){
+                    if(error.code === 'UsernameExistsException' || error.name === 'UsernameExistsException'){
+                        this.alertMessage = error.message;
                         this.userExists = true;
-                        this.signupForm.email = null;
+                        // this.signupForm.email = null;
                     }
+                  
                 }
            }
         },
