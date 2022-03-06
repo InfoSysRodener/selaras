@@ -5,7 +5,7 @@
         </div>
         <div class="my-14 inline-flex justify-center items-center w-full relative h-xl">
             <div class="hidden sm:block relative  left-0">
-              <img class="h-xl w-full object-contain" src="~/assets/images/3.svg">
+              <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting1.png">
             </div>
             <div class="block relative"> 
                 <video ref="myvideo" class="w-full h-full sm:h-xl" controls Autoplay=autoplay>
@@ -15,7 +15,7 @@
                 </video>
             </div>
             <div class="hidden sm:block relative right-0">
-                <img class="h-xl w-full object-contain" src="~/assets/images/5.svg">
+                <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting2.png">
             </div>
         </div>
         <div class="pb-10 w-1/3">

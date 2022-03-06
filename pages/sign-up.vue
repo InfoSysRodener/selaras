@@ -186,7 +186,8 @@
             validateRegister(){
                 if(this.isCheck){
                     this.step = this.steps.confirm;
-                    this.showAlert = false; 
+                    this.showAlert = false;
+                     
                 }else{
                     this.alertType = 'info'
                     this.alertMessage = 'You need to check that you accept the Terms and Conditions';
