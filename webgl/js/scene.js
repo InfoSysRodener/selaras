@@ -266,6 +266,7 @@ class SceneInit {
         })
 
         document.addEventListener("pointerdown", (evt) => {
+            console.log("POINTERDOWN")
             self.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
             self.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
             self.pointerdownCount++
