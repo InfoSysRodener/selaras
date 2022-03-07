@@ -92,11 +92,11 @@ export class CameraControls {
         const deltaX = clientX - this.initPointX
         const deltaY = clientY - this.initPointY
 
-        this.controlsFoward(deltaY / 10)
-        this.controlsRight(-deltaX / 20)
+        this.controlsFoward(deltaY / 20)
+        this.controlsRight(-deltaX / 30)
         if (this.checkLimits(this.camera.position.x, this.camera.position.y, this.camera.position.z) === false) {
-            this.controlsFoward(-deltaY / 10)
-            this.controlsRight(deltaX / 20)
+            this.controlsFoward(-deltaY / 20)
+            this.controlsRight(deltaX / 30)
         }
     }
 
