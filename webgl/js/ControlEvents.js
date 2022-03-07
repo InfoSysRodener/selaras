@@ -30,8 +30,8 @@ export class ControlEvents {
         });
         this.joystick.on("move", (evt, data) => {
             if (this.touchDown) {
-                self.camera.forwardMovementScalar = data.vector.y / 30
-                self.camera.sideMovementScalar = data.vector.x / 30
+                self.camera.forwardMovementScalar = data.vector.y / 25
+                self.camera.sideMovementScalar = data.vector.x / 25
             }
         })
 
