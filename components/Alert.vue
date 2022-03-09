@@ -3,7 +3,7 @@
         <div v-if="type === 'error'">
             <div class="bg-orange-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
                 <p class="font-bold">Error</p>
-                <p>{{ message }}</p>
+                <p> {{ message }} </p>
             </div>
         </div>
         <div v-if="type === 'info'">
