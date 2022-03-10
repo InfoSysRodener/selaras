@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="148" viewBox="0 0 300 148">
-  <g id="Group_65" data-name="Group 65" transform="translate(-1540 -145)">
+<svg xmlns="http://www.w3.org/2000/svg" width="290" height="228" viewBox="0 0 290 228">
+  <g id="Group_65" data-name="Group 65" transform="translate(-1545 -145)">
     <g id="Group_52" data-name="Group 52" transform="translate(1781 -874)">
       <g id="tap" transform="translate(-119.321 1033.905)">
         <g id="Group_46" data-name="Group 46" transform="translate(0 0)">
@@ -24,7 +24,9 @@
         </g>
       </g>
     </g>
-    <text id="Double_click_or_tap_at_the_floor_to_move_around_the_gallery" data-name="Double click or tap at the floor
-to move around the gallery" transform="translate(1690 264)" fill="#201111" font-size="20" font-family="Montserrat-Light, Montserrat" font-weight="300"><tspan x="-149.35" y="0">Double click or tap at the floor</tspan><tspan x="-133.98" y="24">to move around the gallery</tspan></text>
+    <text id="Double_click_or_double_tap_the_floor_to_move_around_the_gallery_" data-name="Double click or double
+tap the floor to move
+around the gallery
+" transform="translate(1690 270)" fill="#201111" font-size="26" font-family="Montserrat-Light, Montserrat" font-weight="300"><tspan x="-144.716" y="0">Double click or double</tspan><tspan x="-134.615" y="32">tap the floor to move</tspan><tspan x="-118.365" y="64">around the gallery</tspan><tspan x="0" y="96"></tspan></text>
   </g>
 </svg>

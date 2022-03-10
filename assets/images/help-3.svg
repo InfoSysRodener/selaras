@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="245.807" height="183.791" viewBox="0 0 245.807 183.791">
-  <g id="Group_64" data-name="Group 64" transform="translate(-1571.5 -318.209)">
-    <text id="Click_or_tap_and_drag_to_rotate_the_camera" data-name="Click or tap and drag
-to rotate the camera" transform="translate(1694 473)" fill="#201111" font-size="20" font-family="Montserrat-Light, Montserrat" font-weight="300"><tspan x="-103.28" y="0">Click or tap and drag</tspan><tspan x="-101.64" y="24">to rotate the camera</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="226.25" viewBox="0 0 260 226.25">
+  <g id="Group_64" data-name="Group 64" transform="translate(-1564 -318.209)">
+    <text id="Click_or_tap_and_drag_to_rotate_the_camera_" data-name="Click or tap and drag
+to rotate the camera
+" transform="translate(1694 478.459)" fill="#201111" font-size="25" font-family="Montserrat-Light, Montserrat" font-weight="300"><tspan x="-129.1" y="0">Click or tap and drag</tspan><tspan x="-127.05" y="30">to rotate the camera</tspan><tspan x="0" y="60"></tspan></text>
     <g id="Group_54" data-name="Group 54" transform="translate(721.949 -222)">
       <line id="Line_11" data-name="Line 11" x1="19.184" y1="16.884" transform="translate(918.5 616.5)" fill="none" stroke="#201111" stroke-linecap="round" stroke-width="6"/>
       <g id="tap" transform="translate(929.956 540.459)">
