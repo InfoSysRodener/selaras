@@ -661,7 +661,6 @@ class SceneInit {
         }, 500)
         if (self.pointerdownCount >= 2) {
             if (self.mouseRaycaster) {
-                alert("Double Tap")
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
                 if (intersects) {
