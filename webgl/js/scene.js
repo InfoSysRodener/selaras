@@ -265,27 +265,58 @@ class SceneInit {
             this.fullScreen();
         })
 
-        document.addEventListener("pointerdown", (evt) => {
-            self.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
-            self.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
-            self.pointerdownCount++
-            setTimeout(() => {
-                self.pointerdownCount = 0
-            }, 500)
-            if (self.pointerdownCount >= 2) {
-                self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
-                const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
-                console.log("pointerdown", intersects)
-                if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 2]) {
-                    console.log(self, self.camera.position, intersects[0].point)
-                    gsap.to(self.camera.position, {
-                        x: intersects[0].point.x,
-                        z: intersects[0].point.z,
-                        duration: 1
-                    })
+        const isMobile = this.mobileAndTabletCheck()
+
+        if (isMobile) {
+            document.addEventListener("touchstart", (evt) => {
+                self.mouse.x = (evt.touches[0].clientX / window.innerWidth) * 2 - 1;
+                self.mouse.y = - (evt.touches[0].clientY / window.innerHeight) * 2 + 1;
+                self.pointerdownCount++
+                setTimeout(() => {
+                    self.pointerdownCount = 0
+                }, 500)
+                if (self.pointerdownCount >= 2) {
+                    self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
+                    const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
+                    if (intersects) {
+                        if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 2]) {
+                            gsap.to(self.camera.position, {
+                                x: intersects[0].point.x,
+                                z: intersects[0].point.z,
+                                duration: 1
+                            })
+                        }
+                    }
                 }
-            }
-        })
+            })
+        }
+        else {
+            document.addEventListener("pointerdown", (evt) => {
+                self.mouse.x = (evt.clientX / window.innerWidth) * 2 - 1;
+                self.mouse.y = - (evt.clientY / window.innerHeight) * 2 + 1;
+                self.pointerdownCount++
+                setTimeout(() => {
+                    self.pointerdownCount = 0
+                }, 500)
+                if (self.pointerdownCount >= 2) {
+                    self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
+                    const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
+                    if (intersects) {
+                        if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 2]) {
+                            gsap.to(self.camera.position, {
+                                x: intersects[0].point.x,
+                                z: intersects[0].point.z,
+                                duration: 1
+                            })
+                        }
+                    }
+                }
+            })
+        }
+
+
+
+
 
         // default listener
         this.container.addEventListener('fullscreenchange', (event) => {
@@ -543,7 +574,7 @@ class SceneInit {
             if (dist1 * 0.03 >= 0 && dist1 * 0.03 <= 1) {
                 this.video.volume = 1 - (dist1 * 0.03)
             }
-            else if(dist2 * 0.03 >= 0 && dist2 * 0.03 <= 1){
+            else if (dist2 * 0.03 >= 0 && dist2 * 0.03 <= 1) {
                 this.video.volume = 1 - (dist2 * 0.03)
             }
             else {
