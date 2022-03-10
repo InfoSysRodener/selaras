@@ -276,8 +276,8 @@ class SceneInit {
                 self.mouseRaycaster.setFromCamera(self.mouse, self.camera);
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
                 console.log("pointerdown", intersects)
-
                 if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 2]) {
+                    console.log(self, self.camera.position, intersects[0].point)
                     gsap.to(self.camera.position, {
                         x: intersects[0].point.x,
                         z: intersects[0].point.z,
