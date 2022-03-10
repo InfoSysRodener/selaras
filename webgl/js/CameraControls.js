@@ -113,7 +113,7 @@ export class CameraControls {
     rotateMouse(clientX) {
         const deltaX = clientX - this.initPointXRotate
 
-        this.camera.rotateOnWorldAxis(new Vector3(0, 1, 0), (-deltaX / 300))
+        this.camera.rotateOnWorldAxis(new Vector3(0, 1, 0), (deltaX / 300))
         this.camera.rotation.z = 0
     }
 
@@ -128,7 +128,7 @@ export class CameraControls {
 
         this.initAngle += deltaY
         // if(this.checkCameraRotationMouse(this.initAngle) ==== false){   
-        this.camera.rotateOnWorldAxis(v3, deltaY / 300)
+        this.camera.rotateOnWorldAxis(v3, -deltaY / 300)
         // }
         this.camera.rotation.z = 0
     }
