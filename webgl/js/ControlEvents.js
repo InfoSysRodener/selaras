@@ -24,8 +24,7 @@ export class ControlEvents {
 
         this.joystick = nipplejs.create({
             zone: document.getElementById('controlsDiv'),
-            mode: 'static',
-            position: { left: '25%', top: '75%' },
+            mode: 'dynamic',
             color: 'gray'
         });
         this.joystick.on("move", (evt, data) => {

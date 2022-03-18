@@ -665,10 +665,15 @@ class SceneInit {
                 const intersects = self.mouseRaycaster.intersectObjects(self.scene.children);
                 if (intersects) {
                     if (intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[8] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 1].children[9] || intersects[0].object === self.loader.allMeshes[self.loader.allMeshes.length - 2]) {
+                        const dist = self.camera.position.distanceToSquared(intersects[0].point)
+                        self.collisionOn = false
                         gsap.to(self.camera.position, {
                             x: intersects[0].point.x,
                             z: intersects[0].point.z,
-                            duration: 1
+                            duration: dist / 25,
+                            onComplete: () => {
+                                self.collisionOn = true
+                            }
                         })
                     }
                 }
