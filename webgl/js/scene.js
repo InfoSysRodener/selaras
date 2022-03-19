@@ -27,6 +27,7 @@ class SceneInit {
     mouseRaycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
     videoAudio = true
+    muted = false
 
     constructor(options) {
         this.container = options.dom;
@@ -47,7 +48,6 @@ class SceneInit {
         this.camera.position.x = -2
         this.camera.position.y = 1.5
         this.camera.position.z = 1
-
 
         const geometry = new THREE.BoxGeometry(1, 0.5, 1);
         const material = new THREE.MeshBasicMaterial();
@@ -193,7 +193,9 @@ class SceneInit {
                     self.currentSound.stop();
                     window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
                 }
-                self.bgMusic.volume(0.25)
+                if (!self.muted) {
+                    self.bgMusic.volume(0.25)
+                }
                 self.video.volume = 0
                 self.videoAudio = false
                 self.currentSound = self.currentObj.sound
@@ -207,7 +209,9 @@ class SceneInit {
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
 
                 gsap.delayedCall(self.currentSound.duration(), () => {
-                    self.bgMusic.volume(1)
+                    if (!self.muted) {
+                        self.bgMusic.volume(1)
+                    }
                     self.videoAudio = true
                 })
             }
@@ -236,7 +240,9 @@ class SceneInit {
         document.addEventListener("pauseCurrentSound", () => {
             if (self.currentSound) {
                 self.currentSound.pause();
-                self.bgMusic.volume(1)
+                if (!self.muted) {
+                    self.bgMusic.volume(1)
+                }
                 self.videoAudio = true
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'pause');
             }
@@ -245,7 +251,9 @@ class SceneInit {
         document.addEventListener("resumeCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.play();
-                self.bgMusic.volume(0.25)
+                if (!self.muted) {
+                    self.bgMusic.volume(0.25)
+                }
                 self.video.volume = 0
                 self.videoAudio = false
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'playing');
@@ -255,7 +263,9 @@ class SceneInit {
         document.addEventListener("stopCurrentSound", () => {
             if (self.currentSound) {
                 this.currentSound.stop();
-                self.bgMusic.volume(1)
+                if (!self.muted) {
+                    self.bgMusic.volume(1)
+                }
                 self.videoAudio = true
                 window.$nuxt.$emit('CHANGE-PLAY-SOUND-EVENT', 'stop');
             }
@@ -277,8 +287,6 @@ class SceneInit {
                 self.doubleTap(self, evt)
             })
         }
-
-
 
 
 
@@ -678,6 +686,16 @@ class SceneInit {
                     }
                 }
             }
+        }
+    }
+
+    muteMusic(enable) {
+        this.muted = enable
+        if (this.muted) {
+            this.bgMusic.volume(0)
+        }
+        else {
+            this.bgMusic.volume(1)
         }
     }
 
