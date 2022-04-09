@@ -1,22 +1,22 @@
 <template>
     <div class="flex flex-col items-center w-full h-full">
         <div class="pt-28 flex flex-row justify-center items-center">
-          <h1 class="font-semibold text-lg xl:text-4xl tracking-widest text-center"> Meet The Artist </h1>
+          <h1 class="font-semibold text-lg xl:text-4xl tracking-widest text-center"> Welcome To Selaras Art Space </h1>
         </div>
-        <div class="my-14 inline-flex justify-center items-center w-full relative h-xl">
-            <div class="hidden sm:block relative  left-0">
-              <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting1.png">
-            </div>
-            <div class="block relative h-xl"> 
+        <div class="my-14 inline-flex justify-center items-center w-full relative h-64 sm:h-xl">
+            <!-- <div class="hidden sm:block relative  left-0"> -->
+              <!-- <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting1.png"> -->
+            <!-- </div> -->
+            <div class="block relative h-full sm:h-xl"> 
                 <video ref="myvideo" class="w-full h-full" controls Autoplay=autoplay>
                     <source src="/3D/meet_the_artist.mov" type="video/mp4">
                      <!-- <source src="/3D/selarasvideo.mp4" type="video/mp4">  -->
                     Your browser does not support HTML video.
                 </video>
             </div>
-            <div class="hidden sm:block relative right-0">
-                <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting2.png">
-            </div>
+            <!-- <div class="hidden sm:block relative right-0"> -->
+                <!-- <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting2.png"> -->
+            <!-- </div> -->
         </div>
         <div class="pb-10 w-1/3">
           <NuxtLink to="/explore">

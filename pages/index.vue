@@ -3,10 +3,10 @@
     <div class="flex flex-row justify-center w-full content-center min-h-screen h-full items-center">
       <div class="p-4">
         <AppLogo/>
-        <div class="text-center font-bold text-xl mt-14">
+        <!-- <div class="text-center font-bold text-xl mt-14">
           <p>Coming Soon...</p>
-        </div>
-        <!-- <div>
+        </div> -->
+        <div>
           <div class="text-sm text-center my-14  sm:hidden">
             <p> 
               'Selaras art space' adalah sebuah ruang presentasi
@@ -34,7 +34,7 @@
               <button class="w-full p-2 bg-orange text-white"> Explore </button>
             </NuxtLink>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
     <!-- <Footer/> -->

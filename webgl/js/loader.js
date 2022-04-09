@@ -29,7 +29,7 @@ export class Loader {
                 title: 'SUBJECTION I',
                 meshName: 'subjection1',
                 size: '40x30 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '3,500,000',
                 audio: '2. subjection.mp3'
@@ -50,7 +50,7 @@ export class Loader {
                 title: 'SUBJECTION II',
                 meshName: 'subjection2',
                 size: '40x30 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '3,500,000',
                 audio: '2. subjection.mp3'
@@ -71,7 +71,7 @@ export class Loader {
                 title: 'SUBJECTION III',
                 meshName: 'subjection3',
                 size: '40x30 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '3,500,000',
                 audio: '2. subjection.mp3'
@@ -92,7 +92,7 @@ export class Loader {
                 title: 'SENTIENT I',
                 meshName: 'sentient1',
                 size: '40x30 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '3,500,000',
                 audio: '3. sentient.mp3'
@@ -113,7 +113,7 @@ export class Loader {
                 title: 'SENTIENT II',
                 meshName: 'sentient2',
                 size: '40x30 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '3,500,000',
                 audio: '3. sentient.mp3'
@@ -134,7 +134,7 @@ export class Loader {
                 title: 'SENTIENT III',
                 meshName: 'sentient3',
                 size: '40x30 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '3,500,000',
                 audio: '3. sentient.mp3'
@@ -155,7 +155,7 @@ export class Loader {
                 title: 'SUPLICATION I',
                 meshName: 'suplication1',
                 size: '50x70 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,500,000',
                 audio: '4. suplication.mp3'
@@ -176,7 +176,7 @@ export class Loader {
                 title: 'SUPLICATION II',
                 meshName: 'suplication2',
                 size: '50x70 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,500,000',
                 audio: '4. suplication.mp3'
@@ -197,7 +197,7 @@ export class Loader {
                 title: 'SUPLICATION III',
                 meshName: 'suplication3',
                 size: '50x70 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,500,000',
                 audio: '4. suplication.mp3'
@@ -218,7 +218,7 @@ export class Loader {
                 title: 'SUPLICATION IV',
                 meshName: 'suplication4',
                 size: '50x70 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,500,000',
                 audio: '4. suplication.mp3'
@@ -239,7 +239,7 @@ export class Loader {
                 title: 'SUPLICATION V',
                 meshName: 'suplication5',
                 size: '50x70 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,500,000',
                 audio: '4. suplication.mp3'
@@ -260,7 +260,7 @@ export class Loader {
                 title: 'CONTRIVE',
                 meshName: 'contrive',
                 size: '60x40 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '5,500,000',
                 audio: '5. contrive.mp3'
@@ -281,7 +281,7 @@ export class Loader {
                 title: 'INUNCT I',
                 meshName: 'inunct1',
                 size: '60x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '6,500,000',
                 audio: '6. inunct.mp3'
@@ -302,7 +302,7 @@ export class Loader {
                 title: 'INUNCT II',
                 meshName: 'inunct2',
                 size: '60x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '6,500,000',
                 audio: '6. inunct.mp3'
@@ -323,7 +323,7 @@ export class Loader {
                 title: 'INUNCT III',
                 meshName: 'inunct3',
                 size: '60x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '6,500,000',
                 audio: '6. inunct.mp3'
@@ -344,7 +344,7 @@ export class Loader {
                 title: 'INUNCT IV',
                 meshName: 'inunct4',
                 size: '60x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '6,500,000',
                 audio: '6. inunct.mp3'
@@ -365,7 +365,7 @@ export class Loader {
                 title: 'EXEMPT',
                 meshName: 'exempt',
                 size: '100x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '9,000,000',
                 audio: '7. ecempt.mp3'
@@ -386,7 +386,7 @@ export class Loader {
                 title: 'LANDSCAPE OF LIFE SERIES',
                 meshName: 'landscapeoflife5',
                 size: '100x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'LOL_01.mp4'
@@ -407,7 +407,7 @@ export class Loader {
                 title: 'LANDSCAPE OF LIFE SERIES',
                 meshName: 'landscapeoflife1',
                 size: '100x60 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '7,500,000',
                 audio: 'LOL_02.mp4'
@@ -428,7 +428,7 @@ export class Loader {
                 title: 'LANDSCAPE OF LIFE SERIES',
                 meshName: 'landscapeoflife6',
                 size: '125x60 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'LOL_03.mp4'
@@ -449,7 +449,7 @@ export class Loader {
                 title: 'LANDSCAPE OF LIFE SERIES',
                 meshName: 'landscapeoflife4',
                 size: '100x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'LOL_04.mp4'
@@ -470,7 +470,7 @@ export class Loader {
                 title: 'LANDSCAPE OF LIFE SERIES',
                 meshName: 'landscapeoflife3',
                 size: '100x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'LOL_05.mp4'
@@ -491,7 +491,7 @@ export class Loader {
                 title: 'LANDSCAPE OF LIFE SERIES',
                 meshName: 'landscapeoflife2',
                 size: '100x60 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '7,500,000',
                 audio: 'LOL_06.mp4'
@@ -512,7 +512,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi1',
                 size: '50x50 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,000,000',
                 audio: 'KS_02.mp4'
@@ -533,7 +533,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi2',
                 size: '50x50 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '4,000,000',
                 audio: 'KS_03.mp4'
@@ -554,7 +554,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi3',
                 size: '100x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'KS_01.mp4'
@@ -575,7 +575,7 @@ export class Loader {
                 title: 'UNTITLED',
                 meshName: 'untitled2',
                 size: '100x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'UTL_01.mp4'
@@ -596,7 +596,7 @@ export class Loader {
                 title: 'HIKAYAT POHON HIDUP SERIES',
                 meshName: 'hikayathidup2',
                 size: '100x60 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '7,500,000',
                 audio: 'HPH_02.mp4'
@@ -617,7 +617,7 @@ export class Loader {
                 title: 'HIKAYAT POHON HIDUP SERIES',
                 meshName: 'hikayathidup1',
                 size: '100x60 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '7,500,000',
                 audio: 'HPH_01.mp4'
@@ -638,7 +638,7 @@ export class Loader {
                 title: 'UNTITLED',
                 meshName: 'untitled1',
                 size: '100x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'UTL_02.mp4'
@@ -659,7 +659,7 @@ export class Loader {
                 title: 'HIKAYAT POHON HIDUP SERIES',
                 meshName: 'hikayathidup3',
                 size: '80x150 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '10,000,000',
                 audio: 'HPH_03.mp4'
@@ -680,7 +680,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi4',
                 size: '100x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'KS_04.mp4'
@@ -701,7 +701,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi5',
                 size: '70x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '7,000,000',
                 audio: 'KS_05.mp4'
@@ -722,7 +722,7 @@ export class Loader {
                 title: 'BAUR',
                 meshName: 'baur',
                 size: '125x125 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '10,000,000',
                 audio: 'BAUR.mp4'
@@ -743,7 +743,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi7',
                 size: '100x80 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'KS_06.mp4'
@@ -764,7 +764,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi8',
                 size: '140x120 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '12,000,000',
                 audio: 'KS_07.mp4'
@@ -785,7 +785,7 @@ export class Loader {
                 title: 'KONTEMPLASI SERIES',
                 meshName: 'kontemplasi6',
                 size: '80x100 cm',
-                media: 'acrylic on kanvas',
+                media: 'Acrylic on canvas',
                 year: '2021',
                 price: '8,000,000',
                 audio: 'KS_08.mp4'

@@ -51,19 +51,31 @@
                         education:'Universitas Pendidikan Indonesia',
                         resume: [
                             {
+                                title:'EDUCATION',
+                                works:[
+                                    '2016 - 2020 Art Education, Indonesian Education University',
+                                    '2021 - Present Fine Art, Bandung Institute of Technology'
+                                ]
+                            },
+                            {
                                 title:'SOLO EXHIBITION',
                                 works:[
+                                    '2021 CONTENTION, curated by Zakarias S. Soeteja, M.Sn, de Braga by Artotel, Bandung',
                                     '2020 CONTENTION, curated by Zakarias S. Soeteja, M.Sn, Komuji, Bandung, Indonesia',
-                                    '2020 SOMETHING IN THE OTHER, curated by Rainda, Virtual Exhibition',
-                                    '2021 CONTENTION, curated by Zakarias S. Soeteja, M.Sn, de Braga by Artotel, Bandung'
+                                    '2020 SOMETHING IN THE OTHER, curated by Rainda, Virtual Exhibition'
                                 ]
                             },
                             {
                                 title:'SELECTED GROUP EXHIBITIONS',
                                 works:[
-                                    '2021 SELARAS ART, (upcoming event)',
-                                    '2021 ART JAKARTA, (upcoming event)',
-                                    '2021 CRYPTO ART, Rachel Gallery, Virtual Exhibition (upcoming event)',
+                                    '2022 SELARAS ART, (upcoming event)',
+                                    '2022 PAMERAN BERSAMA, Rachel Gallery, Jakarta Indonesia (Upcoming event)',
+                                    '2022 SENSASI RASA, Rachel Gallery, Virtual Exhibitions (On Going)',
+                                    '2022 REVERBNATION, Isa Art, Wisma 46 BNI, Jakarta, Indonesia',
+                                    '2021 WEST JAVA BIENALLE, Thee huis Gallery, Bandung, Indonesia',
+                                    '2021 KOLEKSI KARYA INDONESIA, Rubanah Underground Hub, Jakarta Indonesia',
+                                    '2021 PRIVATE VIEWING, Rubanah Underground Hub, Jakarta, Indonesia',
+                                    '2021 PUPUHU, Galeri Seni Popo Iskandar, Bandung, Indonesia',
                                     '2021 SHIFTING SPACES, Orbital Dago, Bandung',
                                     '2020 RE - BUNG #BIJABA2, Thee Huis Gallery, Bandung, Indonesia',
                                     '2020 PAMERAN DARI RUMAH, Kemenparekraf RI',
@@ -78,13 +90,13 @@
                             {
                                 title:'COMMISSION WORK',
                                 works:[
-                                    '2020 MURAL, (CREATICITY), Sukabumi, Cirebon, Bogor, Kuningan, Garut',
-                                    '2020 MURAL, PUSDIKPOM, Bandung',
-                                    '2019 MURAL, West Java Festifal, Gedung Sate, Bandung',
-                                    '2019 MURAL, Gapura Cibuntu, Bandung',
-                                    '2019 MURAL, Pesawat Hut TNI AU, Husein Sastranegara, Bandung',
-                                    '2019 MURAL, Top Coffe “Muda Kaya Karya”, Gedung PGN, Bandung',
-                                    '2018 MURAL, Authentic Fest, Bandung',
+                                    '2020 MURAL, (CREATICITY), Sukabumi, Cirebon, Bogor, Kuningan, Garut 2020 MURAL',
+                                    'PUSDIKPOM, Bandung',
+                                    '2019 MURAL, West Java Festifal, Gedung Sate, Bandung 2019 MURAL, Gapura Cibuntu',
+                                    'Bandung',
+                                    '2019 MURAL, Pesawat Hut TNI AU, Husein Sastranegara, Bandung 2019 MURAL, Top Coffe',
+                                    '“Muda Kaya Karya”, Gedung',
+                                    'PGN, Bandung 2018 MURAL, Authentic Fest, Bandung',
                                     '2018 MURAL, D’three fitness, Bandung',
                                     '2018 ILLUSTRATOR, KOMIK “SI LOKO”, PT KAI'
                                 ]
@@ -92,7 +104,7 @@
                             {
                                 title:'RESIDENSI',
                                 works:[
-                                    '2021 The Inhabitants : Adopt A Project (Residensi), Indeks, Jepang'
+                                    '2021 The Inhabitants : Adopt A Project (Residensi), Indeks'
                                 ]
                             },
                             {
@@ -104,21 +116,21 @@
                             {
                                 title:'VOLUNTEERING FOR SOCIETY',
                                 works:[
-                                    '2019 MURAL, Street Art Dakwah, Cibunut, Bandung',
-                                    '2019 MURAL, Cinambo, Bandung 2017 MURAL, Cibunut, Bandung',
+                                    '2019 MURAL, Street Art Dakwah, Cibunut, Bandung 2019 MURAL, Cinambo, Bandung',
+                                    '2017 MURAL, Cibunut, Bandung',
                                     '2016 MURAL, Baksil, Bandung'
                                 ]
                             },
-                            {
-                                title:'OTHERS',
-                                works:[
-                                    '2020 – 2021 Bekerja di Kultura Creative studio sebagai designer',
-                                    '2019 - 2020 Exhibition Guide Selasar Sunaryo Art Space',
-                                    '2019 Exhibition Guide BaCAA',
-                                    '2019 Show Management Art Jakarta',
-                                    '2018 Artisan Agung Fitriana “Visible Of Feeling”'
-                                ]
-                            }
+                            // {
+                            //     title:'OTHERS',
+                            //     works:[
+                            //         '2020 – 2021 Bekerja di Kultura Creative studio sebagai designer',
+                            //         '2019 - 2020 Exhibition Guide Selasar Sunaryo Art Space',
+                            //         '2019 Exhibition Guide BaCAA',
+                            //         '2019 Show Management Art Jakarta',
+                            //         '2018 Artisan Agung Fitriana “Visible Of Feeling”'
+                            //     ]
+                            // }
                         ]
                         ,
                         instagram:'https://www.instagram.com/widwar/'

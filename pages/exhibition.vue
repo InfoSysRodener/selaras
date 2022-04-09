@@ -33,7 +33,7 @@
         return{
           exhibition:{
             title:'TITIK BERANGKAT',
-            date: '14 February 2022 – 30 April 2022',
+            date: '11 April - 30 June 2022',
             description:'Setiap manusia memiliki titik berangkat dalam hidupnya masing-masing. Sandy dan Widi mencoba menuturkan titik berangkat mereka lewat karya, yang akan menggugah rasa dalam melihat kembali bagaimana titik berangkat kita dalam hidup.'
           },
         }

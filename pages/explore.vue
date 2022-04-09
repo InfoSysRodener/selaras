@@ -3,6 +3,10 @@
     <div>
        <Scene>
          <MenuView/>
+         <!-- <div class="absolute right-64 top-14">
+            <img v-if="mute" class="w-14 h-14 cursor-pointer" src="~/assets/muted.svg" @click="setMute()" />
+            <img v-else class="w-14 h-14 cursor-pointer" src="~/assets/mute.svg" @click="setMute()" />
+         </div> -->
          <div v-if="isLoading" class="flex justify-center absolute items-center w-full h-screen z-30 bg-gray-100 opacity-90 ">
             <div class="flex flex-col">
               <img class="w-14 h-14" src="~/assets/loading.gif"/>
@@ -29,6 +33,7 @@
       return {
         isLoading:true,
         progressTime:0,
+        mute:false
       }
     },
     created(){
@@ -39,6 +44,12 @@
     },
     beforeDestroy(){
       this.$nuxt.$off('LOADING-SCENE');
+    },
+    methods:{
+        setMute(){
+           this.mute = !this.mute;
+           this.$nuxt.$emit('MUTE-BACKGROUND-MUSIC', this.mute);
+        }
     },
   }
 </script> 

@@ -1,10 +1,14 @@
 <template>
     <div>
         <div v-show="menu" class="z-10">
-            <div v-show="view === 'menu-view'" :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="pl-10 right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
+            <div v-show="view === 'menu-view'" :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
-                        <div class="flex items-center justify-end px-2">
+                        <div class="flex items-center justify-between px-2 relative">
+                            <div class="pt-2">
+                                <img v-if="mute" class="w-14 h-14 cursor-pointer" src="~/assets/muted.svg" @click="setMute()" />
+                                <img v-else class="w-14 h-14 cursor-pointer" src="~/assets/mute.svg" @click="setMute()" />
+                            </div>
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
                                <button> <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" @click="toggleTab"/> </button>
                             </span>
@@ -220,6 +224,7 @@
         },
         data(){
             return {
+                mute:false,
                 menu:false,
                 modal:false,
                 selectedTab:null,
@@ -318,6 +323,10 @@
                 this.view = 'menu-view';
                 this.modalPainting = false;
                 this.$nuxt.$emit('CLOSED-PAINTING-VIEW');
+            },
+            setMute(){
+                this.mute = !this.mute;
+                this.$nuxt.$emit('MUTE-BACKGROUND-MUSIC', this.mute);
             }
         },
          

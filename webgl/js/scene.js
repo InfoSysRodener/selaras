@@ -288,6 +288,9 @@ class SceneInit {
             })
         }
 
+        document.addEventListener('muteBackgroundMusic', (evt) => {
+            this.muteMusic();
+        })
 
 
         // default listener
@@ -690,7 +693,7 @@ class SceneInit {
     }
 
     muteMusic(enable) {
-        this.muted = enable
+        this.muted = enable;
         if (this.muted) {
             this.bgMusic.volume(0)
         }
