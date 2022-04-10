@@ -335,9 +335,9 @@ class SceneInit {
             '/3D/sounds/HPH_01.mp3',
             '/3D/sounds/HPH_02.mp3',
             '/3D/sounds/HPH_03.mp3',
-            '/3D/sounds/KS_01.mp3',
-            '/3D/sounds/KS_03.mp3',
             '/3D/sounds/KS_02.mp3',
+            '/3D/sounds/KS_03.mp3',
+            '/3D/sounds/KS_01.mp3',
             '/3D/sounds/KS_04.mp3',
             '/3D/sounds/KS_05.mp3',
             '/3D/sounds/KS_06.mp3',
@@ -349,8 +349,8 @@ class SceneInit {
             '/3D/sounds/LOL_04.mp3',
             '/3D/sounds/LOL_05.mp3',
             '/3D/sounds/LOL_06.mp3',
-            '/3D/sounds/UTL_01.mp3',
             '/3D/sounds/UTL_02.mp3',
+            '/3D/sounds/UTL_01.mp3',
             '/3D/sounds/Selaras_Solo_Piano.wav'
         ]
         this.loader.loadAudio(sounds)
