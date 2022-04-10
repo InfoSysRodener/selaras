@@ -4,11 +4,7 @@
             <div v-show="view === 'menu-view'" :class="{  'top-0': isFullscreen , 'top-12': !isFullscreen }" class="right-0 block absolute w-64 bg-gray-50 rounded-bl-lg select-none">
                 <ul>
                     <li class="py-3 relative cursor-pointer">
-                        <div class="flex items-center justify-between px-2 relative">
-                            <div class="pt-2">
-                                <img v-if="mute" class="w-14 h-14 cursor-pointer" src="~/assets/muted.svg" @click="setMute()" />
-                                <img v-else class="w-14 h-14 cursor-pointer" src="~/assets/mute.svg" @click="setMute()" />
-                            </div>
+                        <div class="flex items-center justify-end px-2 relative">
                             <span class="rounded-full inline-block bg-white w-10 h-10 shadow-lg">
                                <button> <img class="cursor-pointer w-10 p-3 h-auto m-auto block" src="~/assets/icons/menu/close-svgrepo-com.svg" @click="toggleTab"/> </button>
                             </span>
@@ -30,14 +26,14 @@
                             </div>
                         </div>
                     </li> 
-                    <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('art-catalogue')">
+                    <!-- <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('art-catalogue')">
                         <div class="flex items-center justify-end">
                             <p class="pr-3 text-sm font-medium">Art catalogue </p>
                             <span class="rounded-full  inline-block bg-white w-10 h-10 shadow-lg">
                                 <img  class="w-10 h-auto p-2 m-auto block" src="~/assets/icons/menu/images-interface-symbol-svgrepo-com.svg"/>
                             </span>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="py-3 px-2 text-right relative cursor-pointer" @click="toggleSelectedTab('meet-the-artist')">
                         <div class="flex items-center justify-end">
                             <p class="pr-3 text-sm font-medium"> Meet the artists </p>

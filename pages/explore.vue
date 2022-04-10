@@ -3,10 +3,10 @@
     <div>
        <Scene>
          <MenuView/>
-         <!-- <div class="absolute right-64 top-14">
-            <img v-if="mute" class="w-14 h-14 cursor-pointer" src="~/assets/muted.svg" @click="setMute()" />
-            <img v-else class="w-14 h-14 cursor-pointer" src="~/assets/mute.svg" @click="setMute()" />
-         </div> -->
+         <div class="absolute bottom-0 right-0">
+            <img v-if="mute" class="w-14 h-14 cursor-pointer select-none" src="~/assets/muted.svg" @click="setMute()" />
+            <img v-else class="w-14 h-14 cursor-pointer select-none" src="~/assets/mute.svg" @click="setMute()" />
+         </div>
          <div v-if="isLoading" class="flex justify-center absolute items-center w-full h-screen z-30 bg-gray-100 opacity-90 ">
             <div class="flex flex-col">
               <img class="w-14 h-14" src="~/assets/loading.gif"/>

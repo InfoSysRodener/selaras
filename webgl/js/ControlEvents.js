@@ -92,7 +92,9 @@ export class ControlEvents {
         })
 
         const onKeyDown = (event) => {
-
+            if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.code) > -1) {
+                event.preventDefault();
+            }
             switch (event.code) {
 
                 case 'ArrowUp':

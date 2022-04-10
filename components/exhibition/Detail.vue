@@ -7,13 +7,20 @@
                 <p class="text-lg">{{ exhibition.date }}</p>
             </div>
             <div>
-                <h1 class="font-medium text-2xl">Art Catalogue</h1>
+                <h1 class="font-medium text-2xl">Download</h1>
                 <div class="flex w-32 mt-3">
                     <a class="flex items-center" href="/3D/Selaras-Art-Space-ecatalog.pdf" download>
-                        <p class="text-xs underline w-32 cursor-pointer">
-                            download
+                        <p class="flex text-xs underline w-32 cursor-pointer">
+                            arts catalog
+                             <img class="ml-2 cursor-pointer" src="~/assets/icons/pdf.svg" />
                         </p>
-                        <img class="cursor-pointer" src="~/assets/icons/pdf.svg" />
+                        <!-- <img class="cursor-pointer" src="~/assets/icons/pdf.svg" /> -->
+                    </a>
+                    <a class="flex items-center" href="/3D/Selaras-Art-Space-pricelist.pdf" download>
+                        <p class="flex text-xs underline w-32 cursor-pointer">
+                            price list
+                             <img class="ml-2 cursor-pointer" src="~/assets/icons/pdf.svg" />
+                        </p>
                     </a>
                 </div>
             </div>

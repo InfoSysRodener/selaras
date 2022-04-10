@@ -23,6 +23,9 @@ class NavigationControl {
         });
         this.down.addEventListener('pointerdown', (e) => {
             e.preventDefault();
+            if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.code) > -1) {
+                e.preventDefault();
+            }
             document.dispatchEvent(new Event("moveBackwards"))
         });
         this.left.addEventListener('pointerdown', (e) => {

@@ -6,6 +6,9 @@ module.exports = {
       height:{
         xl: '450px'
       },
+      width:{
+        xl: '750px'
+      },
       backgroundColor: theme => ({
         ...theme('colors'),
         'primary': '#3490dc',

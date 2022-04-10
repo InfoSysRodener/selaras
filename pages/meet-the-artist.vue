@@ -7,7 +7,7 @@
             <!-- <div class="hidden sm:block relative  left-0"> -->
               <!-- <img class="h-xl w-full object-contain" src="~/assets/images/meet-the-artist-painting1.png"> -->
             <!-- </div> -->
-            <div class="block relative h-full sm:h-xl"> 
+            <div class="block relative h-full sm:h-xl sm:w-xl"> 
                 <video ref="myvideo" class="w-full h-full" controls Autoplay=autoplay>
                     <source src="/3D/meet_the_artist.mov" type="video/mp4">
                      <!-- <source src="/3D/selarasvideo.mp4" type="video/mp4">  -->
