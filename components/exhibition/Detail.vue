@@ -11,17 +11,17 @@
                 <div class="flex w-32 mt-3">
                     <a class="flex items-center" href="/3D/Selaras-Art-Space-ecatalog.pdf" download>
                         <p class="flex text-xs underline w-32 cursor-pointer">
-                            arts catalog
+                            art catalog
                              <img class="ml-2 cursor-pointer" src="~/assets/icons/pdf.svg" />
                         </p>
                         <!-- <img class="cursor-pointer" src="~/assets/icons/pdf.svg" /> -->
                     </a>
-                    <a class="flex items-center" href="/3D/Selaras-Art-Space-pricelist.pdf" download>
+                    <!-- <a class="flex items-center" href="/3D/Selaras-Art-Space-pricelist.pdf" download>
                         <p class="flex text-xs underline w-32 cursor-pointer">
                             price list
                              <img class="ml-2 cursor-pointer" src="~/assets/icons/pdf.svg" />
                         </p>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div> 
